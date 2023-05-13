@@ -5,21 +5,20 @@
 
 {
   imports =
-    [
-      (modulesPath + "/profiles/qemu-guest.nix")
+    [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.initrd.luks.devices = {
     cryptroot = {
-      device = "/dev/disk/by-uuid/0491ef8a-3c28-4ea3-af15-805138928b45"; # replace with uuid from "blkid"
+      device = "/dev/disk/by-uuid/bd9cbbe6-efb8-4451-a7ad-9b9cd66e9531";
       preLVM = true;
       allowDiscards = true;
     };
   };
 
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -45,6 +44,9 @@
   # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-}
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+  # qemu guest agent
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
+}

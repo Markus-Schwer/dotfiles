@@ -1,3 +1,4 @@
+# vim: expandtab:ai:ts=2:sw=2
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -5,18 +6,38 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      <home-manager/nixos>
-    ];
+  imports = [];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # qemu guest
-  services.qemuGuest.enable = true;
-  services.spice-vdagentd.enable = true;
+  # sway with home manager
+  programs.sway = {
+    enable = true;
+    extraPackages = with pkgs; [
+      #wl-clipboard
+      #wl-clipboard-x11
+      wlr-randr
+      #xwayland
+      xdg-utils
+    ];
+  };
+  environment.sessionVariables = rec {
+    #WLR_RENDERER_ALLOW_SOFTWARE = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
+  programs.git.enable = true;
 
-  # Use the systemd-boot boot loader.
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  security.polkit.enable = true;
+  security.pam.services.swaylock = {
+    text = "auth include login";
+  };
+  hardware.opengl.enable = true;
+  
+  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -41,13 +62,11 @@
   # };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
+  services.xserver.enable = false;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -60,8 +79,14 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  #sound.enable = true;
+  #hardware.pulseaudio.enable = true;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -73,16 +98,18 @@
     extraGroups = [
       "wheel" # Enable ‘sudo’ for the user.
       "networkmanager"
+      "video"
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJxCiKBrwxQBpIaauYXFzmKea876PZ8Eb8gXn13HMx95 markus-thinkpad"
     ];
   };
-  home-manager.users.markus = { pkgs, ... }: {
-    home.packages = with pkgs; [
-      firefox
-      thunderbird
-      spice-vdagent
-    ];
-    programs.bash.enable = true;
-  };
+  services.openssh.enable = true;
+
+  # home manager
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.markus = import ./home.nix;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -122,5 +149,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-
 }
