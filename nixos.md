@@ -129,3 +129,11 @@ nixos-install
 
 install home-manager
 
+clone dotfiles
+
+```bash
+cd /home/markus/Documents
+git clone git@github.com:Markus-Schwer/dotfiles.git
+sudo chown -R markus:users /home/markus/Documents/dotfiles
+```
+
