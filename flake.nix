@@ -37,7 +37,6 @@
           inherit system;
           modules = [
             ./modules
-            ./configuration.nix
             ./hardware/qemu.nix
             home-manager.nixosModules.home-manager
             {
