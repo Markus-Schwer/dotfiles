@@ -23,6 +23,7 @@
     killall
     firefox
     thunderbird
+    gimp
     spice-vdagent
     neofetch
     alacritty # gpu accelerated terminal
