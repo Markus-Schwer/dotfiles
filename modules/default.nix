@@ -8,34 +8,6 @@
 {
   imports = [];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # sway with home manager
-  programs.sway = {
-    enable = true;
-    extraPackages = with pkgs; [
-      #wl-clipboard
-      #wl-clipboard-x11
-      wlr-randr
-      #xwayland
-      xdg-utils
-    ];
-  };
-  environment.sessionVariables = rec {
-    #WLR_RENDERER_ALLOW_SOFTWARE = "1";
-    WLR_NO_HARDWARE_CURSORS = "1";
-  };
-  programs.git.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
-  security.polkit.enable = true;
-  security.pam.services.swaylock = {
-    text = "auth include login";
-  };
-  hardware.opengl.enable = true;
   
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -60,13 +32,6 @@
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = false;
-
-  # Enable the GNOME Desktop Environment.
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -104,7 +69,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJxCiKBrwxQBpIaauYXFzmKea876PZ8Eb8gXn13HMx95 markus-thinkpad"
     ];
   };
-  services.openssh.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -124,7 +88,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
