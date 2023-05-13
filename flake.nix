@@ -8,7 +8,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, ... }:
     let
       system = "x84_64-linux";
       pkgs = import nixpkgs {
