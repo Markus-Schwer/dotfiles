@@ -106,11 +106,6 @@
   };
   services.openssh.enable = true;
 
-  # home manager
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users.markus = import ./home.nix;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
