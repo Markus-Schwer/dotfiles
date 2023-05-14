@@ -108,6 +108,14 @@ OPTIONAL, when low RAM: activate swap during the installation
 swapon /dev/vg/swap
 ```
 
+run nixos-install with the flake
+
+```
+nixos-install --flake github:Markus-Schwer/dotfiles#qemu
+```
+
+Without the flake:
+
 generate initial nixos config:
 
 ```bash
@@ -124,17 +132,5 @@ install
 
 ```bash
 nixos-install
-```
-
-## after installation
-
-install home-manager
-
-clone dotfiles
-
-```bash
-cd /home/markus/Documents
-git clone git@github.com:Markus-Schwer/dotfiles.git
-sudo chown -R markus:users /home/markus/Documents/dotfiles
 ```
 
