@@ -35,5 +35,6 @@
 
   imports = [
     ./sway.nix
+    ./nvim
   ];
 }
