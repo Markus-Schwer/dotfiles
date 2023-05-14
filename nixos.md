@@ -35,6 +35,7 @@ LUKS encryption
 
 ```bash
 cryptsetup luksFormat /dev/sda1
+cryptsetup config /dev/sda1 --label cryptroot
 cryptsetup luksOpen /dev/sda1 cryptroot
 ```
 

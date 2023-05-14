@@ -12,7 +12,7 @@
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.initrd.luks.devices = {
     cryptroot = {
-      device = "/dev/disk/by-uuid/bd9cbbe6-efb8-4451-a7ad-9b9cd66e9531";
+      device = "/dev/disk/by-label/cryptroot";
       preLVM = true;
       allowDiscards = true;
     };
