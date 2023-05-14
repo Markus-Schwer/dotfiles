@@ -134,3 +134,15 @@ install
 nixos-install
 ```
 
+# After installation
+
+clone dotfiles nix flake
+
+```bash
+mkdir /home/markus/Documents
+cd /home/markus/Documents
+git clone git@github.com:Markus-Schwer/dotfiles.git
+sudo chown -R markus:users /home/markus/Documents/dotfiles
+```
+
+
