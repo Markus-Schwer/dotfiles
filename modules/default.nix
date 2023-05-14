@@ -6,7 +6,9 @@
 { config, pkgs, ... }:
 
 {
-  imports = [];
+  imports = [
+    ./sway.nix
+  ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
   # Use the systemd-boot EFI boot loader.
