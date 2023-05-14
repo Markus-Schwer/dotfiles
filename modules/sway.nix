@@ -8,7 +8,7 @@
       #wl-clipboard
       #wl-clipboard-x11
       wlr-randr
-      #xwayland
+      xwayland # needed for cursor
       xdg-utils
     ];
   };
