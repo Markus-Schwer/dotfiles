@@ -9,6 +9,7 @@
   boot.initrd.availableKernelModules = [ "nvme" "ehci_pci" "xhci_pci" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
+  boot.extraModulePackages = [ ];
   boot.initrd.luks.devices = {
     cryptroot = {
       device = "/dev/disk/by-label/cryptroot";
@@ -16,9 +17,6 @@
       allowDiscards = true;
     };
   };
-
-  boot.kernelModules = [];
-  boot.extraModulePackages = [ ];
 
   fileSystems."/" =
     {
