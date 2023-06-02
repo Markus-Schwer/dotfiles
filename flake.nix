@@ -19,12 +19,12 @@
     in {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       nixosConfigurations = {
-        markus-nixos = lib.nixosSystem {
+        thinknix = lib.nixosSystem {
           inherit system;
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-t495
             ./modules
-            #./hardware/thinkpad-t495.nix
+            ./hardware/thinkpad-t495.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
