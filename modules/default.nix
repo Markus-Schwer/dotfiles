@@ -7,7 +7,8 @@
 
 {
   imports = [
-    ./sway.nix
+    #./sway.nix
+    ./ssh.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
@@ -35,6 +36,10 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
   # Configure keymap in X11
   # services.xserver.layout = "us";
   # services.xserver.xkbOptions = {
@@ -46,14 +51,14 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  #sound.enable = true;
-  #hardware.pulseaudio.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    pulse.enable = true;
-  };
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
+  #security.rtkit.enable = true;
+  #services.pipewire = {
+  #  enable = true;
+  #  alsa.enable = true;
+  #  pulse.enable = true;
+  #};
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -79,6 +84,8 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
   ];
+
+  programs.git.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

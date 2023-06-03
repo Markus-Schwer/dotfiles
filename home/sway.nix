@@ -20,7 +20,7 @@
     enable = true;
     wrapperFeatures.gtk = true;
     config = rec {
-      modifier = "Mod1";
+      modifier = "Mod4";
       terminal = "alacritty"; 
       menu = "bemenu-run";
       startup = [

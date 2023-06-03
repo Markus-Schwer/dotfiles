@@ -16,7 +16,6 @@
     #WLR_RENDERER_ALLOW_SOFTWARE = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
   };
-  programs.git.enable = true;
 
   xdg.portal = {
     enable = true;
