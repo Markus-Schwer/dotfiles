@@ -1,26 +1,19 @@
 { pkgs }: with pkgs.vimPlugins; [
+  # Theme
   onedark-nvim
 
   # LSP
   nvim-lspconfig
   lsp_lines-nvim
+  luasnip
   nvim-cmp
   cmp-nvim-lsp
-  #{
-  #  plugin = nvim-lspconfig;
-  #  config = readFile ./config/lsp.lua;
-  #}
-  #lsp-status-nvim
+  lsp-status-nvim
 
   comment-nvim
   vim-surround
   undotree
   telescope-nvim
-  {
-    plugin = twilight-nvim;
-    config = ''
-    '';
-  }
 
   # highlighting stuff
   #{
