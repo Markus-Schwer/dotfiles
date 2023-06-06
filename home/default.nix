@@ -29,6 +29,7 @@
     alacritty # gpu accelerated terminal
     mako # notification system
     bemenu # launch menu
+    openvpn
   ];
 
   programs.bash.enable = true;
