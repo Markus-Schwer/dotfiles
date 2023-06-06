@@ -30,6 +30,7 @@
     mako # notification system
     bemenu # launch menu
     openvpn
+    element-desktop #-wayland
   ];
 
   programs.bash.enable = true;
