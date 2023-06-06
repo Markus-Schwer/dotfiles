@@ -41,7 +41,7 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
-  # services.xserver.layout = "us";
+  services.xserver.layout = "us,de";
   # services.xserver.xkbOptions = {
   #   "eurosign:e";
   #   "caps:escape" # map caps to escape.
