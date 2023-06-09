@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
@@ -31,7 +31,13 @@
     bemenu # launch menu
     openvpn
     element-desktop #-wayland
+    thunderbird
   ];
+
+  xdg.enable = true;
+
+  services.kdeconnect.enable = true;
+  services.kdeconnect.indicator = true;
 
   programs.bash.enable = true;
 

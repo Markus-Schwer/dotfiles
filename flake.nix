@@ -3,12 +3,13 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-22.11";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, ... }:
+  outputs = { nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, ... }:
     let
       system = "x84_64-linux";
       pkgs = import nixpkgs {
@@ -31,6 +32,19 @@
               home-manager.useUserPackages = true;
               home-manager.users.markus = import ./home;
             }
+            ({ config, pkgs, ... }: 
+              let
+                overlay-unstable = final: prev: {
+                  unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
+                };
+              in
+	          {
+                nixpkgs.overlays = [ overlay-unstable ]; 
+                environment.systemPackages = with pkgs; [
+	              unstable.hydroxide
+	            ];
+	          }
+	        )
           ];
         };
         qemu = lib.nixosSystem {

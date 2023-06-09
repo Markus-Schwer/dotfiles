@@ -1,3 +1,5 @@
+require("mason").setup()
+require("mason-lspconfig").setup()
 vim.lsp.set_log_level("debug")
 
 local on_attach = function(client, bufnr)
@@ -37,4 +39,9 @@ lspc.sumneko_lua.setup({
             diagnostics = { globals = { 'vim' } },
         },
     },
+})
+
+lspc.nil_ls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
 })

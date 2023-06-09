@@ -9,7 +9,9 @@
     '';
     plugins = import ./plugins.nix { inherit pkgs; };
     extraPackages = with pkgs; [
+      gcc
       sumneko-lua-language-server
+      nil
     ];
   };
 
