@@ -28,13 +28,14 @@ in
   lsp_lines-nvim
   luasnip
   nvim-cmp
+  cmp-cmdline
   cmp-nvim-lsp
   lsp-status-nvim
   mason
   mason-lspconfig
 
   # highlighting
-  nvim-treesitter
+  nvim-treesitter.withAllGrammars
   nvim-treesitter-context
 
   comment-nvim

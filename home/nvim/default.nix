@@ -10,8 +10,10 @@
     plugins = import ./plugins.nix { inherit pkgs; };
     extraPackages = with pkgs; [
       gcc
+      glibc
       sumneko-lua-language-server
       nil
+      rust-analyzer
     ];
   };
 

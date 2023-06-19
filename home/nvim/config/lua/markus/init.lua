@@ -1,4 +1,5 @@
 require('markus.lsp')
+require('markus.lsp_lines')
 require('markus.cmp')
 require('markus.settings')
 require('markus.colors')

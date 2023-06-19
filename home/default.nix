@@ -32,6 +32,14 @@
     openvpn
     element-desktop #-wayland
     thunderbird
+    terraform
+    nmap
+    signal-desktop
+    freecad
+    drawio
+    cargo
+    rustc
+    spotify
   ];
 
   xdg.enable = true;
@@ -43,6 +51,8 @@
 
   imports = [
     ./sway.nix
+    ./kubectl.nix
+    ./go.nix
     ./nvim
   ];
 }

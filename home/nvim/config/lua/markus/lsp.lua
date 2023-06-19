@@ -45,3 +45,8 @@ lspc.nil_ls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })
+
+lspc.rust_analyzer.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+})
