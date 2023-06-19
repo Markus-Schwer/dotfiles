@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
     nmap('<leader>df', vim.diagnostic.open_float, 'show [d]iagnostics [f]loat')
     nmap('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ctions')
     nmap('H', vim.lsp.buf.hover, '[H]over')
-    nmap('<space>f', vim.lsp.buf.formatting, '[f]ormat buffer')
+    nmap('<leader>f', vim.lsp.buf.formatting, '[f]ormat buffer')
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())

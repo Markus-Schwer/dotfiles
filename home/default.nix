@@ -44,9 +44,6 @@
 
   xdg.enable = true;
 
-  services.kdeconnect.enable = true;
-  services.kdeconnect.indicator = true;
-
   programs.bash.enable = true;
 
   imports = [
@@ -54,5 +51,6 @@
     ./kubectl.nix
     ./go.nix
     ./nvim
+    ./kdeconnect.nix
   ];
 }

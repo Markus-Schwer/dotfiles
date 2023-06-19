@@ -34,3 +34,7 @@ vim.o.smartcase = true
 -- splits: by default split to right and below
 vim.o.splitright = true
 vim.o.splitbelow = true
+-- clipboard sharing
+vim.opt.clipboard = 'unnamedplus'
+-- delete without yanking
+vim.keymap.set('n', 'd', '"_d', { desc = '[d]elete and yank into black hole register' })

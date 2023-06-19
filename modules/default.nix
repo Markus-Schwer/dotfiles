@@ -8,8 +8,10 @@
 {
   imports = [
     #./sway.nix
+    ./gnome.nix
     ./ssh.nix
     ./podman.nix
+    ./firewall.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
@@ -38,32 +40,16 @@
   #   useXkbConfig = true; # use xkbOptions in tty.
   # };
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.layout = "us,de";
-  # services.xserver.xkbOptions = {
-  #   "eurosign:e";
-  #   "caps:escape" # map caps to escape.
-  # };
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
   #security.rtkit.enable = true;
   #services.pipewire = {
   #  enable = true;
   #  alsa.enable = true;
   #  pulse.enable = true;
   #};
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.markus = {
