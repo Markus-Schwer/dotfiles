@@ -38,6 +38,9 @@ in
   nvim-treesitter.withAllGrammars
   nvim-treesitter-context
 
+  telescope-nvim
+  telescope-fzf-native-nvim
+
   comment-nvim
   vim-surround
   undotree
