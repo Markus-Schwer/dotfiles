@@ -40,6 +40,7 @@
     cargo
     rustc
     spotify
+    inkscape
   ];
 
   xdg.enable = true;
