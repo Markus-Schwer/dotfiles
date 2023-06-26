@@ -41,6 +41,8 @@
     rustc
     spotify
     inkscape
+    fluxcd
+    kubeseal
   ];
 
   xdg.enable = true;
