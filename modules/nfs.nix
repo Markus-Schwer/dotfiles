@@ -1,0 +1,22 @@
+{ pkgs, ... }:
+
+{
+  services.rpcbind.enable = true; # needed for NFS
+  fileSystems."/mnt/talos" = {
+    fsType = "nfs";
+    device = "10.20.42.50:/talos";
+    options = [
+      "x-systemd.automount" "noauto"
+      "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
+    ];
+  };
+
+  fileSystems."/mnt/k3s" = {
+    fsType = "nfs";
+    device = "10.20.42.50:/kubernetes";
+    options = [
+      "x-systemd.automount" "noauto"
+      "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
+    ];
+  };
+}

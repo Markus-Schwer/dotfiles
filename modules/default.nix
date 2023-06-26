@@ -12,6 +12,7 @@
     ./ssh.nix
     ./podman.nix
     ./firewall.nix
+    ./nfs.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
