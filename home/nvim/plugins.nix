@@ -42,6 +42,7 @@ in
   telescope-fzf-native-nvim
 
   comment-nvim
+  nvim-ts-context-commentstring
   vim-surround
   undotree
   telescope-nvim
