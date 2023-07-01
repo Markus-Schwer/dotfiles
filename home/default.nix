@@ -43,6 +43,7 @@
     inkscape
     fluxcd
     kubeseal
+    chromium
   ];
 
   xdg.enable = true;
