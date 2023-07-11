@@ -12,7 +12,7 @@ in
     cargo
 
     # langauge servers
-    sumneko-lua-language-server
+    lua-language-server
     rnix-lsp
     nodePackages.bash-language-server
     nodePackages.vscode-html-languageserver-bin

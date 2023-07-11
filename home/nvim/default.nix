@@ -11,7 +11,7 @@
     extraPackages = with pkgs; [
       gcc
       glibc
-      sumneko-lua-language-server
+      lua-language-server
       nil
       rust-analyzer
     ];
