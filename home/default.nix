@@ -44,6 +44,7 @@
     fluxcd
     kubeseal
     chromium
+    platformio
   ];
 
   xdg.enable = true;
