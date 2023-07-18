@@ -14,6 +14,7 @@
       lua-language-server
       nil
       rust-analyzer
+      ripgrep
     ];
   };
 
