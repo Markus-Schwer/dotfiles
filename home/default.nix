@@ -45,6 +45,7 @@
     kubeseal
     chromium
     platformio
+    usbutils
   ];
 
   xdg.enable = true;

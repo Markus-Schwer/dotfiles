@@ -15,6 +15,8 @@
       nil
       rust-analyzer
       ripgrep
+      clang-tools
+      ccls
     ];
   };
 

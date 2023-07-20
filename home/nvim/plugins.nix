@@ -18,6 +18,15 @@ let
       sha256 = "1wfdb1cbqkyh24f3y7hswl2b41s7r2cz0s6ms5az5jfa2a56m1wl";
     };
   };
+  ccls-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "ccls";
+    src = pkgs.fetchFromGitHub {
+      owner = "ranjithshegde";
+      repo = "ccls.nvim";
+      rev = "37c772b07d25054a51ec36f1767e1d64224fb38d";
+      sha256 = "1dsjbbvh870nzwm6smj905bb75h90kpp1ha0ayfq3b0iv16jxk5f";
+    };
+  };
 in
 [
   # Theme
@@ -33,6 +42,7 @@ in
   lsp-status-nvim
   mason
   mason-lspconfig
+  ccls-nvim
 
   # highlighting
   nvim-treesitter.withAllGrammars

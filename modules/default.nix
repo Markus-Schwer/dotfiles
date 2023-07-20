@@ -54,6 +54,7 @@
   #};
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.extraGroups.plugdev = { };
   users.users.markus = {
     isNormalUser = true;
     initialPassword = "password";
@@ -61,12 +62,19 @@
       "wheel" # Enable ‘sudo’ for the user.
       "networkmanager"
       "video"
+      "dialout"
+      "plugdev"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJxCiKBrwxQBpIaauYXFzmKea876PZ8Eb8gXn13HMx95 markus-thinkpad"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAING6Jk/Z6MnFY3EOmnSa50jEiswY0UDNywPAIe+0rdHJ markus@markus-desktop"
     ];
   };
+
+  services.udev.packages = with pkgs; [
+    openocd
+    platformio
+  ];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
