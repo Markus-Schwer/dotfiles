@@ -71,6 +71,11 @@
     ];
   };
 
+  fonts.fonts = with pkgs; [
+    google-fonts
+    corefonts
+  ];
+
   services.udev.packages = with pkgs; [
     openocd
     platformio
