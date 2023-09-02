@@ -7,5 +7,6 @@
     ./swayidle.nix
     ./swaylock.nix
     ./wofi.nix
+    ./alacritty.nix
   ];
 }

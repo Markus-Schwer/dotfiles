@@ -64,7 +64,8 @@
             warning = 30;
             critical = 15;
           };
-          format = "BAT: {capacity}%";
+          format = "{capacity}% {icon}";
+          format-icons = ["" "" "" "" ""];
         };
       };
     };
