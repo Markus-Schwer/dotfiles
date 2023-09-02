@@ -53,7 +53,7 @@
   programs.bash.enable = true;
 
   imports = [
-    ./sway.nix
+    ./hyprland
     ./kubectl.nix
     ./go.nix
     ./nvim

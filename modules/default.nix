@@ -7,8 +7,7 @@
 
 {
   imports = [
-    #./sway.nix
-    ./gnome.nix
+    ./hyprland.nix
     ./ssh.nix
     ./podman.nix
     ./firewall.nix
@@ -71,7 +70,8 @@
     ];
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     google-fonts
     corefonts
   ];
