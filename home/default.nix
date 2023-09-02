@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  glyphs-picker = import ../pkgs/glyphs-picker.nix { inherit pkgs; };
+in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -20,6 +23,7 @@
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    glyphs-picker
     killall
     firefox
     thunderbird

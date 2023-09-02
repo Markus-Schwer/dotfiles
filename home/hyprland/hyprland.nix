@@ -2,6 +2,7 @@
 {
   wayland.windowManager.hyprland =
     let
+      glyphs-picker = import ../../pkgs/glyphs-picker.nix { inherit pkgs; };
       wallpaper = builtins.fetchurl {
         url = "https://my.hidrive.com/api/sharelink/download?id=lECFE2kr";
         sha256 = "1sxwsvq8d1qnimnahdyjpzb94rzycnksr4m7j1khdm3ikxz9w33a";
@@ -23,6 +24,7 @@
         decoration {
             rounding = 5
         }
+
         # highres and scaling 1 is important to fix wayland scaling issues
         monitor=,highres,auto,1
 
@@ -44,8 +46,10 @@
         bind = $mod SHIFT,3,movetoworkspace,3
         bind = $mod SHIFT,4,movetoworkspace,4
         bind = $mod SHIFT,5,movetoworkspace,5
-        bind = $mod SHIFT,L,movetoworkspace,+1
-        bind = $mod SHIFT,H,movetoworkspace,-1
+        bind = $mod SHIFT,H,movewindow,l
+        bind = $mod SHIFT,L,movewindow,r
+        bind = $mod SHIFT,K,movewindow,u
+        bind = $mod SHIFT,J,movewindow,d
         bind = $mod,Q,killactive,
 
         # focus
@@ -118,8 +122,8 @@
         # screenshot
         bind = CTRL SHIFT,s,exec,${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp)" - | ${pkgs.wl-clipboard}/bin/wl-copy
 
-        # wofi-emoji
-        bind = $mod,Period,exec,${pkgs.wofi-emoji}/bin/wofi-emoji
+        # glyphs-picker
+        bind = $mod,Period,exec,${glyphs-picker}/bin/glyphs-picker
 
         # floating settings windows
         windowrule = float,title:^(nmtui|bluetuith|Volume Control)$
