@@ -11,13 +11,19 @@
       foo = {
         layer = "top";
         modules-left = [ "custom/nixstore" "wlr/workspaces" "hyprland/submap" ];
-        modules-right = [ "clock" "hyprland/language" "network" "bluetooth" "wireplumber" "cpu" "custom/coretemp" "memory" "battery" ];
+        modules-right = [ "clock" "hyprland/language" "network" "bluetooth" "backlight" "pulseaudio" "cpu" "custom/coretemp" "memory" "battery" ];
 
         # modules
         network = {
-          format = "NET |";
-          format-wifi = "NET: {essid} |";
-          format-ethernet = "NET: WIRED |";
+          interval = 5;
+          format-wifi = " ";
+          format-ethernet = "󰈀";
+          format-disconnected = "󰖪";
+          tooltip-format = "{icon} {ifname} = {ipaddr}";
+          tooltip-format-ethernet = "{icon} {ifname} = {ipaddr}";
+          tooltip-format-wifi = "{icon} {ifname} ({essid}) = {ipaddr}";
+          tooltip-format-disconnected = "{icon} disconnected";
+          tooltip-format-disabled = "{icon} disabled";
         };
         "custom/nixstore" = {
           exec = "${pkgs.coreutils}/bin/du -sh /nix/store | ${pkgs.gnused}/bin/sed 's/\\([0-9]\\+[A-Z]\\+\\).*/\\1/'";
@@ -31,33 +37,52 @@
           format = " {}°C |";
           tooltip = false;
         };
-        wireplumber = {
-          format = "VOL: {volume}%";
+        backlight = {
+          format = "{icon} {percent}%";
+          format-icons = ["󰃞" "󰃟" "󰃠"];
+        };
+        pulseaudio = {
+          scroll-step = 5;
+          format = "{icon} {volume}%{format_source}";
+          format-muted = "󰖁 {format_source}";
+          format-source = "";
+          format-source-muted = " 󰍭";
+          format-icons = {
+              headphone = "󰋋";
+              headset = "󰋎";
+              default = ["󰕿" "󰖀" "󰕾"];
+          };
+          tooltip-format = "{icon}  {volume}% {format_source}";
+          on-click = "${pkgs.pulseaudio}/bin/pulseaudio";
         };
         cpu = {
-          format = "CPU: {usage}%";
+          format = "󰍛 {usage}%";
         };
         memory = {
-          format = "MEM: {percentage}%";
+          format = "󰘚 {percentage}%";
           tooltip = false;
         };
         bluetooth = {
-          format-on = "BLUE: ON |";
-          format-off = "BLUE: OFF |";
-          format-connected = "BLUE: {num_connections} |";
+          format-on = "BLUE: 󰂯";
+          format-connected = "BLUE: 󰂯 {num_connections}";
+          format-off = "BLUE: 󰂲";
         };
         "hyprland/language" = {
-          format = "LANG: {} |";
-          format-en = "EN/US";
+          format = "  {} |";
+          /* format-en = "EN/US"; */
         };
         "wlr/workspaces" = {
           format = "{icon}";
+          on-click = "activate";
         };
         "hyprland/submap" = {
           tooltip = true;
         };
         clock = {
-          format = "{:%A | %F | %H:%M}";
+          interval = 60;
+          format = "{:%e %b %Y %H:%M} |";
+          tooltip = true;
+          tooltip-format = "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>";
         };
         battery = {
           states = {

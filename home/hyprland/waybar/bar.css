@@ -9,18 +9,10 @@ window#waybar {
 }
 
 /* standalone segment */
-#battery,
-#bluetooth,
-#clock,
-#cpu,
 #custom-nixstore,
-#custom-coretemp,
-#language,
-#memory,
-#network,
 #workspaces button,
 #submap,
-#wireplumber {
+#battery {
     padding: 0 10px;
     margin: 6px 3px;
     border-radius: 4px;
@@ -31,44 +23,48 @@ window#waybar {
     transition: opacity .3s ease-out;
     opacity: 1;
 }
+
+/* multi-segment */
+#clock,
+#custom-coretemp,
+#language,
+#network,
+#backlight,
+#pulseaudio,
+#cpu,
+#memory {
+    padding: 0 3px;
+    margin: 6px 0px;
+    border: 1px solid #5074bd;
+    font-weight: bold;
+    background-color: #5074bd;
+    color: black;
+    transition: opacity .3s ease-out;
+    opacity: 1;
+}
+
 /* inactive segment */
 #bluetooth.off,
 #network.disabled,
 #network.disconnected,
-#wireplumber.muted,
+#pulseaudio.muted,
 #battery.plugged {
     opacity: 0.4;
 }
-/* left part of multi-segment */
-#custom-coretemp,
-#language,
-#network,
-#bluetooth,
-#cpu {
-    margin-right: 0px;
-    padding-right: 3px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
 /* right part of multi-segment */
-#custom-coretemp,
-#network,
-#bluetooth,
-#wireplumber,
 #memory {
-    margin-left: 0px;
-    padding-left: 3px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    margin-right: 3px;
+    padding-right: 10px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
-/* merge segments */
-#custom-coretemp {
-    padding-left: 0;
+/* left part of multi-segment */
+#clock {
+    margin-left: 3px;
+    padding-left: 10px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
-#cpu {
-    padding-right: 0;
-}
-
 
 #submap {
     color: #5074bd;

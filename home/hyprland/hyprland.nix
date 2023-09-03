@@ -89,8 +89,8 @@
         # settings
         bind = $mod,S,submap,SETTINGS
         submap = SETTINGS
-        bind = ,N,exec,hyprctl dispatch submap reset && $term --detach -T nmtui ${pkgs.zsh}/bin/zsh -c nmtui
-        bind = ,B,exec,hyprctl dispatch submap reset && $term --detach -T bluetuith ${pkgs.zsh}/bin/zsh -c ${pkgs.bluetuith}/bin/bluetuith
+        bind = ,N,exec,hyprctl dispatch submap reset && $term --detach -T nmtui ${pkgs.bash}/bin/bash -c nmtui
+        bind = ,B,exec,hyprctl dispatch submap reset && $term --detach -T bluetuith ${pkgs.bash}/bin/bash -c ${pkgs.bluetuith}/bin/bluetuith
         bind = ,S,exec,hyprctl dispatch submap reset && ${pkgs.pavucontrol}/bin/pavucontrol
         bind = ,escape,submap,reset
         submap = reset
