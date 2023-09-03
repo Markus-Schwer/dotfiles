@@ -7,7 +7,7 @@
 
 {
   imports = [
-    ./hyprland.nix
+    ./sway.nix
     ./ssh.nix
     ./podman.nix
     ./firewall.nix

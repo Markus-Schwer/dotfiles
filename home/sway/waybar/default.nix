@@ -1,0 +1,176 @@
+{ pkgs, ... }:
+{
+  programs.waybar = {
+    enable = true;
+    /* systemd.enable = true; */
+    settings = {
+      foo = {
+        layer = "top";
+
+        /* height = "30"; */
+        /* position = "top"; */
+
+        modules-left = [ "custom/nixstore" "sway/workspaces" ];
+        modules-center = [ "sway/mode" ];
+        modules-right = [
+          # informational
+          "sway/language"
+          "cpu"
+          "temperature"
+          "memory"
+          "battery"
+          # connecting
+          "network"
+          "bluetooth"
+          # media
+          "custom/playerctl"
+          "idle_inhibitor"
+          "custom/dnd"
+          "pulseaudio"
+          "backlight"
+          # system
+          "tray"
+          "clock"
+        ];
+
+        # modules
+        battery = {
+          interval = 30;
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format-charging = "󰂄 {capacity}%";
+          format = "{icon} {capacity}%";
+          format-icons = ["󱃍" "󰁺" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          tooltip = true;
+        };
+        clock = {
+          interval = 60;
+          format = "{:%e %b %Y %H:%M}";
+          tooltip = true;
+          tooltip-format = "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>";
+        };
+        cpu = {
+          interval = 10;
+          format = "󰘚";
+          states = {
+            warning = 70;
+            critical = 90;
+          };
+          tooltip = true;
+        };
+        memory = {
+          interval = 10;
+          format = "󰍛";
+          states = {
+            warning = 70;
+            critical = 90;
+          };
+          tooltip = true;
+        };
+        network = {
+          interval = 5;
+          format-wifi = " ";
+          format-ethernet = "󰈀";
+          format-disconnected = "󰖪";
+          tooltip-format = "{icon} {ifname} = {ipaddr}";
+          tooltip-format-ethernet = "{icon} {ifname} = {ipaddr}";
+          tooltip-format-wifi = "{icon} {ifname} ({essid}) = {ipaddr}";
+          tooltip-format-disconnected = "{icon} disconnected";
+          tooltip-format-disabled = "{icon} disabled";
+          on-click = "swaymsg exec \\$once \\$term_float ${pkgs.networkmanager}/bin/nmtui connect";
+        };
+        "sway/mode" = {
+          format = "<span style=\"italic\">{}</span>";
+          tooltip = false;
+        };
+        idle_inhibitor = {
+          format = "{icon}";
+          format-icons = {
+            activated = "󰒳";
+            deactivated = "󰒲";
+          };
+          tooltip = true;
+          tooltip-format-activated = "power-saving disabled";
+          tooltip-format-deactivated = "power-saving enabled";
+        };
+        backlight = {
+          format = "{icon} {percent}%";
+          format-icons = ["󰃞" "󰃟" "󰃠"];
+          on-scroll-up = "swaymsg exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+          on-scroll-down = "swaymsg exec ${pkgs.brightnessctl}/bin/brightnessctl set -5%";
+        };
+        pulseaudio = {
+          scroll-step = 5;
+          format = "{icon} {volume}%{format_source}";
+          format-muted = "󰖁 {format_source}";
+          format-source = "";
+          format-source-muted = " 󰍭";
+          format-icons = {
+            headphone = "󰋋";
+            headset = "󰋎";
+            default = ["󰕿" "󰖀" "󰕾"];
+          };
+          tooltip-format = "{icon}  {volume}% {format_source}";
+          on-click = "swaymsg exec ${pkgs.pulseaudio}/bin/pulseaudio";
+          on-click-middle = "swaymsg exec exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          on-scroll-up = "swaymsg exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          on-scroll-down = "swaymsg exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        };
+        temperature = {
+          critical-threshold = 90;
+          interval = 5;
+          format = "{icon}";
+          tooltip-format = "{temperatureC}°C";
+          format-icons = ["" "" ""];
+          tooltip = true;
+          on-click = "swaymsg exec \"\\$once \\$term_float watch sensors\"";
+        };
+        bluetooth = {
+          format = "󰂯";
+          format-disabled = "󰂲";
+          on-click = "swaymsg exec \\$once \\$term_float ${pkgs.bluetuith}/bin/bluetuith";
+          on-click-right = "rfkill toggle bluetooth";
+          tooltip-format = "{}";
+        };
+        "sway/language" = {
+          format = " {}";
+          min-length = 5;
+          tooltip = false;
+          on-click = "swaymsg input $(swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
+        };
+        "custom/playerctl" = {
+          interval = "once";
+          tooltip = true;
+          return-type = "json";
+          format = "{icon}";
+          format-icons = {
+            Playing = "󰏦";
+            Paused = "󰐍";
+          };
+          exec = "${pkgs.playerctl}/bin/playerctl metadata --format '{\"alt\" = \"{{status}}\" \"tooltip\ = \"{{playerName}} =  {{markup_escape(title)}} - {{markup_escape(artist)}}\" }'";
+          on-click = "${pkgs.playerctl}/bin/playerctl play-pause; pkill -RTMIN+5 waybar";
+          on-click-right = "${pkgs.playerctl}/bin/playerctl next; pkill -RTMIN+5 waybar";
+          on-scroll-up = "${pkgs.playerctl}/bin/playerctl position 10+; pkill -RTMIN+5 waybar";
+          on-scroll-down = "${pkgs.playerctl}/bin/playerctl position 10-; pkill -RTMIN+5 waybar";
+          signal = 5;
+        };
+        "custom/dnd" = {
+          interval = "once";
+          return-type = "json";
+          format = "{}{icon}";
+          format-icons = {
+            default = "󰚢";
+            dnd = "󰚣";
+          };
+          on-click = "${pkgs.mako}/bin/makoctl mode | ${pkgs.gnugrep}/bin/grep 'do-not-disturb' && ${pkgs.mako}/bin/makoctl mode -r do-not-disturb || ${pkgs.mako}/bin/makoctl mode -a do-not-disturb; pkill -RTMIN+11 waybar";
+          on-click-right = "${pkgs.mako}/bin/makoctl restore";
+          exec = "printf '{\"alt\":\"%s\"\"tooltip\":\"mode = %s\"}' $(${pkgs.mako}/bin/makoctl mode | grep -q 'do-not-disturb' && echo dnd || echo default) $(${pkgs.mako}/bin/makoctl mode | tail -1)";
+          signal = 11;
+        };
+      };
+    };
+    style = ./bar.css;
+  };
+}
