@@ -1,8 +1,17 @@
 { pkgs, ... }:
+
+let
+  wm_icon_bg = "#191918";
+  warning_color = "#2c2b2a";
+  error_color = "#2c2b2a";
+  background_color = "#f1eee7";
+  theme_bg_color = "#f1eee7";
+  theme_selected_bg_color = "#f1eee7";
+in
 {
   programs.waybar = {
     enable = true;
-    /* systemd.enable = true; */
+    systemd.enable = true;
     settings = {
       foo = {
         layer = "top";
@@ -13,12 +22,7 @@
         modules-left = [ "custom/nixstore" "sway/workspaces" ];
         modules-center = [ "sway/mode" ];
         modules-right = [
-          # informational
           "sway/language"
-          "cpu"
-          "temperature"
-          "memory"
-          "battery"
           # connecting
           "network"
           "bluetooth"
@@ -28,8 +32,12 @@
           "custom/dnd"
           "pulseaudio"
           "backlight"
+          # informational
+          "cpu"
+          "temperature"
+          "memory"
+          "battery"
           # system
-          "tray"
           "clock"
         ];
 
@@ -47,7 +55,7 @@
         };
         clock = {
           interval = 60;
-          format = "{:%e %b %Y %H:%M}";
+          format = "{:%H:%M}";
           tooltip = true;
           tooltip-format = "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>";
         };
@@ -79,7 +87,7 @@
           tooltip-format-wifi = "{icon} {ifname} ({essid}) = {ipaddr}";
           tooltip-format-disconnected = "{icon} disconnected";
           tooltip-format-disabled = "{icon} disabled";
-          on-click = "swaymsg exec \\$once \\$term_float ${pkgs.networkmanager}/bin/nmtui connect";
+          on-click = "${pkgs.swayfx}/bin/swaymsg exec \\$once \\$term_float ${pkgs.networkmanager}/bin/nmtui connect";
         };
         "sway/mode" = {
           format = "<span style=\"italic\">{}</span>";
@@ -98,8 +106,8 @@
         backlight = {
           format = "{icon} {percent}%";
           format-icons = ["󰃞" "󰃟" "󰃠"];
-          on-scroll-up = "swaymsg exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-          on-scroll-down = "swaymsg exec ${pkgs.brightnessctl}/bin/brightnessctl set -5%";
+          on-scroll-up = "${pkgs.swayfx}/bin/swaymsg exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
+          on-scroll-down = "${pkgs.swayfx}/bin/swaymsg exec ${pkgs.brightnessctl}/bin/brightnessctl set -5%";
         };
         pulseaudio = {
           scroll-step = 5;
@@ -113,10 +121,10 @@
             default = ["󰕿" "󰖀" "󰕾"];
           };
           tooltip-format = "{icon}  {volume}% {format_source}";
-          on-click = "swaymsg exec ${pkgs.pulseaudio}/bin/pulseaudio";
-          on-click-middle = "swaymsg exec exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          on-scroll-up = "swaymsg exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
-          on-scroll-down = "swaymsg exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          on-click = "${pkgs.swayfx}/bin/swaymsg exec ${pkgs.pulseaudio}/bin/pulseaudio";
+          on-click-middle = "${pkgs.swayfx}/bin/swaymsg exec exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          on-scroll-up = "${pkgs.swayfx}/bin/swaymsg exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          on-scroll-down = "${pkgs.swayfx}/bin/swaymsg exec ${pkgs.pulseaudio}/bin/pactl set-sink-volume @DEFAULT_SINK@ -5%";
         };
         temperature = {
           critical-threshold = 90;
@@ -125,12 +133,12 @@
           tooltip-format = "{temperatureC}°C";
           format-icons = ["" "" ""];
           tooltip = true;
-          on-click = "swaymsg exec \"\\$once \\$term_float watch sensors\"";
+          on-click = "${pkgs.swayfx}/bin/swaymsg exec \"\\$once \\$term_float watch sensors\"";
         };
         bluetooth = {
           format = "󰂯";
           format-disabled = "󰂲";
-          on-click = "swaymsg exec \\$once \\$term_float ${pkgs.bluetuith}/bin/bluetuith";
+          on-click = "${pkgs.swayfx}/bin/swaymsg exec \\$once \\$term_float ${pkgs.bluetuith}/bin/bluetuith";
           on-click-right = "rfkill toggle bluetooth";
           tooltip-format = "{}";
         };
@@ -138,7 +146,7 @@
           format = " {}";
           min-length = 5;
           tooltip = false;
-          on-click = "swaymsg input $(swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
+          on-click = "${pkgs.swayfx}/bin/swaymsg input $(${pkgs.swayfx}/bin/swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
         };
         "custom/playerctl" = {
           interval = "once";
@@ -149,11 +157,11 @@
             Playing = "󰏦";
             Paused = "󰐍";
           };
-          exec = "${pkgs.playerctl}/bin/playerctl metadata --format '{\"alt\" = \"{{status}}\" \"tooltip\ = \"{{playerName}} =  {{markup_escape(title)}} - {{markup_escape(artist)}}\" }'";
-          on-click = "${pkgs.playerctl}/bin/playerctl play-pause; pkill -RTMIN+5 waybar";
-          on-click-right = "${pkgs.playerctl}/bin/playerctl next; pkill -RTMIN+5 waybar";
-          on-scroll-up = "${pkgs.playerctl}/bin/playerctl position 10+; pkill -RTMIN+5 waybar";
-          on-scroll-down = "${pkgs.playerctl}/bin/playerctl position 10-; pkill -RTMIN+5 waybar";
+          exec = "${pkgs.playerctl}/bin/playerctl metadata --format '{\"alt\": \"{{status}}\", \"tooltip\": \"{{playerName}}: {{markup_escape(title)}} - {{markup_escape(artist)}}\" }'";
+          on-click = "${pkgs.playerctl}/bin/playerctl play-pause; ${pkgs.procps}/bin/pkill -RTMIN+5 waybar";
+          on-click-right = "${pkgs.playerctl}/bin/playerctl next; ${pkgs.procps}/bin/pkill -RTMIN+5 waybar";
+          on-scroll-up = "${pkgs.playerctl}/bin/playerctl position 10+; ${pkgs.procps}/bin/pkill -RTMIN+5 waybar";
+          on-scroll-down = "${pkgs.playerctl}/bin/playerctl position 10-; ${pkgs.procps}/bin/pkill -RTMIN+5 waybar";
           signal = 5;
         };
         "custom/dnd" = {
@@ -164,9 +172,9 @@
             default = "󰚢";
             dnd = "󰚣";
           };
-          on-click = "${pkgs.mako}/bin/makoctl mode | ${pkgs.gnugrep}/bin/grep 'do-not-disturb' && ${pkgs.mako}/bin/makoctl mode -r do-not-disturb || ${pkgs.mako}/bin/makoctl mode -a do-not-disturb; pkill -RTMIN+11 waybar";
+          on-click = "${pkgs.mako}/bin/makoctl mode | ${pkgs.gnugrep}/bin/grep 'do-not-disturb' && ${pkgs.mako}/bin/makoctl mode -r do-not-disturb || ${pkgs.mako}/bin/makoctl mode -a do-not-disturb; ${pkgs.procps}/bin/pkill -RTMIN+11 waybar";
           on-click-right = "${pkgs.mako}/bin/makoctl restore";
-          exec = "printf '{\"alt\":\"%s\"\"tooltip\":\"mode = %s\"}' $(${pkgs.mako}/bin/makoctl mode | grep -q 'do-not-disturb' && echo dnd || echo default) $(${pkgs.mako}/bin/makoctl mode | tail -1)";
+          exec = "printf '{\"alt\":\"%s\",\"tooltip\":\"mode = %s\"}' $(${pkgs.mako}/bin/makoctl mode | ${pkgs.gnugrep}/bin/grep -q 'do-not-disturb' && echo dnd || echo default) $(${pkgs.mako}/bin/makoctl mode | ${pkgs.coreutils}/bin/tail -1)";
           signal = 11;
         };
       };

@@ -5,15 +5,17 @@
       * {
           font-family: "JetBrainsMono Nerd Font";
           background-color: transparent;
-          color: white;
+          color: #ccc;
+          outline-width: 0px;
+          outline: none;
       }
       window {
-          background-color: black;
-          border-radius: 10px;
-          border: 2px solid #5074bd;
+          background-color: #222;
+          border-radius: 4px;
+          border: 1px solid #5074bd;
       }
       #entry:selected {
-          background-color: #5074bd;
+          background-color: #59281D;
           color: white;
       }
     '';

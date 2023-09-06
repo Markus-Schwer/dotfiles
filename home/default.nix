@@ -23,7 +23,6 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    glyphs-picker
     killall
     firefox
     thunderbird
@@ -50,6 +49,8 @@ in
     chromium
     platformio
     usbutils
+    glyphs-picker
+    hyprpicker
   ];
 
   xdg.enable = true;
