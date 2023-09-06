@@ -6,6 +6,7 @@
       wallpaper = ./wallpapers/mars.jpg;
       cfg = config.wayland.windowManager.sway.config;
       modeShutdown = "(h) hibernate (l) lock (e) logout (r) reboot (u) suspend (s) shutdown";
+      modeScreenshot = "󰄄  (r) region (s) screen";
     in
     {
       enable = true;
@@ -155,6 +156,9 @@
           # Shutdown mode
           "${cfg.modifier}+Shift+e" = "mode \"${modeShutdown}\"";
 
+          # Screenshot mode
+          "${cfg.modifier}+Print" = "mode \"${modeScreenshot}\"";
+
           "${cfg.modifier}+space" = "exec ${pkgs.swayfx}/bin/swaymsg input $(${pkgs.swayfx}/bin/swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
 
           # Icon picker
@@ -176,6 +180,12 @@
             "r" = "exec ${pkgs.systemd}/bin/systemctl reboot && ${pkgs.swayfx}/bin/swaymsg mode default";
             "u" = "exec ${pkgs.systemd}/bin/systemctl suspend && ${pkgs.swayfx}/bin/swaymsg mode default";
             "s" = "exec ${pkgs.systemd}/bin/systemctl shutdown && ${pkgs.swayfx}/bin/swaymsg mode default";
+            Escape = "mode default";
+            Return = "mode default";
+          };
+          "${modeScreenshot}" = {
+            "r" = "exec ${pkgs.grim}/bin/grim -g \"''$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png && ${pkgs.swayfx}/bin/swaymsg mode default";
+            "s" = "exec ${pkgs.grim}/bin/grim -o \"''$(${pkgs.swayfx}/bin/swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r '.[] | select(.focused)' | ${pkgs.jq}/bin/jq -r '.name')\" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png && ${pkgs.swayfx}/bin/swaymsg mode default";
             Escape = "mode default";
             Return = "mode default";
           };
