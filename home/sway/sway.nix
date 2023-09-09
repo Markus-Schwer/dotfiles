@@ -16,6 +16,7 @@
         blur enable
 
         for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
+        for_window [title="dmenu"] floating enable, border pixel 1, sticky enable
       '';
       config = {
         modifier = "Mod4";
@@ -92,6 +93,8 @@
           "${cfg.modifier}+Down" = "focus down";
           "${cfg.modifier}+Up" = "focus up";
           "${cfg.modifier}+Right" = "focus right";
+
+          "${cfg.modifier}+tab" = "workspace back_and_forth";
 
           # Moving
           "${cfg.modifier}+Shift+${cfg.left}" = "move left";

@@ -37,7 +37,7 @@
         "custom/nixstore" = {
           exec = "${pkgs.coreutils}/bin/du -sh /nix/store | ${pkgs.gnused}/bin/sed 's/\\([0-9]\\+[A-Z]\\+\\).*/\\1/'";
           interval = 300;
-          format = "STORE: {}";
+          format = "  {}";
           tooltip = false;
         };
         battery = {
@@ -131,7 +131,7 @@
           tooltip-format = "{temperatureC}°C";
           format-icons = ["" "" ""];
           tooltip = true;
-          on-click = "${pkgs.swayfx}/bin/swaymsg exec \"\\$once \\$term_float watch sensors\"";
+          on-click = "${pkgs.swayfx}/bin/swaymsg exec \"${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e watch sensors\"";
         };
         bluetooth = {
           format = "󰂯";
