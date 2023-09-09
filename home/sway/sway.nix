@@ -184,8 +184,8 @@
             Return = "mode default";
           };
           "${modeScreenshot}" = {
-            "r" = "exec ${pkgs.grim}/bin/grim -g \"''$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png && ${pkgs.swayfx}/bin/swaymsg mode default";
-            "s" = "exec ${pkgs.grim}/bin/grim -o \"''$(${pkgs.swayfx}/bin/swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r '.[] | select(.focused)' | ${pkgs.jq}/bin/jq -r '.name')\" - | ${pkgs.wl-clipboard}/bin/wl-copy -t image/png && ${pkgs.swayfx}/bin/swaymsg mode default";
+            "r" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
+            "s" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && ${pkgs.grim}/bin/grim -o \"$(${pkgs.swayfx}/bin/swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r '.[] | select(.focused)' | ${pkgs.jq}/bin/jq -r '.name')\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
             Escape = "mode default";
             Return = "mode default";
           };

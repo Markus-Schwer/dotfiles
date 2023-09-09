@@ -51,6 +51,7 @@ in
     usbutils
     glyphs-picker
     hyprpicker
+    wl-clipboard
   ];
 
   xdg.enable = true;
