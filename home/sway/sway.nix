@@ -14,6 +14,8 @@
       extraConfig = ''
         corner_radius 4
         blur enable
+
+        for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
       '';
       config = {
         modifier = "Mod4";

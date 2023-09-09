@@ -13,6 +13,7 @@
     ./firewall.nix
     ./nfs.nix
     ./hosts.nix
+    ./bluetooth.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;

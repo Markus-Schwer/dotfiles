@@ -35,7 +35,7 @@
 
         # modules
         "custom/nixstore" = {
-          exec = "exec ${pkgs.coreutils}/bin/du -sh /nix/store | ${pkgs.gnused}/bin/sed 's/\\([0-9]\\+[A-Z]\\+\\).*/\\1/'";
+          exec = "${pkgs.coreutils}/bin/du -sh /nix/store | ${pkgs.gnused}/bin/sed 's/\\([0-9]\\+[A-Z]\\+\\).*/\\1/'";
           interval = 300;
           format = "STORE: {}";
           tooltip = false;
@@ -85,7 +85,7 @@
           tooltip-format-wifi = "{icon} {ifname} ({essid}) = {ipaddr}";
           tooltip-format-disconnected = "{icon} disconnected";
           tooltip-format-disabled = "{icon} disabled";
-          on-click = "${pkgs.swayfx}/bin/swaymsg exec \\$once \\$term_float ${pkgs.networkmanager}/bin/nmtui connect";
+          on-click = "${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e ${pkgs.networkmanager}/bin/nmtui connect";
         };
         "sway/mode" = {
           format = "<span style=\"italic\">{}</span>";
@@ -136,7 +136,7 @@
         bluetooth = {
           format = "󰂯";
           format-disabled = "󰂲";
-          on-click = "${pkgs.swayfx}/bin/swaymsg exec \\$once \\$term_float ${pkgs.bluetuith}/bin/bluetuith";
+          on-click = "${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e ${pkgs.bluetuith}/bin/bluetuith";
           on-click-right = "rfkill toggle bluetooth";
           tooltip-format = "{}";
         };
