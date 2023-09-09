@@ -1,13 +1,5 @@
 { pkgs, ... }:
 
-let
-  wm_icon_bg = "#191918";
-  warning_color = "#2c2b2a";
-  error_color = "#2c2b2a";
-  background_color = "#f1eee7";
-  theme_bg_color = "#f1eee7";
-  theme_selected_bg_color = "#f1eee7";
-in
 {
   programs.waybar = {
     enable = true;
@@ -42,6 +34,12 @@ in
         ];
 
         # modules
+        "custom/nixstore" = {
+          exec = "exec ${pkgs.coreutils}/bin/du -sh /nix/store | ${pkgs.gnused}/bin/sed 's/\\([0-9]\\+[A-Z]\\+\\).*/\\1/'";
+          interval = 300;
+          format = "STORE: {}";
+          tooltip = false;
+        };
         battery = {
           interval = 30;
           states = {

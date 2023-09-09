@@ -46,6 +46,7 @@ window#waybar {
 }
 
 /* Each module */
+#custom-nixstore,
 #custom-clipboard,
 #custom-dnd,
 #bluetooth,
@@ -67,6 +68,7 @@ window#waybar {
 }
 
 /* Joined modules */
+#custom-nixstore,
 #custom-dnd,
 #bluetooth,
 #battery,
@@ -89,6 +91,7 @@ window#waybar {
 }
 
 /* left side of segment */
+#custom-nixstore,
 #language,
 #cpu,
 #network,
@@ -101,6 +104,7 @@ window#waybar {
 }
 
 /* right side of segment */
+#custom-nixstore,
 #language,
 #backlight,
 #clock,
@@ -122,14 +126,6 @@ window#waybar {
     animation-direction: alternate;
 }
 
-/* #battery.warning { */
-/*     color: ${warning_color}; */
-/* } */
-/**/
-/* #battery.critical { */
-/*     color: ${error_color}; */
-/* } */
-/**/
 #battery.warning.discharging {
     animation-name: blink-warning;
     animation-duration: 3s;
@@ -144,56 +140,17 @@ window#waybar {
     font-weight: bold;
 }
 
-/* #cpu.warning { */
-/*     color: ${warning_color}; */
-/* } */
-/**/
-/* #cpu.critical { */
-/*     color: ${error_color}; */
-/* } */
-
-/* #custom-menu { */
-/*     padding-left: 8px; */
-/*     padding-right: 13px; */
-/* } */
-
 #memory {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
-/* #memory.warning { */
-/*     color: ${warning_color}; */
-/* } */
-/**/
-/* #memory.critical { */
-/*     color: ${error_color}; */
-/*     animation-name: blink-critical; */
-/*     animation-duration: 2s; */
-/* } */
-/**/
-/* #mode { */
-/*     background: ${background_color}; */
-/* } */
-
-/* #network.disconnected { */
-/*     color: ${warning_color}; */
-/* } */
-/**/
-/* #pulseaudio.muted { */
-/*     color: ${warning_color}; */
-/* } */
-/**/
-/* #temperature.critical { */
-/*     color: ${error_color}; */
-/* } */
-
 #workspaces button {
     padding: 0 10px;
     margin: 6px 3px;
     border-radius: 4px;
-    border: 1px solid transparent;
+    border: 1px solid #222;
     background-color: #222;
     color: #ccc;
 }
@@ -201,12 +158,3 @@ window#waybar {
 #workspaces button.focused {
     border-color: #444;
 }
-
-/* #workspaces button.urgent { */
-/*     border-color: ${error_color}; */
-/*     color: ${error_color}; */
-/* } */
-/**/
-/* #bluetooth.disabled { */
-/*     color: ${warning_color}; */
-/* } */
