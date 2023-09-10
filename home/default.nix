@@ -52,8 +52,6 @@ in
     glyphs-picker
     hyprpicker
     wl-clipboard
-    protonmail-bridge
-    pass-wayland
   ];
 
   xdg.enable = true;
@@ -67,5 +65,6 @@ in
     ./nvim
     ./kdeconnect.nix
     ./gpg.nix
+    ./protonmail.nix
   ];
 }

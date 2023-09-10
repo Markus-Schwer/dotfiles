@@ -131,7 +131,7 @@
           tooltip-format = "{temperatureC}°C";
           format-icons = ["" "" ""];
           tooltip = true;
-          on-click = "${pkgs.swayfx}/bin/swaymsg exec \"${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e watch sensors\"";
+          on-click = "${pkgs.swayfx}/bin/swaymsg exec \"${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e watch ${pkgs.lm_sensors}/bin/sensors\"";
         };
         bluetooth = {
           format = "󰂯";
