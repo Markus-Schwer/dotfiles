@@ -55,7 +55,17 @@
           interval = 60;
           format = "{:%H:%M}";
           tooltip = true;
-          tooltip-format = "<big>{:%B %Y}</big>\n<tt>{calendar}</tt>";
+          tooltip-format = "{:%d.%m.%Y}\n<tt>{calendar}</tt>";
+          calendar = {
+            weeks-pos = "right";
+            format = {
+              months = "<span color='#ffead3'><b>{}</b></span>";
+              days = "<span color='#ecc6d9'><b>{}</b></span>";
+              weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+              today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+            };
+          };
         };
         cpu = {
           interval = 10;
