@@ -27,6 +27,15 @@ let
       sha256 = "1dsjbbvh870nzwm6smj905bb75h90kpp1ha0ayfq3b0iv16jxk5f";
     };
   };
+  nvim-dev-webicons = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "nvim-dev-webicons";
+    src = pkgs.fetchFromGitHub {
+      owner = "nvim-tree";
+      repo = "nvim-dev-webicons";
+      rev = "925e2aa30dc9fe9332060199c19f132ec0f3d493";
+      sha256 = "+T88roJ4pa7/2p2Bdevn+wTNAXgGmB+QkaLRq2rtUUQ=";
+    };
+  };
 in
 [
   # Theme
@@ -56,4 +65,7 @@ in
   vim-surround
   undotree
   telescope-nvim
+
+  trouble-nvim
+  nvim-dev-webicons
 ]
