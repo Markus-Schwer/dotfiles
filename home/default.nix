@@ -52,6 +52,7 @@ in
     glyphs-picker
     hyprpicker
     wl-clipboard
+    solvespace
   ];
 
   xdg.enable = true;
