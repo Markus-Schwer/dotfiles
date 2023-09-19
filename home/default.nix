@@ -53,6 +53,7 @@ in
     hyprpicker
     wl-clipboard
     solvespace
+    cinnamon.nemo
   ];
 
   xdg.enable = true;
@@ -67,5 +68,6 @@ in
     ./kdeconnect.nix
     ./gpg.nix
     ./protonmail.nix
+    ./gtk.nix
   ];
 }
