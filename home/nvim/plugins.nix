@@ -68,4 +68,8 @@ in
 
   trouble-nvim
   nvim-dev-webicons
+
+  # debug
+  nvim-dap
+  nvim-dap-ui
 ]
