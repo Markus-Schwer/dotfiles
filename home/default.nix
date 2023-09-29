@@ -54,6 +54,7 @@ in
     wl-clipboard
     solvespace
     cinnamon.nemo
+    stlink
   ];
 
   xdg.enable = true;

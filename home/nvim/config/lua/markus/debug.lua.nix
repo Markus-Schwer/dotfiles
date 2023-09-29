@@ -7,6 +7,42 @@ dap.adapters.cppdbg = {
   type = 'executable',
   command = '${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7',
 }
+dap.configurations.cpp = {
+  {
+    name = "Launch file",
+    type = "cppdbg",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+    cwd = "''${workspaceFolder}",
+    stopAtEntry = true,
+  },
+  {
+    name = 'Attach to gdbserver :1234',
+    type = 'cppdbg',
+    request = 'launch',
+    MIMode = 'gdb',
+    miDebuggerServerAddress = 'localhost:1234',
+    miDebuggerPath = '${pkgs.gdb}/bin/gdb',
+    cwd = "''${workspaceFolder}",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+  },
+  {
+    name = 'Attach to platformio gdbserver :4242',
+    type = 'cppdbg',
+    request = 'launch',
+    MIMode = 'gdb',
+    miDebuggerServerAddress = 'localhost:4242',
+    miDebuggerPath = '${pkgs.gdb}/bin/gdb',
+    cwd = "''${workspaceFolder}",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+    end,
+  },
+}
 
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end, { desc = 'continue' })
 vim.keymap.set('n', '<F10>', function() require('dap').step_over() end, { desc = 'step over' })
