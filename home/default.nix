@@ -53,7 +53,6 @@ in
     hyprpicker
     wl-clipboard
     solvespace
-    cinnamon.nemo
     stlink
   ];
 
