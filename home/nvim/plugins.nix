@@ -72,4 +72,7 @@ in
   # debug
   nvim-dap
   nvim-dap-ui
+
+  # rust
+  /* rust-tools-nvim */
 ]
