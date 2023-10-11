@@ -11,7 +11,7 @@
     ./ssh.nix
     ./podman.nix
     ./firewall.nix
-    ./nfs.nix
+    ./mounts.nix
     ./hosts.nix
     ./bluetooth.nix
     ./gpg.nix
