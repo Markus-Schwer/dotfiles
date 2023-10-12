@@ -184,7 +184,7 @@
             "e" = "exec ${pkgs.systemd}/bin/loginctl terminate-user $USER && ${pkgs.swayfx}/bin/swaymsg mode default";
             "r" = "exec ${pkgs.systemd}/bin/systemctl reboot && ${pkgs.swayfx}/bin/swaymsg mode default";
             "u" = "exec ${pkgs.systemd}/bin/systemctl suspend && ${pkgs.swayfx}/bin/swaymsg mode default";
-            "s" = "exec ${pkgs.systemd}/bin/systemctl shutdown && ${pkgs.swayfx}/bin/swaymsg mode default";
+            "s" = "exec ${pkgs.systemd}/bin/systemctl poweroff && ${pkgs.swayfx}/bin/swaymsg mode default";
             Escape = "mode default";
             Return = "mode default";
           };
