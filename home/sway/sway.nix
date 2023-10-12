@@ -22,7 +22,17 @@
         modifier = "Mod4";
         terminal = "alacritty";
         menu = "${pkgs.wofi}/bin/wofi --show=drun";
-        output."*" = { bg = "${wallpaper} fill"; };
+        output = {
+          "*" = {
+            bg = "${wallpaper} fill";
+          };
+          "DP-2" = {
+            pos = "2560 0";
+          };
+          "HDMI-A-1" = {
+            pos = "0 0";
+          };
+        };
         gaps = {
           inner = 6;
           smartBorders = "off";
