@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  # disable rpfilter so that wireguard works
+  networking.firewall.checkReversePath = false;
   networking.firewall = {
     enable = true;
     allowedTCPPortRanges = [
