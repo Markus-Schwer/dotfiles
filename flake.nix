@@ -38,13 +38,13 @@
                   unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
                 };
               in
-	          {
+            {
                 nixpkgs.overlays = [ overlay-unstable ]; 
                 environment.systemPackages = with pkgs; [
-	              unstable.hydroxide
-	            ];
-	          }
-	        )
+                unstable.hydroxide
+              ];
+            }
+          )
           ];
         };
         qemu = lib.nixosSystem {
@@ -58,6 +58,32 @@
               home-manager.useUserPackages = true;
               home-manager.users.markus = import ./home;
             }
+          ];
+        };
+        desktop = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./modules
+            ./hardware/desktop.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.markus = import ./home;
+            }
+            ({ config, pkgs, ... }: 
+              let
+                overlay-unstable = final: prev: {
+                  unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
+                };
+              in
+            {
+                nixpkgs.overlays = [ overlay-unstable ]; 
+                environment.systemPackages = with pkgs; [
+                unstable.hydroxide
+              ];
+            }
+          )
           ];
         };
       };
