@@ -54,6 +54,10 @@ in
     wl-clipboard
     solvespace
     stlink
+    teams-for-linux
+    remmina
+    webcamoid
+    bluetuith
   ];
 
   xdg.enable = true;
