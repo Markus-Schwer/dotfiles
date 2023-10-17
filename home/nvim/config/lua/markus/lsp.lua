@@ -51,16 +51,21 @@ lspc.rust_analyzer.setup({
     on_attach = on_attach,
 })
 
-require("ccls").setup({
-    lsp = {
-        lspconfig = {
-            capabilities = capabilities,
-            on_attach = on_attach,
-        }
-    }
-})
-
-lspc.ccls.setup({
+lspc.clangd.setup({
     capabilities = capabilities,
     on_attach = on_attach,
 })
+
+--[[ require("ccls").setup({ ]]
+--[[     lsp = { ]]
+--[[         lspconfig = { ]]
+--[[             capabilities = capabilities, ]]
+--[[             on_attach = on_attach, ]]
+--[[         } ]]
+--[[     } ]]
+--[[ }) ]]
+
+--[[ lspc.ccls.setup({ ]]
+--[[     capabilities = capabilities, ]]
+--[[     on_attach = on_attach, ]]
+--[[ }) ]]
