@@ -173,6 +173,7 @@
 
           # Screenshot mode
           "${cfg.modifier}+Print" = "mode \"${modeScreenshot}\"";
+          "${cfg.modifier}+Shift+s" = "mode \"${modeScreenshot}\"";
 
           "${cfg.modifier}+space" = "exec ${pkgs.swayfx}/bin/swaymsg input $(${pkgs.swayfx}/bin/swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
 
