@@ -58,6 +58,8 @@ in
     remmina
     webcamoid
     bluetuith
+    pulsemixer
+    vlc
   ];
 
   xdg.enable = true;
