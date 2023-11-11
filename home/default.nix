@@ -60,6 +60,7 @@ in
     bluetuith
     pulsemixer
     vlc
+    libreoffice
   ];
 
   xdg.enable = true;
