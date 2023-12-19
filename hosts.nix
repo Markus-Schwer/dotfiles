@@ -20,7 +20,7 @@
       {
         markus.network = {
           hostname = "nixpad";
-          hostid = "todo";
+          hostid = "a167e424";
         };
       }
     ];
@@ -34,7 +34,7 @@
       {
         markus.network = {
           hostname = "nixpad";
-          hostid = "todo";
+          hostid = "ea12bde6";
         };
       }
     ];

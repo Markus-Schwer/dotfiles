@@ -52,7 +52,7 @@
           (host: {
             name = host.name;
             value = lib.nixosSystem {
-              inherit system pkgs;
+              inherit system;
               modules = [
                 defaultModule
                 ./modules
