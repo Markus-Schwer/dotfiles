@@ -3,19 +3,25 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, ... }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, disko, treefmt-nix, ... }:
     let
-      system = "x84_64-linux";
+      system = "x86_64-linux";
       pkgs = import nixpkgs {
           inherit system;
           config = { allowUnfree = true; };
       };
+      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       lib = nixpkgs.lib;
       defaultModule =
         { lib, ... }:
@@ -35,45 +41,33 @@
             "nix-command"
             "flakes"
           ];
-          #time.timeZone = "UTC";
         };
     in {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+      formatter.${system} = treefmtEval.config.build.wrapper;
+      checks.${system}.formatter = treefmtEval.config.build.check self;
       nixosConfigurations = {
         thinknix = lib.nixosSystem {
           inherit system;
           modules = [
             defaultModule
             nixos-hardware.nixosModules.lenovo-thinkpad-t495
-            ./modules
             ./hardware/thinkpad-t495.nix
+            ./modules
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.markus = import ./home;
             }
-            ({ config, pkgs, ... }: 
-              let
-                overlay-unstable = final: prev: {
-                  unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
-                };
-              in
-            {
-                nixpkgs.overlays = [ overlay-unstable ]; 
-                environment.systemPackages = with pkgs; [
-                unstable.hydroxide
-              ];
-            }
-          )
           ];
         };
         qemu = lib.nixosSystem {
           inherit system;
           modules = [
             defaultModule
-            ./modules
+            nixos-hardware.nixosModules.lenovo-thinkpad-t495
             ./hardware/qemu.nix
+            ./modules
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -86,27 +80,31 @@
           inherit system;
           modules = [
             defaultModule
-            ./modules
+            nixos-hardware.nixosModules.lenovo-thinkpad-t495
             ./hardware/desktop.nix
+            ./modules
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.markus = import ./home;
             }
-            ({ config, pkgs, ... }: 
-              let
-                overlay-unstable = final: prev: {
-                  unstable = nixpkgs-unstable.legacyPackages.x86_64-linux;
-                };
-              in
+          ];
+        };
+        dankpad = lib.nixosSystem {
+          inherit system;
+          modules = [
+            defaultModule
+            disko.nixosModules.disko
+            ./hardware/thinkpad-l590.nix
+            (import ./disk-config.nix { disk = "/dev/nvme0n1"; })
+            ./modules
+            home-manager.nixosModules.home-manager
             {
-                nixpkgs.overlays = [ overlay-unstable ]; 
-                environment.systemPackages = with pkgs; [
-                unstable.hydroxide
-              ];
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.markus = import ./home;
             }
-          )
           ];
         };
       };

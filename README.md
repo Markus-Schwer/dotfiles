@@ -1,140 +1,19 @@
-# NixOS installation steps
+# NixOS configuration
 
-## Legacy Boot (skip)
+## NixOS installation steps
 
-```bash
-parted /dev/vda -- mklabel msdos
-parted /dev/vda -- mkpart primary 1MB 512MB
-parted /dev/vda -- set 1 boot on
-parted /dev/vda -- mkpart primary 512MB 100%
-```
+1. Boot into a nix 23.05 (or newer) minimal ISO
+> if you want to use WIFI in the minimal ISO
+> create config: `wpa_passphrase <SSID> <PW> | sudo tee /etc/wpa_supplicant.conf`
+> activate it: `sudo wpa_supplicant -B -c /etc/wpa_supplicant.conf -i wlp3s0`
+2. clone the repository `git clone https://github.com/Markus-Schwer/dotfiles`
+3. write the full-disk-encryption password into a file `read -s password | echo -n $password > /tmp/secret.key`
+4. Run `sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko dotfiles/disk-config.nix --arg disk '"/dev/nvme0n1"'`
+5. Run `nixos-install --flake "github:Markus-Schwer/dotfiles#<hostname>"`
+> May require to use `--experimental-features "nix-command flakes"`
+5. Reboot
 
-## EFI
-
-create GPT partition table
-
-```bash
-parted /dev/sda -- mklabel gpt
-```
-
-root partition starting after the 512MB `boot` section
-
-```bash
-parted /dev/sda -- mkpart primary 512MB 100%
-```
-
-boot partition in the first 512MB
-> the 2 in `set 2 esp on` should be the id/number of the boot partition
-
-```bash
-parted /dev/sda -- mkpart ESP fat32 1MB 512MB
-parted /dev/sda -- set 2 esp on
-```
-
-LUKS encryption
-
-```bash
-cryptsetup luksFormat /dev/sda1
-cryptsetup config /dev/sda1 --label cryptroot
-cryptsetup luksOpen /dev/sda1 cryptroot
-```
-
-zero/format the encrypted partition to be extra paranoid
-
-```bash
-dd if=/dev/zero of=/dev/mapper/cryptroot status=progress
-```
-
-create a LVM pv
-
-```bash
-pvcreate /dev/mapper/cryptroot
-```
-
-create a LVM volume group
-
-```bash
-vgcreate vg /dev/mapper/cryptroot
-```
-
-create the swap volume
-
-```bash
-lvcreate -L 8G -n swap vg
-```
-
-create the root volume
-
-```bash
-lvcreate -l100%FREE -n root vg
-```
-
-mkswap for swap volume
-
-```bash
-mkswap -L swap /dev/vg/swap
-```
-
-mkfs ext4 for root volume
-
-```bash
-mkfs.ext4 -L nixos /dev/vg/root
-```
-
-mkfs the FAT boot volume
-
-```bash
-mkfs.fat -F 32 -n boot /dev/sda2
-```
-
-## Installing
-
-mount root volume
-
-```bash
-mount /dev/disk/by-label/nixos /mnt
-```
-
-mount boot partition
-
-```bash
-mkdir -p /mnt/boot
-mount /dev/disk/by-label/boot /mnt/boot
-```
-
-OPTIONAL, when low RAM: activate swap during the installation
-
-```bash
-swapon /dev/vg/swap
-```
-
-run nixos-install with the flake
-
-```
-nixos-install --flake github:Markus-Schwer/dotfiles#qemu
-```
-
-Without the flake:
-
-generate initial nixos config:
-
-```bash
-nixos-generate-config --root /mnt
-```
-
-edit nix config
-
-```bash
-vim /mnt/etc/nixos/configuration.nix
-```
-
-install
-
-```bash
-nixos-install
-```
-
-# After installation
+## After installation
 
 clone dotfiles nix flake
 
