@@ -23,7 +23,7 @@ let
 
   addFilePrefix = prefix: files: lib.mapAttrs' (name: value: lib.nameValuePair (prefix + name) { text = value; }) files;
 
-  xdgImportDir = xdgPrefix: dir: addFilePrefix "${xdgPrefix}/" (lib.attrsets.mergeAttrsList [(getNonNixFiles dir) (getAndImportNixFiles dir)]);
+  xdgImportDir = xdgPrefix: dir: addFilePrefix "${xdgPrefix}/" (lib.attrsets.mergeAttrsList [ (getNonNixFiles dir) (getAndImportNixFiles dir) ]);
 in
 {
   programs.neovim = {

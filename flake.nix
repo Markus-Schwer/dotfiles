@@ -18,8 +18,8 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
-          inherit system;
-          config = { allowUnfree = true; };
+        inherit system;
+        config = { allowUnfree = true; };
       };
       treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
       lib = nixpkgs.lib;
@@ -42,7 +42,8 @@
             "flakes"
           ];
         };
-    in {
+    in
+    {
       formatter.${system} = treefmtEval.config.build.wrapper;
       checks.${system}.formatter = treefmtEval.config.build.check self;
       nixosConfigurations = builtins.listToAttrs (

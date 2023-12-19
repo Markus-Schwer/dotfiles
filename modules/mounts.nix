@@ -9,7 +9,8 @@
     fsType = "nfs";
     device = "10.20.42.50:/talos";
     options = [
-      "x-systemd.automount" "noauto"
+      "x-systemd.automount"
+      "noauto"
       "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
     ];
   };
@@ -18,7 +19,8 @@
     fsType = "nfs";
     device = "10.20.42.50:/kubernetes";
     options = [
-      "x-systemd.automount" "noauto"
+      "x-systemd.automount"
+      "noauto"
       "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
     ];
   };
@@ -27,7 +29,8 @@
     fsType = "nfs";
     device = "10.20.42.50:/Lasercutter";
     options = [
-      "x-systemd.automount" "noauto"
+      "x-systemd.automount"
+      "noauto"
       "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
     ];
   };

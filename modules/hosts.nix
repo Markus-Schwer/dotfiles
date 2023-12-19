@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
 {
-    networking.extraHosts = ''
+  networking.extraHosts = ''
     '';
 }
