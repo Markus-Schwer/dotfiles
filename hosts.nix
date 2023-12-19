@@ -30,7 +30,7 @@
     nixosModules = [
       disko.nixosModules.disko
       ./hardware/thinkpad-l590.nix
-      (import ./disk-config.nix { disk = "/dev/nvme0n1"; })
+      (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
       {
         markus.network = {
           hostname = "nixpad";

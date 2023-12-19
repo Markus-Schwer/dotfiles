@@ -46,6 +46,7 @@
     {
       formatter.${system} = treefmtEval.config.build.wrapper;
       checks.${system}.formatter = treefmtEval.config.build.check self;
+      packages.${system}.disko-config = import ./disko-config.nix;
       nixosConfigurations = builtins.listToAttrs (
         builtins.map
           (host: {
