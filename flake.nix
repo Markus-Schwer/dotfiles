@@ -17,12 +17,33 @@
           config = { allowUnfree = true; };
       };
       lib = nixpkgs.lib;
+      defaultModule =
+        { lib, ... }:
+        {
+          nix.registry = {
+            home-manager.flake = home-manager;
+            nixpkgs.flake = nixpkgs;
+            #sops-nix.flake = sops-nix;
+          };
+          nix.nixPath = lib.mkForce [
+            "nixpkgs=${nixpkgs}"
+            #"sops-nix=${sops-nix}"
+            "home-manager=${home-manager}"
+            "nixos-hardware=${nixos-hardware}"
+          ];
+          nix.settings.experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+          #time.timeZone = "UTC";
+        };
     in {
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
       nixosConfigurations = {
         thinknix = lib.nixosSystem {
           inherit system;
           modules = [
+            defaultModule
             nixos-hardware.nixosModules.lenovo-thinkpad-t495
             ./modules
             ./hardware/thinkpad-t495.nix
@@ -50,6 +71,7 @@
         qemu = lib.nixosSystem {
           inherit system;
           modules = [
+            defaultModule
             ./modules
             ./hardware/qemu.nix
             home-manager.nixosModules.home-manager
@@ -63,6 +85,7 @@
         desktop = lib.nixosSystem {
           inherit system;
           modules = [
+            defaultModule
             ./modules
             ./hardware/desktop.nix
             home-manager.nixosModules.home-manager

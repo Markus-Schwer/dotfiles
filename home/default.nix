@@ -61,6 +61,8 @@ in
     pulsemixer
     vlc
     libreoffice
+    rpi-imager
+    downonspot
   ];
 
   xdg.enable = true;
