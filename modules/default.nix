@@ -20,6 +20,7 @@
     ./network.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.package = pkgs.nixVersions.nix_2_19;
   nixpkgs.config.allowUnfree = true;
 
   # Use the systemd-boot EFI boot loader.
