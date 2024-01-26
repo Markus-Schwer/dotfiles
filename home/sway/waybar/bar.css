@@ -46,6 +46,7 @@ window#waybar {
 }
 
 /* Each module */
+#custom-displays,
 #custom-nixstore,
 #custom-clipboard,
 #custom-dnd,
@@ -68,6 +69,7 @@ window#waybar {
 }
 
 /* Joined modules */
+#custom-displays,
 #custom-nixstore,
 #custom-dnd,
 #bluetooth,
@@ -91,6 +93,7 @@ window#waybar {
 }
 
 /* left side of segment */
+#custom-displays,
 #custom-nixstore,
 #language,
 #cpu,
@@ -104,6 +107,7 @@ window#waybar {
 }
 
 /* right side of segment */
+#custom-displays,
 #custom-nixstore,
 #language,
 #backlight,

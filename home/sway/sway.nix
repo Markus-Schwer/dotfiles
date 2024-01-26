@@ -14,6 +14,7 @@
       extraConfig = ''
         for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
         for_window [title="dmenu"] floating enable, border pixel 1, sticky enable
+        for_window [title="nwg-displays"] floating enable, border pixel 1, sticky enable
         corner_radius 4
         blur enable
       '';
@@ -25,8 +26,8 @@
           "*" = {
             bg = "${wallpaper} fill";
           };
-          "DP-2" = {
-            pos = "2560 0";
+          "eDP-1" = {
+            pos = "1920 0";
           };
           "HDMI-A-1" = {
             pos = "0 0";

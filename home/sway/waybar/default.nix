@@ -14,6 +14,7 @@
         modules-left = [ "custom/nixstore" "sway/workspaces" ];
         modules-center = [ "sway/mode" ];
         modules-right = [
+          "custom/displays"
           "sway/language"
           # connecting
           "network"
@@ -149,6 +150,11 @@
           on-click = "${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e ${pkgs.bluetuith}/bin/bluetuith";
           on-click-right = "rfkill toggle bluetooth";
           tooltip-format = "{}";
+        };
+        "custom/displays" = {
+          on-click = "${pkgs.nwg-displays}/bin/nwg-displays";
+          format = " ";
+          tooltip = false;
         };
         "sway/language" = {
           format = " {}";
