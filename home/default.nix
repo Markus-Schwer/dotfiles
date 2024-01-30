@@ -63,6 +63,7 @@ in
     libreoffice
     rpi-imager
     downonspot
+    btop
   ];
 
   xdg.enable = true;
