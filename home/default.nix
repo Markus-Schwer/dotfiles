@@ -53,7 +53,7 @@ in
     hyprpicker
     wl-clipboard
     solvespace
-    stlink
+    #stlink
     teams-for-linux
     remmina
     webcamoid

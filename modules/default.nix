@@ -20,6 +20,7 @@
     ./network.nix
     ./virtualisation.nix
     ./displaylink.nix
+    ./intune.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;

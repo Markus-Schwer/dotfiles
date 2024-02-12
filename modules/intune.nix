@@ -1,0 +1,3 @@
+{
+  services.intune.enable = true;
+}
