@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: ["main"]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        host: ["thinknix", "qemu", "desktop"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install nix
+        run: sh <(curl -L https://nixos.org/nix/install) --no-daemon
+
+      - name: Nix build
+        run: |
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+          nix build .#nixosConfigurations.${{ matrix.host }}.config.system.build.toplevel --extra-experimental-features "nix-command flakes"
+
