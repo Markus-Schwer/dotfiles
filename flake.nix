@@ -46,70 +46,25 @@
     {
       formatter.${system} = treefmtEval.config.build.wrapper;
       checks.${system}.formatter = treefmtEval.config.build.check self;
-      nixosConfigurations = {
-        thinknix = lib.nixosSystem {
-          inherit system;
-          modules = [
-            defaultModule
-            disko.nixosModules.disko
-            nixos-hardware.nixosModules.lenovo-thinkpad-t495
-            ./hardware/thinkpad-t495.nix
-            ./modules
-            (import ./disk-config.nix { disk = "/dev/nvme0n1"; })
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.markus = import ./home;
-            }
-          ];
-        };
-        qemu = lib.nixosSystem {
-          inherit system;
-          modules = [
-            defaultModule
-            nixos-hardware.nixosModules.lenovo-thinkpad-t495
-            ./hardware/qemu.nix
-            ./modules
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.markus = import ./home;
-            }
-          ];
-        };
-        desktop = lib.nixosSystem {
-          inherit system;
-          modules = [
-            defaultModule
-            nixos-hardware.nixosModules.lenovo-thinkpad-t495
-            ./hardware/desktop.nix
-            ./modules
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.markus = import ./home;
-            }
-          ];
-        };
-        dankpad = lib.nixosSystem {
-          inherit system;
-          modules = [
-            defaultModule
-            disko.nixosModules.disko
-            ./hardware/thinkpad-l590.nix
-            (import ./disk-config.nix { disk = "/dev/nvme0n1"; })
-            ./modules
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.markus = import ./home;
-            }
-          ];
-        };
-      };
+      packages.${system}.disko-config = import ./disko-config.nix;
+      nixosConfigurations = builtins.listToAttrs (
+        builtins.map
+          (host: {
+            name = host.name;
+            value = lib.nixosSystem {
+              inherit system;
+              modules = [
+                defaultModule
+                ./modules
+                home-manager.nixosModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.users.markus = import ./home;
+                }
+              ] ++ host.nixosModules;
+            };
+          })
+          (import ./hosts.nix { inherit nixos-hardware disko; }));
     };
 }

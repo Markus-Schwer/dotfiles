@@ -3,8 +3,10 @@
   {
     name = "thinknix";
     nixosModules = [
+      disko.nixosModules.disko
       nixos-hardware.nixosModules.lenovo-thinkpad-t495
       ./hardware/thinkpad-t495.nix
+      (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
       {
         markus.network = {
           hostname = "thinknix";
