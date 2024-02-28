@@ -22,6 +22,7 @@
     ./displaylink.nix
     ./intune.nix
     ./gtk.nix
+    ./fingerprint.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;
