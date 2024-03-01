@@ -17,6 +17,8 @@
 
   hardware.enableRedistributableFirmware = true; # required for wifi to work
 
+  services.throttled.enable = true; # overrides Lenovos default CPU power and temperature limits for better performance
+
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
