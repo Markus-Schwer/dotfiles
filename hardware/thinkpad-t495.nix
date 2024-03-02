@@ -17,6 +17,8 @@
 
   hardware.enableRedistributableFirmware = true; # required for wifi to work
 
+  services.throttled.enable = true; # overrides Lenovos default CPU power and temperature limits for better performance
+
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
