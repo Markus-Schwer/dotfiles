@@ -125,4 +125,10 @@ lspc.tailwindcss.setup({
     on_attach = on_attach,
     cmd = use_exec_or_fallback("tailwindcss-language-server", "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server", "--stdio"),
 })
+
+lspc.pyright.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    cmd = use_exec_or_fallback("pyright", "${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"),
+})
 ''
