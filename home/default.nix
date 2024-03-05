@@ -64,7 +64,7 @@ in
     rpi-imager
     downonspot
     btop
-    jetbrains.idea-community
+    (jetbrains.plugins.addPlugins jetbrains.idea-community ["ideavim"])
     pciutils
   ];
 
