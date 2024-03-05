@@ -64,6 +64,8 @@ in
     rpi-imager
     downonspot
     btop
+    jetbrains.idea-community
+    pciutils
   ];
 
   xdg.enable = true;
