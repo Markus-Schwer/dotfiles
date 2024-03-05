@@ -73,4 +73,7 @@ in
 
   # rust
   /* rust-tools-nvim */
+
+  # sourcegraph cody
+  sg-nvim
 ]

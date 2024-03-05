@@ -56,6 +56,10 @@ lspc.lua_ls.setup({
     cmd = use_exec_or_fallback("lua-language-server", "${pkgs.sumneko-lua-language-server}/bin/lua-language-server"),
 })
 
+require("sg").setup {
+    on_attach = on_attach
+}
+
 lspc.nil_ls.setup({
     capabilities = capabilities,
     on_attach = on_attach,
