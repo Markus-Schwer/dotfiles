@@ -5,6 +5,7 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -14,7 +15,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, disko, treefmt-nix, ... }:
+  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager, disko, treefmt-nix, agenix, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -29,11 +30,11 @@
           nix.registry = {
             home-manager.flake = home-manager;
             nixpkgs.flake = nixpkgs;
-            #sops-nix.flake = sops-nix;
+            agenix.flake = agenix;
           };
           nix.nixPath = lib.mkForce [
             "nixpkgs=${nixpkgs}"
-            #"sops-nix=${sops-nix}"
+            "agenix=${agenix}"
             "home-manager=${home-manager}"
             "nixos-hardware=${nixos-hardware}"
           ];
@@ -56,6 +57,7 @@
               modules = [
                 defaultModule
                 ./modules
+                agenix.nixosModules.default
                 home-manager.nixosModules.home-manager
                 {
                   home-manager.useGlobalPkgs = true;
@@ -63,6 +65,7 @@
                   home-manager.users.markus = import ./home;
                 }
               ] ++ host.nixosModules;
+              specialArgs = { inherit inputs self; };
             };
           })
           (import ./hosts.nix { inherit nixos-hardware disko; }));

@@ -81,5 +81,6 @@ in
     ./gpg.nix
     ./protonmail.nix
     ./gtk.nix
+    ./sourcegraph.nix
   ];
 }

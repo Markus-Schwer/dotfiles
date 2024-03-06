@@ -3,7 +3,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -23,6 +23,7 @@
     ./intune.nix
     ./gtk.nix
     ./fingerprint.nix
+    ./secrets.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;
@@ -72,6 +73,7 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    inputs.agenix.packages.x86_64-linux.default
   ];
 
   programs.git.enable = true;
