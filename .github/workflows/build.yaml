@@ -1,0 +1,22 @@
+name: Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check:
+    name: Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install nix
+        run: sh <(curl -L https://nixos.org/nix/install) --no-daemon
+
+      - name: Nix flake check
+        run: |
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+          nix flake check --extra-experimental-features "nix-command flakes"
