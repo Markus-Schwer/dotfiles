@@ -7,10 +7,11 @@ local telescope = require("telescope")
 
 telescope.setup {
   defaults = {
-    mappings = {
-      i = { ["<c-t>"] = trouble.open_with_trouble },
-      n = { ["<c-t>"] = trouble.open_with_trouble },
-    },
+    -- Format path as "file.txt (path\to\file\)"
+    path_display = function(opts, path)
+      local tail = require("telescope.utils").path_tail(path)
+      return string.format("%s (%s)", tail, path)
+    end,
   },
 }
 
@@ -38,3 +39,18 @@ vim.keymap.set(
     builtin.lsp_workspace_symbols,
     { desc = '[f]ind LSP workspace symbols ([c]lasses)' }
 )
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[f]ind [b]uffers' })
+
+local frecency = require("frecency")
+frecency.setup {}
+
+vim.keymap.set('n', '<leader><leader>', function ()
+  frecency.start {
+    -- Format path as "file.txt (path\to\file\)"
+    path_display = function(opts, path)
+      local tail = require("telescope.utils").path_tail(path)
+      return string.format("%s (%s)", tail, path)
+    end,
+    workspace = 'CWD',
+  }
+end, { desc = 'telescope frecency workspace' })

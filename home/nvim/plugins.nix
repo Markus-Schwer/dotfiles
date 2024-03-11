@@ -1,6 +1,6 @@
 { pkgs }: with pkgs.vimPlugins;
 let
-  mason = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  mason = pkgs.vimUtils.buildVimPlugin {
     name = "mason";
     src = pkgs.fetchFromGitHub {
       owner = "williamboman";
@@ -9,7 +9,7 @@ let
       sha256 = "1m8irg61mzw2pcgc9r6nf0v9ch5pgmwq0n1qx8lclwwzxfbwgzdl";
     };
   };
-  mason-lspconfig = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  mason-lspconfig = pkgs.vimUtils.buildVimPlugin {
     name = "mason-lspconfig";
     src = pkgs.fetchFromGitHub {
       owner = "williamboman";
@@ -18,7 +18,7 @@ let
       sha256 = "1wfdb1cbqkyh24f3y7hswl2b41s7r2cz0s6ms5az5jfa2a56m1wl";
     };
   };
-  ccls-nvim = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  ccls-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "ccls";
     src = pkgs.fetchFromGitHub {
       owner = "ranjithshegde";
@@ -27,13 +27,22 @@ let
       sha256 = "1dsjbbvh870nzwm6smj905bb75h90kpp1ha0ayfq3b0iv16jxk5f";
     };
   };
-  nvim-dev-webicons = pkgs.vimUtils.buildVimPluginFrom2Nix {
+  nvim-dev-webicons = pkgs.vimUtils.buildVimPlugin {
     name = "nvim-dev-webicons";
     src = pkgs.fetchFromGitHub {
       owner = "nvim-tree";
       repo = "nvim-dev-webicons";
       rev = "925e2aa30dc9fe9332060199c19f132ec0f3d493";
       sha256 = "+T88roJ4pa7/2p2Bdevn+wTNAXgGmB+QkaLRq2rtUUQ=";
+    };
+  };
+  telescope-frecency-ms = pkgs.vimUtils.buildVimPlugin {
+    name = "telescope-frecency-ms";
+    src = pkgs.fetchFromGitHub {
+      owner = "Markus-Schwer";
+      repo = "telescope-frecency.nvim";
+      rev = "52ab0733933e365ec4ba94ee6d0abaf14df012cb";
+      sha256 = "sha256-s4Yj1sh0pjxiYx8Xu47veejMH0k7o8XPrQWavFW03to=";
     };
   };
 in
@@ -63,6 +72,7 @@ in
   vim-surround
   undotree
   telescope-nvim
+  telescope-frecency-ms
 
   trouble-nvim
   nvim-dev-webicons
