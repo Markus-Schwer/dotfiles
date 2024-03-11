@@ -36,13 +36,13 @@ let
       sha256 = "+T88roJ4pa7/2p2Bdevn+wTNAXgGmB+QkaLRq2rtUUQ=";
     };
   };
-  telescope-frecency-ms = pkgs.vimUtils.buildVimPlugin {
-    name = "telescope-frecency-ms";
+  telescope-frecency = pkgs.vimUtils.buildVimPlugin {
+    name = "telescope-frecency";
     src = pkgs.fetchFromGitHub {
-      owner = "Markus-Schwer";
+      owner = "nvim-telescope";
       repo = "telescope-frecency.nvim";
-      rev = "52ab0733933e365ec4ba94ee6d0abaf14df012cb";
-      sha256 = "sha256-s4Yj1sh0pjxiYx8Xu47veejMH0k7o8XPrQWavFW03to=";
+      rev = "771726f7d6e7e96e9273e454b1c1f49168663a37";
+      sha256 = "sha256-pvSg50UjlgaB8Bee4b+BbAevjUt8wDxbooeNjlb8vBs=";
     };
   };
 in
@@ -72,7 +72,7 @@ in
   vim-surround
   undotree
   telescope-nvim
-  telescope-frecency-ms
+  telescope-frecency
 
   trouble-nvim
   nvim-dev-webicons

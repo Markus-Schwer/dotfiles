@@ -42,7 +42,9 @@ vim.keymap.set(
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[f]ind [b]uffers' })
 
 local frecency = require("frecency")
-frecency.setup {}
+frecency.setup {
+  show_filter_column = false, -- Don't show the workspace in the telescope entries
+}
 
 vim.keymap.set('n', '<leader><leader>', function ()
   frecency.start {
