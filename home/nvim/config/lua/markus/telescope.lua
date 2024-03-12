@@ -40,6 +40,9 @@ vim.keymap.set(
     { desc = '[f]ind LSP workspace symbols ([c]lasses)' }
 )
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = '[f]ind [b]uffers' })
+vim.keymap.set("n", "<leader>fm", function()
+    builtin.man_pages({ sections = { "1", "2", "3", "4", "5", "6", "7", "8", "9" } })
+end, { desc = "[f]ind [m]anpages" })
 
 local frecency = require("frecency")
 frecency.setup {
