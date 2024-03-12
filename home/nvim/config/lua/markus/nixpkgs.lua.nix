@@ -18,6 +18,11 @@ in
 ''
   local builtin = require("telescope.builtin")
   vim.keymap.set("n", "<leader>fp", function()
-    builtin.live_grep({ cwd = "${nixpkgs-doc}" })
+    builtin.live_grep({
+      cwd = "${nixpkgs-doc}",
+      path_display = function(opts, path)
+        return path
+      end,
+    })
   end, { desc = "[f]ind nix[p]kgs" })
 ''
