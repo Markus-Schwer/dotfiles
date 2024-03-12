@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, ... }:
 
 ''
   local dap = require('dap')

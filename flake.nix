@@ -63,6 +63,7 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.users.markus = import ./home;
+                  home-manager.extraSpecialArgs = inputs;
                 }
               ] ++ host.nixosModules;
               specialArgs = { inherit inputs self; };
