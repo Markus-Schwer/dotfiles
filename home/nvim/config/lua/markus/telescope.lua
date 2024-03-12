@@ -46,10 +46,15 @@ frecency.setup {
   show_filter_column = false, -- Don't show the workspace in the telescope entries
 }
 
+local Path = require('plenary.path')
+
 vim.keymap.set('n', '<leader><leader>', function ()
   frecency.start {
     -- Format path as "file.txt (path\to\file\)"
     path_display = function(opts, path)
+      if opts.cwd ~= nil then
+        path = Path:new(path):make_relative(opts.cwd)
+      end
       local tail = require("telescope.utils").path_tail(path)
       return string.format("%s (%s)", tail, path)
     end,
