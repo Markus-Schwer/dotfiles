@@ -66,6 +66,7 @@ in
     btop
     (jetbrains.plugins.addPlugins jetbrains.idea-community ["ideavim"])
     pciutils
+    arduino-ide
   ];
 
   xdg.enable = true;
