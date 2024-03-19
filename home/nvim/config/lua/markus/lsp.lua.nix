@@ -135,4 +135,16 @@ lspc.pyright.setup({
     on_attach = on_attach,
     cmd = use_exec_or_fallback("pyright", "${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"),
 })
+
+lspc.gopls.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    cmd = use_exec_or_fallback("gopls", "${pkgs.gopls}/bin/gopls"),
+})
+
+lspc.templ.setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    cmd = use_exec_or_fallback("templ", "${pkgs.templ}/bin/templ", "lsp"),
+})
 ''
