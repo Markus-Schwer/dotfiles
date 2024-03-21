@@ -67,6 +67,7 @@ in
     (jetbrains.plugins.addPlugins jetbrains.idea-community ["ideavim"])
     pciutils
     arduino-ide
+    prusa-slicer
   ];
 
   xdg.enable = true;
