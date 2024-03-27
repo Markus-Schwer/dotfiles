@@ -50,6 +50,8 @@
       "video"
       "dialout"
       "plugdev"
+      "libvirtd"
+      "vboxusers"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJxCiKBrwxQBpIaauYXFzmKea876PZ8Eb8gXn13HMx95 markus-thinkpad"

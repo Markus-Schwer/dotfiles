@@ -1,6 +1,10 @@
 { pkgs, ... }:
 {
+  programs.virt-manager.enable = true;
+  users.extraGroups.vboxusers = { };
   virtualisation = {
+    virtualbox.host.enable = true;
+    libvirtd.enable = true;
     podman = {
       enable = true;
 
