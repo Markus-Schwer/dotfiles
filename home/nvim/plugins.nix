@@ -74,12 +74,16 @@ in
   lsp_lines-nvim
   luasnip
   nvim-cmp
-  cmp-cmdline
   cmp-nvim-lsp
+  cmp-buffer
+  cmp-path
+  cmp-cmdline
+  cmp-treesitter
   lsp-status-nvim
   mason
   mason-lspconfig
   ccls-nvim
+  tabset
 
   tabset
 
@@ -88,12 +92,10 @@ in
 
   telescope-nvim
   telescope-fzf-native-nvim
+  telescope-frecency
 
   comment-nvim
   vim-surround
-  undotree
-  telescope-nvim
-  telescope-frecency
 
   trouble-nvim
   nvim-dev-webicons
@@ -104,4 +106,9 @@ in
 
   # sourcegraph cody
   sg-nvim
+
+  # versioning
+  undotree
+  vim-fugitive
+  gitsigns-nvim
 ]
