@@ -64,13 +64,14 @@ in
     rpi-imager
     downonspot
     btop
-    (jetbrains.plugins.addPlugins jetbrains.idea-community ["ideavim"])
+    (jetbrains.plugins.addPlugins jetbrains.idea-community [ "ideavim" ])
     pciutils
     arduino-ide
     prusa-slicer
     unzip
   ];
-  home.pointerCursor = { # https://github.com/NixOS/nixpkgs/issues/207496
+  home.pointerCursor = {
+    # https://github.com/NixOS/nixpkgs/issues/207496
     package = pkgs.vanilla-dmz;
     name = "Vanilla-DMZ";
     gtk.enable = true;
