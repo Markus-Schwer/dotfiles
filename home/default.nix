@@ -53,7 +53,6 @@ in
     hyprpicker
     wl-clipboard
     solvespace
-    #stlink
     teams-for-linux
     remmina
     webcamoid
@@ -69,6 +68,7 @@ in
     arduino-ide
     prusa-slicer
     unzip
+    zathura # pdf viewer
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
