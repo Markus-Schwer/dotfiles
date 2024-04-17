@@ -25,6 +25,7 @@
     ./fingerprint.nix
     ./secrets.nix
     ./k3s.nix
+    ./printing.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;
