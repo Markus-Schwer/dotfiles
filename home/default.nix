@@ -69,6 +69,8 @@ in
     prusa-slicer
     unzip
     zathura # pdf viewer
+    bruno
+    dune3d
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
