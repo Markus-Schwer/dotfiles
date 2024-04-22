@@ -82,6 +82,9 @@ in
   xdg.enable = true;
 
   programs.bash.enable = true;
+  programs.bash.shellAliases = {
+    pretty_json = "${pkgs.jq}/bin/jq -Rr '. as $line | (fromjson? | select(type == \"object\") | .stackTrace //= \"\" | .message, .stackTrace) // $line'";
+  };
 
   imports = [
     ./sway
