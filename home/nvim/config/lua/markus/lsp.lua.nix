@@ -1,4 +1,4 @@
-{ pkgs, ... }: ''
+{ pkgs, pkgs-unstable, ... }: ''
   require("mason").setup()
   require("mason-lspconfig").setup()
   vim.lsp.set_log_level("debug")
@@ -145,6 +145,6 @@
   lspc.templ.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      cmd = use_exec_or_fallback("templ", "${pkgs.templ}/bin/templ", "lsp"),
+      cmd = use_exec_or_fallback("templ", "${pkgs-unstable.templ}/bin/templ", "lsp"),
   })
 ''

@@ -2,7 +2,8 @@
   description = "lemme smash";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     disko = {
       url = "github:nix-community/disko";
@@ -13,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix = {
@@ -22,10 +23,14 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager, disko, treefmt-nix, agenix, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, disko, treefmt-nix, agenix, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
         config = { allowUnfree = true; };
       };
@@ -54,7 +59,6 @@
     {
       formatter.${system} = treefmtEval.config.build.wrapper;
       checks.${system}.formatter = treefmtEval.config.build.check self;
-      packages.${system}.disko-config = import ./disko-config.nix;
       nixosConfigurations = builtins.listToAttrs (
         builtins.map
           (host: {
@@ -70,10 +74,10 @@
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.users.markus = import ./home;
-                  home-manager.extraSpecialArgs = inputs;
+                  home-manager.extraSpecialArgs = inputs // { inherit pkgs-unstable; };
                 }
               ] ++ host.nixosModules;
-              specialArgs = { inherit inputs self; };
+              specialArgs = { inherit inputs self pkgs-unstable; };
             };
           })
           (import ./hosts.nix { inherit nixos-hardware disko; }));

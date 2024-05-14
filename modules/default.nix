@@ -20,7 +20,6 @@
     ./network.nix
     ./virtualisation.nix
     ./displaylink.nix
-    ./intune.nix
     ./gtk.nix
     ./fingerprint.nix
     ./secrets.nix

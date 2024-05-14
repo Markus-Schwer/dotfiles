@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 let
   glyphs-picker = import ../pkgs/glyphs-picker.nix { inherit pkgs; };
@@ -53,7 +53,7 @@ in
     hyprpicker
     wl-clipboard
     solvespace
-    teams-for-linux
+    pkgs-unstable.teams-for-linux
     remmina
     webcamoid
     bluetuith
@@ -65,12 +65,12 @@ in
     btop
     (jetbrains.plugins.addPlugins jetbrains.idea-community [ "ideavim" ])
     pciutils
-    arduino-ide
-    prusa-slicer
+    pkgs-unstable.arduino-ide
+    pkgs-unstable.prusa-slicer
     unzip
     zathura # pdf viewer
     bruno
-    dune3d
+    pkgs-unstable.dune3d
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
