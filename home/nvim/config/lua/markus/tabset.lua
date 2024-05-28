@@ -5,7 +5,7 @@ require("tabset").setup({
     },
     languages = {
         {
-            filetypes = { "go", "templ" },
+            filetypes = { "go", "templ", "lua" },
             config = {
                 tabwidth = 4,
                 expandtab = false,
