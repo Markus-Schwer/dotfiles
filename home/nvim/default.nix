@@ -32,7 +32,7 @@ in
     extraConfig = ''
       :luafile ~/.config/nvim/lua/markus/init.lua
     '';
-    plugins = import ./plugins.nix { inherit pkgs; };
+    plugins = import ./plugins.nix { inherit pkgs pkgs-unstable; };
     extraPackages = with pkgs; [
       ripgrep
       fzf

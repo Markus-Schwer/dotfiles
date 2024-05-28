@@ -1,4 +1,4 @@
-{ pkgs }: with pkgs.vimPlugins;
+{ pkgs, pkgs-unstable, ... }: with pkgs.vimPlugins;
 let
   mason = pkgs.vimUtils.buildVimPlugin {
     name = "mason";
@@ -105,7 +105,7 @@ in
   nvim-dap-ui
 
   # sourcegraph cody
-  sg-nvim
+  pkgs-unstable.vimPlugins.sg-nvim
 
   # versioning
   undotree
