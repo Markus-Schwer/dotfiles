@@ -71,6 +71,7 @@ in
     zathura # pdf viewer
     bruno
     pkgs-unstable.dune3d
+    gnome.eog
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
