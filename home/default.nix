@@ -62,7 +62,7 @@ in
     libreoffice
     rpi-imager
     downonspot
-    btop
+    pkgs-unstable.btop
     (jetbrains.plugins.addPlugins jetbrains.idea-community [ "ideavim" ])
     pciutils
     pkgs-unstable.arduino-ide
