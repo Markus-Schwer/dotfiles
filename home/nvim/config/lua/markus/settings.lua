@@ -1,5 +1,5 @@
 -- keymap leader
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 -- render whitespaces
 vim.o.list = true
 --vim.o.listchars = 'tab:» ,lead:·,trail:·,eol:¬,extends:…'
@@ -17,10 +17,10 @@ vim.o.wrap = false
 vim.o.textwidth = 80 -- this enables re-arranging lines with gq
 vim.o.formatoptions = "cqj"
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "*.tex", "*.md", "*.adoc", "*.txt" },
-    callback = function()
-        vim.opt_local.formatoptions = "tcqj" -- auto formatting for text as well
-    end,
+	pattern = { "*.tex", "*.md", "*.adoc", "*.txt" },
+	callback = function()
+		vim.opt_local.formatoptions = "tcqj" -- auto formatting for text as well
+	end,
 })
 -- history
 vim.o.backup = false
@@ -29,9 +29,9 @@ vim.o.undofile = true
 --vim.o.undodir = vim.fn.stdpath('data') .. '/undodir'
 -- visuals
 vim.o.termguicolors = true -- is also set automatically by some themes
-vim.o.signcolumn = 'yes:5' -- give plenty of space for signs
+vim.o.signcolumn = "yes:5" -- give plenty of space for signs
 vim.o.cmdheight = 2
-vim.o.scrolloff = 8        -- don't let cursor get too close to the edge
+vim.o.scrolloff = 8 -- don't let cursor get too close to the edge
 -- performance
 vim.o.updatetime = 50
 vim.o.hidden = true -- keep hidden buffers
@@ -42,6 +42,6 @@ vim.o.smartcase = true
 vim.o.splitright = true
 vim.o.splitbelow = true
 -- clipboard sharing
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 -- delete without yanking
-vim.keymap.set('n', 'd', '"_d', { desc = '[d]elete and yank into black hole register' })
+vim.keymap.set("n", "d", '"_d', { desc = "[d]elete and yank into black hole register" })
