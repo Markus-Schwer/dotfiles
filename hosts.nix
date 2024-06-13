@@ -38,6 +38,7 @@
           hostname = "nixpad";
           hostid = "ea12bde6";
         };
+        markus.k3s.enable = true;
       }
     ];
   }

@@ -12,7 +12,6 @@
     ./podman.nix
     ./firewall.nix
     ./mounts.nix
-    ./hosts.nix
     ./bluetooth.nix
     ./gpg.nix
     ./thunar.nix

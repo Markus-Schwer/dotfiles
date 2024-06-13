@@ -1,8 +1,5 @@
 { config, lib, ... }:
 with lib;
-let
-  cfg = config.markus.network;
-in
 {
   options.markus.network = {
     hostname = mkOption {
@@ -15,8 +12,8 @@ in
   };
   config = {
     networking = {
-      hostName = cfg.hostname;
-      hostId = cfg.hostid;
+      hostName = config.markus.network.hostname;
+      hostId = config.markus.network.hostid;
       networkmanager.enable = true;
     };
   };
