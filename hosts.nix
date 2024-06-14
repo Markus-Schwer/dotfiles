@@ -39,6 +39,9 @@
           hostid = "ea12bde6";
         };
         markus.k3s.enable = true;
+        services.k3s.extraFlags = toString [
+          "--disable=traefik"
+        ];
         networking.extraHosts = ''
           192.168.178.147 keycloak.fcp.local
           192.168.178.147 fnt-application.fcp.local
