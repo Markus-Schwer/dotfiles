@@ -39,6 +39,26 @@
           hostid = "ea12bde6";
         };
         markus.k3s.enable = true;
+        networking.extraHosts = ''
+          192.168.178.147 keycloak.fcp.local
+          192.168.178.147 fnt-application.fcp.local
+          192.168.178.147 fcp-master.fcp.local
+          192.168.178.147 grafana.fcp.local
+          192.168.178.147 command.fcp.local
+          192.168.178.147 minio.fcp.local
+          192.168.178.147 minio-console.fcp.local
+          192.168.178.147 minio-backup.fcp.local
+          192.168.178.147 camunda.fcp.local
+          192.168.178.147 serviceplanet.fcp.local
+          192.168.178.147 analytics.fcp.local
+          192.168.178.147 adminer.fcp.local
+          192.168.178.147 keycloak.smoke.local
+          192.168.178.147 fnt-application.smoke.local
+          192.168.178.147 fnt-application.fcp-clone.local
+          192.168.178.147 minio.fcp-clone.local
+          192.168.178.147 analytics.fcp-clone.local
+          192.168.178.147 fnt-monitoring.fcp.local
+        '';
       }
     ];
   }
