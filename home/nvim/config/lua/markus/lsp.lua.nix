@@ -36,7 +36,7 @@
       nmap('<leader>df', vim.diagnostic.open_float, 'show [d]iagnostics [f]loat')
       nmap('<leader>ca', vim.lsp.buf.code_action, '[c]ode [a]ctions')
       nmap('H', vim.lsp.buf.hover, '[H]over')
-      nmap('<leader>f', vim.lsp.buf.formatting, '[f]ormat buffer')
+      nmap('<leader>f', vim.lsp.buf.format, '[f]ormat buffer')
   end
 
   local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -104,7 +104,10 @@
   lspc.kotlin_language_server.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      cmd = use_exec_or_fallback("kotlin-language-server", "${pkgs.kotlin-language-server}/bin/kotlin-language-server"),
+      cmd = use_exec_or_fallback("kotlin-language-server", "${pkgs-unstable.kotlin-language-server}/bin/kotlin-language-server"),
+      init_options = {
+        storagePath = "/home/markus/.cache/kotlin-language-server"
+      }
   })
 
   lspc.angularls.setup({
