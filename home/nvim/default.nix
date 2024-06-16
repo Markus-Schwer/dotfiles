@@ -38,7 +38,7 @@ in
       fzf
       gcc
       fd
-      nodejs_21
+      nodejs_22
     ];
   };
 

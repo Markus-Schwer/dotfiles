@@ -11,6 +11,7 @@
     {
       enable = true;
       package = pkgs.swayfx;
+      checkConfig = false; # https://github.com/nix-community/home-manager/issues/5379
       extraConfig = ''
         for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
         for_window [title="dmenu"] floating enable, border pixel 1, sticky enable

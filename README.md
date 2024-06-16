@@ -2,7 +2,7 @@
 
 ## NixOS installation steps
 
-1. Boot into a nix 23.11 minimal ISO
+1. Boot into a nix 24.05 minimal ISO
 > if you want to use WIFI in the minimal ISO
 > create config: `wpa_passphrase <SSID> <PW> | sudo tee /etc/wpa_supplicant.conf`
 > activate it: `sudo wpa_supplicant -B -c /etc/wpa_supplicant.conf -i wlp5s0`
