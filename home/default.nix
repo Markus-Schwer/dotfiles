@@ -76,6 +76,7 @@ in
     pdfarranger
     kubectl-view-secret
     pwgen
+    tldr
     waypipe
     wayvnc
   ];
