@@ -73,6 +73,7 @@ in
     pkgs-unstable.dune3d
     gnome.eog
     tailscale
+    kubectl-view-secret
     waypipe
     wayvnc
   ];
