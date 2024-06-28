@@ -72,6 +72,7 @@ in
     bruno
     pkgs-unstable.dune3d
     gnome.eog
+    tailscale
     waypipe
     wayvnc
   ];

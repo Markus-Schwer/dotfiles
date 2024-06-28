@@ -25,6 +25,7 @@
     ./k3s.nix
     ./printing.nix
     ./gc.nix
+    ./tailscale.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;
