@@ -72,6 +72,8 @@ in
     bruno
     pkgs-unstable.dune3d
     gnome.eog
+    waypipe
+    wayvnc
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
