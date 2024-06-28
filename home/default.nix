@@ -75,6 +75,7 @@ in
     tailscale
     pdfarranger
     kubectl-view-secret
+    pwgen
     waypipe
     wayvnc
   ];
