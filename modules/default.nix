@@ -65,6 +65,7 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     google-fonts
     corefonts
+    atkinson-hyperlegible
   ];
 
   services.udev.packages = with pkgs; [
