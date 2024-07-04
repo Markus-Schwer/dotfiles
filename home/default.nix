@@ -77,6 +77,7 @@ in
     tldr
     waypipe
     wayvnc
+    bitwarden-desktop
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
