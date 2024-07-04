@@ -25,7 +25,6 @@ in
   home.packages = with pkgs; [
     killall
     firefox
-    thunderbird
     gimp
     spice-vdagent
     neofetch
@@ -34,7 +33,6 @@ in
     bemenu # launch menu
     openvpn
     element-desktop #-wayland
-    thunderbird
     terraform
     nmap
     signal-desktop
@@ -104,5 +102,6 @@ in
     ./protonmail.nix
     ./gtk.nix
     ./sourcegraph.nix
+    ./mail.nix
   ];
 }
