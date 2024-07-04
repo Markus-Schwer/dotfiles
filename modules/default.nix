@@ -26,6 +26,7 @@
     ./printing.nix
     ./gc.nix
     ./tailscale.nix
+    ./yubikey.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;
