@@ -34,4 +34,14 @@
       "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
     ];
   };
+
+  fileSystems."/mnt/music" = {
+    fsType = "nfs";
+    device = "10.20.42.50:/Music";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
+    ];
+  };
 }
