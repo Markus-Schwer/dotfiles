@@ -3,7 +3,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   imports = [
@@ -27,6 +27,7 @@
     ./gc.nix
     ./tailscale.nix
     ./yubikey.nix
+    ./theme.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;
@@ -69,6 +70,11 @@
     atkinson-hyperlegible
     ocr-a
   ];
+
+  markus.theme = "dark";
+  specialisation.light-theme.configuration = {
+    markus.theme = lib.mkForce "light";
+  };
 
   services.udev.packages = with pkgs; [
     openocd

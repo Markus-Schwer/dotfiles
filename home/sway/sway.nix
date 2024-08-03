@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 {
   wayland.windowManager.sway =
     let
@@ -7,6 +7,67 @@
       cfg = config.wayland.windowManager.sway.config;
       modeShutdown = "(h) hibernate (l) lock (e) logout (r) reboot (u) suspend (s) shutdown";
       modeScreenshot = "󰄄  (r) region (s) screen";
+      darkColors = {
+        focused = {
+          border = "#8C3D2B";
+          background = "#59281D";
+          text = "#cccccc";
+          indicator = "#cccccc";
+          childBorder = "#8C3D2B";
+        };
+        focusedInactive = {
+          border = "#8C6056";
+          background = "#593E38";
+          text = "#cccccc";
+          indicator = "#cccccc";
+          childBorder = "#8C6056";
+        };
+        unfocused = {
+          border = "#444444";
+          background = "#222222";
+          text = "#cccccc";
+          indicator = "#cccccc";
+          childBorder = "#444444";
+        };
+        urgent = {
+          border = "#8C3D2B";
+          background = "#F26A4B";
+          text = "#cccccc";
+          indicator = "#cccccc";
+          childBorder = "#8C3D2B";
+        };
+      };
+      lightColors = {
+        focused = {
+          border = "#cf8777";
+          background = "#cf8777";
+          text = "#000000";
+          indicator = "#000000";
+          childBorder = "#cf8777";
+        };
+        focusedInactive = {
+          border = "#dfb3a9";
+          background = "#dfb3a9";
+          text = "#333333";
+          indicator = "#333333";
+          childBorder = "#dfb3a9";
+        };
+        unfocused = {
+          border = "#f8f8f8";
+          background = "#f8f8f8";
+          text = "#333333";
+          indicator = "#333333";
+          childBorder = "#f8f8f8";
+        };
+        urgent = {
+          border = "#cf8777";
+          background = "#ac3115";
+          text = "#333333";
+          indicator = "#333333";
+          childBorder = "#ac3115";
+        };
+      };
+      colors = if (config.markus.theme == "light") then lightColors else darkColors;
     in
     {
       enable = true;
@@ -47,36 +108,7 @@
           /* titlebar = false; */
           border = 1;
         };
-        colors = {
-          focused = {
-            border = "#8C3D2B";
-            background = "#59281D";
-            text = "#cccccc";
-            indicator = "#cccccc";
-            childBorder = "#8C3D2B";
-          };
-          focusedInactive = {
-            border = "#8C6056";
-            background = "#593E38";
-            text = "#cccccc";
-            indicator = "#cccccc";
-            childBorder = "#8C6056";
-          };
-          unfocused = {
-            border = "#444444";
-            background = "#222222";
-            text = "#cccccc";
-            indicator = "#cccccc";
-            childBorder = "#444444";
-          };
-          urgent = {
-            border = "#8C3D2B";
-            background = "#F26A4B";
-            text = "#cccccc";
-            indicator = "#cccccc";
-            childBorder = "#8C3D2B";
-          };
-        };
+        colors = colors;
         bars = [ ]; # managed as systemd user unit
         input = {
           "type:touchpad" = {

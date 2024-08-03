@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, theme, ... }:
 
 let
   glyphs-picker = import ../pkgs/glyphs-picker.nix { inherit pkgs; };
@@ -93,6 +93,8 @@ in
     pretty_json = "${pkgs.jq}/bin/jq -Rr '. as $line | (fromjson? | select(type == \"object\") | .stackTrace //= \"\" | .message, .stackTrace) // $line'";
   };
 
+  markus.theme = theme;
+
   imports = [
     ./sway
     ./kubectl.nix
@@ -104,5 +106,6 @@ in
     ./gtk.nix
     ./sourcegraph.nix
     ./mail.nix
+    ./theme.nix
   ];
 }

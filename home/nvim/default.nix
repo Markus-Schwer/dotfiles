@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, lib, nixpkgs, ... }:
+{ pkgs, pkgs-unstable, lib, nixpkgs, config, options, ... }:
 
 let
   getDir = dir: lib.attrsets.mapAttrs
@@ -16,7 +16,7 @@ let
     (name: value:
       lib.nameValuePair
         (lib.strings.removeSuffix ".nix" name)
-        (import "${dir}/${name}" { inherit pkgs pkgs-unstable nixpkgs; }))
+        (import "${dir}/${name}" { inherit pkgs pkgs-unstable nixpkgs config; }))
     (lib.filterAttrs (name: value: lib.strings.hasSuffix ".nix" name) (getLeaveFiles dir));
 
   getNonNixFiles = dir: lib.filterAttrs (name: value: ! lib.strings.hasSuffix ".nix" name) (getLeaveFiles dir);

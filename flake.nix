@@ -70,12 +70,15 @@
                 ./modules
                 agenix.nixosModules.default
                 home-manager.nixosModules.home-manager
-                {
+                ({ config, ... }: {
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
                   home-manager.users.markus = import ./home;
-                  home-manager.extraSpecialArgs = inputs // { inherit pkgs-unstable; };
-                }
+                  home-manager.extraSpecialArgs = {
+                    inherit inputs pkgs-unstable;
+                    theme = config.markus.theme;
+                  };
+                })
               ] ++ host.nixosModules;
               specialArgs = { inherit inputs self pkgs-unstable; };
             };
