@@ -1,4 +1,6 @@
-require("onedark").setup()
+require("onedark").setup {
+	style = 'light'
+}
 require("onedark").load()
 
 require("transparent").setup({
