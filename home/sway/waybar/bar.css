@@ -46,6 +46,7 @@ window#waybar {
 }
 
 /* Each module */
+#custom-spacestatus,
 #custom-displays,
 #custom-nixstore,
 #custom-clipboard,
@@ -69,6 +70,7 @@ window#waybar {
 }
 
 /* Joined modules */
+#custom-spacestatus,
 #custom-displays,
 #custom-nixstore,
 #custom-dnd,
@@ -93,6 +95,7 @@ window#waybar {
 }
 
 /* left side of segment */
+#custom-spacestatus,
 #custom-displays,
 #custom-nixstore,
 #language,
@@ -107,6 +110,7 @@ window#waybar {
 }
 
 /* right side of segment */
+#custom-spacestatus,
 #custom-displays,
 #custom-nixstore,
 #language,

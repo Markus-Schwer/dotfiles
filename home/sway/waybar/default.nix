@@ -14,6 +14,7 @@
         modules-left = [ "custom/nixstore" "sway/workspaces" ];
         modules-center = [ "sway/mode" ];
         modules-right = [
+          "custom/spacestatus"
           "custom/displays"
           "sway/language"
           # connecting
@@ -150,6 +151,27 @@
           on-click = "${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e ${pkgs.bluetuith}/bin/bluetuith";
           on-click-right = "rfkill toggle bluetooth";
           tooltip-format = "{}";
+        };
+        "custom/spacestatus" = {
+          interval = 10;
+          tooltip = false;
+          format = "{icon}";
+          return-type = "json";
+          exec = pkgs.writeShellScript "spacestatus-waybar" ''
+            is_open() {
+                echo `${pkgs.curl}/bin/curl -s https://spaceapi.sfz-aalen.space/api/spaceapi.json | ${pkgs.jq}/bin/jq '.state.open'`
+            }
+
+            if `is_open = "true"`; then
+              echo '{"alt":"open"}';
+            else
+              echo '{"alt":"closed"}';
+            fi
+          '';
+          format-icons = {
+            open = " ";
+            closed = " ";
+          };
         };
         "custom/displays" = {
           on-click = "${pkgs.nwg-displays}/bin/nwg-displays";
