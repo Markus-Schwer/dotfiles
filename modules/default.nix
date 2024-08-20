@@ -67,6 +67,7 @@
     google-fonts
     corefonts
     atkinson-hyperlegible
+    ocr-a
   ];
 
   services.udev.packages = with pkgs; [
