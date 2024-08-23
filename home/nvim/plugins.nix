@@ -105,7 +105,7 @@ in
   nvim-dap-ui
 
   # sourcegraph cody
-  pkgs-unstable.vimPlugins.sg-nvim
+  sg-nvim
 
   # versioning
   undotree
