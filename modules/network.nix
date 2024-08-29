@@ -23,7 +23,7 @@ with lib;
           id = "Hack-mas";
           type = "wifi";
           autoconnect = true;
-          interface-name = "wlp3s0";
+          interface-name = "wlp1s0";
         };
         wifi = {
           mode = "infrastructure";
