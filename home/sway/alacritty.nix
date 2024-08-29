@@ -9,24 +9,24 @@ let
       foreground = "#2a2b33";
     };
     colors.normal = {
-      black   = "#000000";
-      red     = "#de3d35";
-      green   = "#3e953a";
-      yellow  = "#d2b67b";
-      blue    = "#2f5af3";
+      black = "#000000";
+      red = "#de3d35";
+      green = "#3e953a";
+      yellow = "#d2b67b";
+      blue = "#2f5af3";
       magenta = "#a00095";
-      cyan    = "#3e953a";
-      white   = "#bbbbbb";
+      cyan = "#3e953a";
+      white = "#bbbbbb";
     };
     colors.bright = {
-      black   = "#000000";
-      red     = "#de3d35";
-      green   = "#3e953a";
-      yellow  = "#d2b67b";
-      blue    = "#2f5af3";
+      black = "#000000";
+      red = "#de3d35";
+      green = "#3e953a";
+      yellow = "#d2b67b";
+      blue = "#2f5af3";
       magenta = "#a00095";
-      cyan    = "#3e953a";
-      white   = "#ffffff";
+      cyan = "#3e953a";
+      white = "#ffffff";
     };
     font.normal.family = "JetBrainsMono Nerd Font";
   };
@@ -35,7 +35,8 @@ let
     font.normal.family = "JetBrainsMono Nerd Font";
   };
   settings = if (config.markus.theme == "light") then lightSettings else darkSettings;
-in {
+in
+{
   programs.alacritty = {
     enable = true;
     inherit settings;
