@@ -2,6 +2,10 @@
 
 let
   glyphs-picker = import ../pkgs/glyphs-picker.nix { inherit pkgs; };
+  idea = pkgs.jetbrains.plugins.addPlugins pkgs.jetbrains.idea-community [ "ideavim" ];
+  start-idea = pkgs.writeShellScriptBin "idea" ''
+    ${idea}/bin/idea-community "$1" >/dev/null 2>&1 &
+  '';
 in
 {
   # Home Manager needs a bit of information about you and the
@@ -61,7 +65,8 @@ in
     rpi-imager
     downonspot
     pkgs-unstable.btop
-    (jetbrains.plugins.addPlugins jetbrains.idea-community [ "ideavim" ])
+    idea
+    start-idea
     pciutils
     pkgs-unstable.arduino-ide
     pkgs-unstable.prusa-slicer
