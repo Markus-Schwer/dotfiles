@@ -83,6 +83,7 @@ in
     waypipe
     wayvnc
     bitwarden-desktop
+    beekeeper-studio
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
