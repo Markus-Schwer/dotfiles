@@ -83,6 +83,7 @@ in
     waypipe
     wayvnc
     bitwarden-desktop
+    postgresql
     beekeeper-studio
   ];
   home.pointerCursor = {
