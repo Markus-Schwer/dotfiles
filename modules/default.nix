@@ -3,7 +3,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, inputs, lib, ... }:
+{ pkgs, inputs, lib, config, ... }:
 
 {
   imports = [
@@ -32,6 +32,10 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;
   nixpkgs.config.allowUnfree = true;
+
+  # support to build Raspberry PI SD card images
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
