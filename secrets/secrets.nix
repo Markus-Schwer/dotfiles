@@ -7,4 +7,5 @@ let
 in
 {
   "sourcegraph.age".publicKeys = all;
+  "davfs2-secrets.age".publicKeys = all;
 }
