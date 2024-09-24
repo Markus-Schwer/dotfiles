@@ -85,6 +85,7 @@ in
     bitwarden-desktop
     postgresql
     beekeeper-studio
+    jameica
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
