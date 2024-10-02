@@ -86,6 +86,7 @@ in
     postgresql
     beekeeper-studio
     jameica
+    keystore-explorer
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
