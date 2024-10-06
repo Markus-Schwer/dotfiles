@@ -150,4 +150,8 @@
       on_attach = on_attach,
       cmd = use_exec_or_fallback("templ", "${pkgs-unstable.templ}/bin/templ", "lsp"),
   })
+
+  require("sg").setup {
+      on_attach = on_attach,
+  }
 ''
