@@ -87,6 +87,7 @@ in
     beekeeper-studio
     jameica
     keystore-explorer
+    nextcloud-client
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496

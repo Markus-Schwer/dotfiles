@@ -53,18 +53,4 @@
       "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
     ];
   };
-
-  fileSystems."/mnt/nextcloud" = {
-    fsType = "davfs";
-    device = "https://cloud.sfz-aalen.space/remote.php/dav/files/markus.schwer";
-    options = [
-      "rw"
-      "user"
-      "uid=1000"
-      "gid=100"
-      "file_mode=0664"
-      "dir_mode=2775"
-      "grpid"
-    ];
-  };
 }
