@@ -69,7 +69,7 @@ in
     start-idea
     pciutils
     pkgs-unstable.arduino-ide
-    pkgs-unstable.prusa-slicer
+    prusa-slicer
     unzip
     zathura # pdf viewer
     bruno
