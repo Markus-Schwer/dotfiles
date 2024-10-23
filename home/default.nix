@@ -88,6 +88,7 @@ in
     jameica
     keystore-explorer
     nextcloud-client
+    openscad
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
