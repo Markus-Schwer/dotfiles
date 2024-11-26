@@ -111,4 +111,7 @@ in
   undotree
   vim-fugitive
   gitsigns-nvim
+
+  # sops
+  nvim-sops
 ]
