@@ -115,4 +115,5 @@ in
 
   # sops
   nvim-sops
+  b64-nvim
 ]
