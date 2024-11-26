@@ -89,6 +89,7 @@ in
     keystore-explorer
     nextcloud-client
     openscad
+    delve
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
