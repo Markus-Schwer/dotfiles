@@ -103,6 +103,7 @@ in
   # debug
   nvim-dap
   nvim-dap-ui
+  nvim-dap-go
 
   # sourcegraph cody
   sg-nvim

@@ -2,6 +2,8 @@
 
 ''
   local dap = require('dap')
+  require("dap-go").setup()
+
   dap.adapters.cppdbg = {
     id = 'cppdbg',
     type = 'executable',
