@@ -90,6 +90,8 @@ in
     nextcloud-client
     openscad
     delve
+    age
+    sops
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
