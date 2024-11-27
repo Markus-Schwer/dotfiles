@@ -40,7 +40,7 @@ in
     terraform
     nmap
     signal-desktop
-    freecad
+    pkgs-unstable.freecad
     drawio
     cargo
     rustc
