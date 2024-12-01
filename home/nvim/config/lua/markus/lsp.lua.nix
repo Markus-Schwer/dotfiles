@@ -75,6 +75,7 @@
   lspc.rust_analyzer.setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      cmd = use_exec_or_fallback("rust-analyzer", "${pkgs.rust-analyzer}/bin/rust-analyzer"),
   })
 
   lspc.clangd.setup({
