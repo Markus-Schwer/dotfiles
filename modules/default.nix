@@ -34,7 +34,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # support to build Raspberry PI SD card images
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 
   # Use the systemd-boot EFI boot loader.
