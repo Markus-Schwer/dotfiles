@@ -2,7 +2,16 @@
 
 ''
   local dap = require('dap')
-  require("dap-go").setup()
+  require("dap-go").setup {
+    dap_configurations = {
+      {
+        type = "go",
+        name = "Attach remote",
+        mode = "remote",
+        request = "attach",
+      },
+    },
+  }
 
   dap.adapters.cppdbg = {
     id = 'cppdbg',
