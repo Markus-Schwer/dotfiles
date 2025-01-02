@@ -18,8 +18,6 @@
   hardware.enableRedistributableFirmware = true; # required for wifi to work
 
   hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages = with pkgs; [ mesa.drivers amdvlk ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

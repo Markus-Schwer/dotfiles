@@ -137,7 +137,7 @@
   lspc.pyright.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      cmd = use_exec_or_fallback("pyright", "${pkgs.nodePackages.pyright}/bin/pyright-langserver", "--stdio"),
+      cmd = use_exec_or_fallback("pyright", "${pkgs.pyright}/bin/pyright-langserver", "--stdio"),
   })
 
   lspc.gopls.setup({
