@@ -84,6 +84,23 @@
         modifier = "Mod4";
         terminal = "alacritty";
         menu = "${pkgs.wofi}/bin/wofi --show=drun";
+        startup = [
+          { command = "firefox"; }
+          { command = "element-dekstop"; }
+          { command = "spotify"; }
+          { command = "signal-dekstop"; }
+        ];
+        assigns = {
+          "1" = [
+            { app_id = "firefox"; }
+            { class = "^Bitwarden$"; }
+          ];
+          "2" = [
+            { class = "^Element$"; }
+            { class = "^Spotify$"; }
+            { class = "^Signal$"; }
+          ];
+        };
         output = {
           "*" = {
             bg = "${wallpaper} fill";
