@@ -122,7 +122,7 @@
       cmd = use_exec_or_fallback("vscode-json-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-eslint-language-server", "--stdio"),
   })
 
-  lspc.tsserver.setup({
+  lspc.ts_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("typescript-language-server", "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio"),
