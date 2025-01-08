@@ -86,9 +86,9 @@
         menu = "${pkgs.wofi}/bin/wofi --show=drun";
         startup = [
           { command = "firefox"; }
-          { command = "element-dekstop"; }
+          { command = "${pkgs.element-desktop}/bin/element-desktop"; }
           { command = "spotify"; }
-          { command = "signal-dekstop"; }
+          { command = "${pkgs.signal-desktop}/bin/signal-desktop"; }
         ];
         assigns = {
           "1" = [
