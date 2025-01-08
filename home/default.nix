@@ -68,7 +68,7 @@ in
     zathura # pdf viewer
     bruno
     pkgs-unstable.dune3d
-    gnome.eog
+    eog
     tailscale
     pdfarranger
     kubectl-view-secret
