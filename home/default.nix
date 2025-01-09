@@ -86,6 +86,7 @@ in
     delve
     age
     sops
+    pkgs-unstable.usbkvm
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
