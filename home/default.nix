@@ -115,5 +115,6 @@ in
     ./sourcegraph.nix
     ./mail.nix
     ./theme.nix
+    ./tmux.nix
   ];
 }
