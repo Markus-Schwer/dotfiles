@@ -9,6 +9,7 @@
         name = "Attach remote",
         mode = "remote",
         request = "attach",
+        port = "38697",
       },
     },
   }
