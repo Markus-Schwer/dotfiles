@@ -45,3 +45,8 @@ vim.o.splitbelow = true
 vim.opt.clipboard = "unnamedplus"
 -- delete without yanking
 vim.keymap.set("n", "d", '"_d', { desc = "[d]elete and yank into black hole register" })
+-- easy quickfix navigation
+vim.keymap.set("n", "]q", ":cnext<cr>", { desc = "[q]uickfix select next item" })
+vim.keymap.set("n", "[q", ":cprevious<cr>", { desc = "[q]uickfix select next item" })
+vim.keymap.set("n", "]Q", ":clast<cr>", { desc = "[Q]uickfix select last item" })
+vim.keymap.set("n", "[Q", ":cfirst<cr>", { desc = "[Q]uickfix select first item" })
