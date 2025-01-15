@@ -28,6 +28,7 @@
     ./tailscale.nix
     ./yubikey.nix
     ./theme.nix
+    ./firmware.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;
