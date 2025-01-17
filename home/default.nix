@@ -88,6 +88,7 @@ in
     sops
     pkgs-unstable.usbkvm
     python3
+    pavucontrol
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
