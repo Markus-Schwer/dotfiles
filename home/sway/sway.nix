@@ -86,9 +86,11 @@
         menu = "${pkgs.wofi}/bin/wofi --show=drun";
         startup = [
           { command = "firefox"; }
+          { command = "${pkgs.bitwarden-desktop}/bin/bitwarden"; }
           { command = "${pkgs.element-desktop}/bin/element-desktop"; }
           { command = "spotify"; }
           { command = "${pkgs.signal-desktop}/bin/signal-desktop"; }
+          { command = "${pkgs.thunderbird}/bin/thunderbird"; }
         ];
         assigns = {
           "1" = [
@@ -99,6 +101,9 @@
             { class = "^Element$"; }
             { class = "^Spotify$"; }
             { class = "^Signal$"; }
+          ];
+          "4" = [
+            { app_id = "thunderbird"; }
           ];
         };
         output = {
