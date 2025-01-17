@@ -17,6 +17,22 @@
     alsa.enable = true;
     pulse.enable = true;
   };
+  services.pipewire.configPackages = [
+    (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/99-pulseaudio-native-tcp.conf" ''
+      context.modules = [
+        {
+          name = libpipewire-module-zeroconf-discover
+          args = {}
+        }
+        {
+          name = libpipewire-module-pulse-tunnel
+          args = {
+            tunnel.mode = sink
+          }
+        }
+      ]
+    '')
+  ];
   security.pam.services.swaylock = { };
 
   services.greetd = {
