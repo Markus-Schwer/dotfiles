@@ -117,7 +117,7 @@
           format = "{icon} {percent}%";
           format-icons = [ "󰃞" "󰃟" "󰃠" ];
           on-scroll-up = "${pkgs.swayfx}/bin/swaymsg exec ${pkgs.brightnessctl}/bin/brightnessctl set +5%";
-          on-scroll-down = "${pkgs.swayfx}/bin/swaymsg exec ${pkgs.brightnessctl}/bin/brightnessctl set -5%";
+          on-scroll-down = "${pkgs.swayfx}/bin/swaymsg exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-";
         };
         pulseaudio = {
           scroll-step = 5;
