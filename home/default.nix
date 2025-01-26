@@ -90,6 +90,7 @@ in
     python3
     pavucontrol
     neofetch
+    packer
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
