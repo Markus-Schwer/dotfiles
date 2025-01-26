@@ -20,7 +20,7 @@
     options = [
       "x-systemd.automount"
       "noauto"
-      "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
+      "x-systemd.idle-timeout=30" # disconnects after 30 seconds
     ];
   };
 
@@ -30,7 +30,7 @@
     options = [
       "x-systemd.automount"
       "noauto"
-      "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
+      "x-systemd.idle-timeout=30" # disconnects after 30 seconds
     ];
   };
 
@@ -40,7 +40,7 @@
     options = [
       "x-systemd.automount"
       "noauto"
-      "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
+      "x-systemd.idle-timeout=30" # disconnects after 30 seconds
     ];
   };
 
@@ -50,7 +50,7 @@
     options = [
       "x-systemd.automount"
       "noauto"
-      "x-systemd.idle-timeout=600" # disconnects after 10 minutes (i.e. 600 seconds)
+      "x-systemd.idle-timeout=30" # disconnects after 30 seconds
     ];
   };
 }
