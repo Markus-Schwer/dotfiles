@@ -50,10 +50,22 @@
             "home-manager=${home-manager}"
             "nixos-hardware=${nixos-hardware}"
           ];
-          nix.settings.experimental-features = [
-            "nix-command"
-            "flakes"
-          ];
+          nix.settings = {
+            experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
+            substituters = [
+              "https://cache-pub.aalen.space" # local pull-through cache of cache.nixos.org
+              "https://cache.aalen.space"
+            ];
+            trusted-public-keys = [
+              "cache.aalen.space:Q74dc8HOhsLT3v4tj8fz6NhyuzIpCnK6OyA0XNjW6r8"
+            ];
+            trusted-users = [
+              "@wheel"
+            ];
+          };
         };
     in
     {
