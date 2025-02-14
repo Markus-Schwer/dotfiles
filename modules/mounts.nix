@@ -53,4 +53,14 @@
       "x-systemd.idle-timeout=30" # disconnects after 30 seconds
     ];
   };
+
+  fileSystems."/mnt/scans" = {
+    fsType = "nfs";
+    device = "10.20.42.50:/Scans";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+      "x-systemd.idle-timeout=30" # disconnects after 30 seconds
+    ];
+  };
 }
