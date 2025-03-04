@@ -14,7 +14,10 @@ with lib;
     networking = {
       hostName = config.markus.network.hostname;
       hostId = config.markus.network.hostid;
-      networkmanager.enable = true;
+      networkmanager = {
+        enable = true;
+        wifi.backend = "iwd";
+      };
     };
 
     networking.networkmanager.ensureProfiles.profiles = {
