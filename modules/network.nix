@@ -16,7 +16,7 @@ with lib;
       hostId = config.markus.network.hostid;
       networkmanager = {
         enable = true;
-        wifi.backend = "iwd";
+        # wifi.backend = "iwd"; # unstable
       };
     };
 
