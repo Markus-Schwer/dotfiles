@@ -91,6 +91,7 @@ in
     pavucontrol
     neofetch
     packer
+    gnome-network-displays
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
