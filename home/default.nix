@@ -121,5 +121,6 @@ in
     ./mail.nix
     ./theme.nix
     ./tmux.nix
+    ./gc.nix
   ];
 }
