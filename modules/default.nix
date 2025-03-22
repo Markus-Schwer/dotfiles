@@ -29,6 +29,7 @@
     ./yubikey.nix
     ./theme.nix
     ./firmware.nix
+    ./backup.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.package = pkgs.nixVersions.nix_2_19;
