@@ -1,6 +1,21 @@
 { nixos-hardware, disko }:
 [
   {
+    name = "nixwork";
+    nixosModules = [
+      disko.nixosModules.disko
+      nixos-hardware.nixosModules.framework-13-7040-amd
+      ./hardware/framework-13-inch-7040-amd.nix
+      (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
+      {
+        markus.network = {
+          hostname = "nixwork";
+          hostid = "19dba1ec";
+        };
+      }
+    ];
+  }
+  {
     name = "thinknix";
     nixosModules = [
       disko.nixosModules.disko
