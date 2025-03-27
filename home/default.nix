@@ -92,6 +92,7 @@ in
     neofetch
     packer
     gnome-network-displays
+    telegram-desktop
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
