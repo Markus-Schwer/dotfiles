@@ -1,5 +1,5 @@
 require("nvim-treesitter.configs").setup({
-	parser_install_dir = "$XDG_DATA_HOME/nvim/site",
+	parser_install_dir = "~/.local/share/nvim/site",
 	auto_install = true,
 	highlight = {
 		enable = true,
