@@ -21,9 +21,10 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, disko, treefmt-nix, agenix, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, disko, treefmt-nix, agenix, flake-utils, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -56,7 +57,7 @@
               "flakes"
             ];
             substituters = [
-              "https://cache-pub.aalen.space" # local pull-through cache of cache.nixos.org
+              #"https://cache-pub.aalen.space" # local pull-through cache of cache.nixos.org
               "https://cache.aalen.space"
             ];
             trusted-public-keys = [
@@ -96,5 +97,25 @@
             };
           })
           (import ./hosts.nix { inherit nixos-hardware disko; }));
-    };
+    } // flake-utils.lib.eachDefaultSystem (system:
+    let
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+      lib = pkgs.lib;
+
+      neovim = (import ./pkgs/neovim { inherit pkgs pkgs-unstable lib; });
+    in
+    {
+      packages.neovim = neovim;
+      apps.neovim = {
+        type = "app";
+        program = "${neovim}/bin/nvim";
+      };
+    });
 }
