@@ -2,6 +2,7 @@
 [
   {
     name = "nixwork";
+    system = "x86_64-linux";
     nixosModules = [
       disko.nixosModules.disko
       nixos-hardware.nixosModules.framework-13-7040-amd
@@ -17,6 +18,7 @@
   }
   {
     name = "thinknix";
+    system = "x86_64-linux";
     nixosModules = [
       disko.nixosModules.disko
       nixos-hardware.nixosModules.lenovo-thinkpad-t495
@@ -32,6 +34,7 @@
   }
   {
     name = "desktop";
+    system = "x86_64-linux";
     nixosModules = [
       ./hardware/desktop.nix
       {
@@ -44,6 +47,7 @@
   }
   {
     name = "dankpad";
+    system = "x86_64-linux";
     nixosModules = [
       disko.nixosModules.disko
       ./hardware/thinkpad-l590.nix
