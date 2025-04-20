@@ -40,7 +40,7 @@ in
     drawio
     cargo
     rustc
-    spotify
+    spotifywm
     inkscape
     fluxcd
     kubeseal
