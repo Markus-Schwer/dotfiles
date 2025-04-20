@@ -14,11 +14,11 @@
     },
   }
 
-  dap.adapters.cppdbg = {
-    id = 'cppdbg',
-    type = 'executable',
-    command = '${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7',
-  }
+  #dap.adapters.cppdbg = {
+  #  id = 'cppdbg',
+  #  type = 'executable',
+  #  command = ''${pkgs.vscode-extensions.ms-vscode.cpptools}/share/vscode/extensions/ms-vscode.cpptools/debugAdapters/bin/OpenDebugAD7',
+  #}
   dap.configurations.cpp = {
     {
       name = "Launch file",
