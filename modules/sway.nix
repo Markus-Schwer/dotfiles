@@ -5,6 +5,7 @@
   programs.sway.enable = true;
   xdg.portal = {
     enable = true;
+    xdgOpenUsePortal = true;
     wlr.enable = true;
   };
 
