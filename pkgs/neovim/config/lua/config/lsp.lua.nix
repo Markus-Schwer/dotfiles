@@ -56,10 +56,6 @@
       cmd = use_exec_or_fallback("lua-language-server", "${pkgs.sumneko-lua-language-server}/bin/lua-language-server"),
   })
 
-  require("sg").setup {
-      on_attach = on_attach
-  }
-
   lspc.nil_ls.setup({
       capabilities = capabilities,
       on_attach = on_attach,
@@ -157,8 +153,4 @@
       on_attach = on_attach,
       cmd = use_exec_or_fallback("terraform-ls", "${pkgs.terraform-ls}/bin/terraform-ls", "serve"),
   })
-
-  require("sg").setup {
-      on_attach = on_attach,
-  }
 ''
