@@ -98,24 +98,24 @@
           })
           (import ./hosts.nix { inherit nixos-hardware disko; }));
     } // flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-        config = { allowUnfree = true; };
-      };
-      lib = pkgs.lib;
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          config = { allowUnfree = true; };
+        };
+        pkgs-unstable = import nixpkgs-unstable {
+          inherit system;
+          config = { allowUnfree = true; };
+        };
+        lib = pkgs.lib;
 
-      neovim = (import ./pkgs/neovim { inherit pkgs pkgs-unstable lib; });
-    in
-    {
-      packages.neovim = neovim;
-      apps.neovim = {
-        type = "app";
-        program = "${neovim}/bin/nvim";
-      };
-    });
+        neovim = (import ./pkgs/neovim { inherit pkgs pkgs-unstable lib; });
+      in
+      {
+        packages.neovim = neovim;
+        apps.neovim = {
+          type = "app";
+          program = "${neovim}/bin/nvim";
+        };
+      });
 }

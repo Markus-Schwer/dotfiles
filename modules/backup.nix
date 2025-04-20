@@ -14,7 +14,8 @@ let
       node_modules
       __pycache__
     '';
-in {
+in
+{
   services.restic.backups.b2 = {
     user = "markus";
     initialize = true;
@@ -38,7 +39,7 @@ in {
   };
 
   systemd.services."restic-backups-b2" = {
-    onFailure = ["restic-unlock.service"];
+    onFailure = [ "restic-unlock.service" ];
   };
 
   systemd.services."restic-unlock" = {
@@ -48,6 +49,6 @@ in {
       EnvironmentFile = config.age.secrets.resticEnvironmentSecrets.path;
       ExecStart = "${pkgs.restic}/bin/restic -o s3.region=us-east-005 --repository ${resticRepository} --password-file ${config.age.secrets.resticPassword.path} unlock";
     };
-    onSuccess = ["restic-backups-b2.service"];
+    onSuccess = [ "restic-backups-b2.service" ];
   };
 }
