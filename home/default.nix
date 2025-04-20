@@ -93,6 +93,7 @@ in
     packer
     gnome-network-displays
     telegram-desktop
+    neovim
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
@@ -102,6 +103,9 @@ in
   };
 
   xdg.enable = true;
+
+  # set nvim as the default editor
+  home.sessionVariables = { EDITOR = "nvim"; };
 
   programs.bash.enable = true;
   programs.bash.shellAliases = {
@@ -114,7 +118,6 @@ in
     ./sway
     ./kubectl.nix
     ./go.nix
-    ./nvim
     ./kdeconnect.nix
     ./gpg.nix
     ./protonmail.nix
