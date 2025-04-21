@@ -22,9 +22,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, disko, treefmt-nix, agenix, flake-utils, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, disko, treefmt-nix, agenix, flake-utils, nix-darwin, ... }:
     {
       nixosConfigurations = builtins.listToAttrs (
         builtins.map
@@ -100,7 +104,44 @@
               };
             })
           (import ./hosts.nix { inherit nixos-hardware disko; }));
-    } // flake-utils.lib.eachDefaultSystem (system:
+    } // (
+      let
+        system = "aarch64-darwin";
+        customNeovimOverlay = final: prev: {
+          neovim = self.packages.${system}.neovim;
+        };
+
+        pkgs = import nixpkgs {
+          inherit system;
+          config = { allowUnfree = true; };
+          overlays = [ customNeovimOverlay ];
+        };
+      in
+      {
+        darwinConfigurations."SIT-SMBP-7XF39X" = nix-darwin.lib.darwinSystem {
+          inherit pkgs;
+          modules = [
+            ({ pkgs, ... }: {
+              environment.systemPackages =
+                with pkgs; [
+                  vim
+                  neovim
+                ];
+
+              nix.settings.experimental-features = "nix-command flakes";
+
+              system.configurationRevision = self.rev or self.dirtyRev or null;
+
+              # Used for backwards compatibility, please read the changelog before changing.
+              # $ darwin-rebuild changelog
+              system.stateVersion = 5;
+
+              nixpkgs.hostPlatform = system;
+            })
+          ];
+        };
+      }
+    ) // flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
