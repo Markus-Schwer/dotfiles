@@ -118,25 +118,35 @@
         };
       in
       {
-        darwinConfigurations."SIT-SMBP-7XF39X" = nix-darwin.lib.darwinSystem {
+        homeConfigurations."SIT-SMBP-7XF39X" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ({ pkgs, ... }: {
-              environment.systemPackages =
-                with pkgs; [
-                  vim
-                  neovim
-                ];
+            ({
+              home = {
+                username = "schwerm";
+                homeDirectory = "/Users/schwerm";
+                stateVersion = "24.11";
 
-              nix.settings.experimental-features = "nix-command flakes";
+                # set nvim as the default editor
+                sessionVariables = { EDITOR = "nvim"; };
+              };
 
-              system.configurationRevision = self.rev or self.dirtyRev or null;
+              programs.home-manager.enable = true;
+              programs.zsh.enable = true;
+              programs.tmux.shell = "/bin/zsh";
 
-              # Used for backwards compatibility, please read the changelog before changing.
-              # $ darwin-rebuild changelog
-              system.stateVersion = 5;
+              fonts.fontconfig.enable = true;
 
-              nixpkgs.hostPlatform = system;
+              home.packages = with pkgs; [
+                vim
+                neovim
+                postgresql_17
+                llama-cpp
+              ];
+
+              imports = [
+                ./home/tmux.nix
+              ];
             })
           ];
         };
@@ -161,6 +171,7 @@
         formatter = treefmtEval.config.build.wrapper;
         checks.formatter = treefmtEval.config.build.check self;
 
+        packages.home-manager = home-manager.defaultPackage.${system};
         packages.neovim = neovim;
         apps.neovim = {
           type = "app";
