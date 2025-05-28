@@ -6,6 +6,22 @@
     dap_configurations = {
       {
         type = "go",
+        name = "Debug test (Build Flags & Arguments)",
+        request = "launch",
+        program = "''${file}",
+        args = require("dap-go").get_arguments,
+        buildFlags = require("dap-go").get_build_flags,
+      },
+      {
+        type = "go",
+        name = "Debug test (go.mod + Build Flags & Arguments)",
+        request = "launch",
+        program = "./''${relativeFileDirname}",
+        args = require("dap-go").get_arguments,
+        buildFlags = require("dap-go").get_build_flags,
+      },
+      {
+        type = "go",
         name = "Attach remote",
         mode = "remote",
         request = "attach",
