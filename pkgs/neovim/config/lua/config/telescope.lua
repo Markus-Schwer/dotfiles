@@ -1,7 +1,6 @@
 local builtin = require("telescope.builtin")
 
 local actions = require("telescope.actions")
-local trouble = require("trouble.providers.telescope")
 
 local telescope = require("telescope")
 
@@ -12,6 +11,14 @@ telescope.setup({
 			local tail = require("telescope.utils").path_tail(path)
 			return string.format("%s (%s)", tail, path)
 		end,
+		mappings = {
+			i = {
+				["<C-Q>"] = actions.send_selected_to_qflist + actions.open_qflist
+			},
+			n = {
+				["<C-Q>"] = actions.send_selected_to_qflist + actions.open_qflist
+			},
+		},
 	},
 })
 
