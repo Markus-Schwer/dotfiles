@@ -140,6 +140,11 @@
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("gopls", "${pkgs.gopls}/bin/gopls"),
+      settings = {
+        gopls = {
+          buildFlags = {"-tags=api,unit,int"}
+        }
+      }
   })
 
   lspc.templ.setup({
