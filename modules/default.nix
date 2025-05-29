@@ -32,7 +32,6 @@
     ./backup.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.package = pkgs.nixVersions.nix_2_19;
 
   # support to build Raspberry PI SD card images
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -69,7 +68,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
     google-fonts
     corefonts
     atkinson-hyperlegible

@@ -1,14 +1,15 @@
 {
   services.mako = {
     enable = true;
-    backgroundColor = "#8C3D2B";
-    borderColor = "#F26A4B";
-    borderRadius = 4;
-    borderSize = 1;
-    defaultTimeout = 5000;
-    extraConfig = ''
-      [mode=do-not-disturb]
-      invisible=1
-    '';
+    settings = {
+      background-color = "#8C3D2B";
+      border-color = "#F26A4B";
+      border-radius = 4;
+      border-size = 1;
+      default-timeout = 5000;
+      "mode=do-not-disturb" = {
+        invisible = true;
+      };
+    };
   };
 }

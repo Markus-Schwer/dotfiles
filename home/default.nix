@@ -59,7 +59,6 @@ in
     vlc
     libreoffice
     rpi-imager
-    downonspot
     pkgs-unstable.btop
     pciutils
     pkgs-unstable.arduino-ide
@@ -94,6 +93,7 @@ in
     gnome-network-displays
     telegram-desktop
     neovim
+    rawtherapee
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
