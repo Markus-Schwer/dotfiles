@@ -125,7 +125,7 @@
         };
       in
       {
-        homeConfigurations."SIT-SMBP-7XF39X" = home-manager.lib.homeManagerConfiguration {
+        homeConfigurations."schwerm" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
             ({
