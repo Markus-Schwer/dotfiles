@@ -77,6 +77,7 @@
                     ];
                     substituters = [
                       #"https://cache-pub.aalen.space" # local pull-through cache of cache.nixos.org
+                      "https://cache.nixos.org"
                       "https://cache.aalen.space"
                     ];
                     trusted-public-keys = [
