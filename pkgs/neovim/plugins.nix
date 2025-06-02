@@ -75,4 +75,6 @@ in
   # sops
   nvim-sops
   b64-nvim
+
+  refactoring-nvim
 ]
