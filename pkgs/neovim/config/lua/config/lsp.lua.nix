@@ -142,9 +142,31 @@
       cmd = use_exec_or_fallback("gopls", "${pkgs.gopls}/bin/gopls"),
       settings = {
         gopls = {
-          buildFlags = {"-tags=api,unit,int"}
+          buildFlags = {"-tags=api,unit,int"},
+          analyses = {
+            nilness = true,
+            unusedparams = true,
+            unusedwrite = true,
+            useany = true,
+          },
+          experimentalPostfixCompletions = true,
+          gofumpt = true,
+          staticcheck = true,
+          usePlaceholders = true,
         }
       }
+  })
+
+  lspc.golangci_lint_ls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      cmd = use_exec_or_fallback("golangci-lint-langserver", "${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver"),
+      filetypes = { 'go', 'gomod' },
+      init_options = {
+        command = { "golangci-lint", "run", "--out-format", "json" },
+      },
+      before_init = nil,
+      -- TODO: check if v1 or v2 is available and use corresponding command or fall back to nixpkg (v2)
   })
 
   lspc.templ.setup({

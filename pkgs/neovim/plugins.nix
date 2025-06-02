@@ -77,4 +77,6 @@ in
   b64-nvim
 
   refactoring-nvim
+
+  nvim-lint
 ]
