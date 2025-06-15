@@ -94,6 +94,7 @@ in
     telegram-desktop
     neovim
     rawtherapee
+    gnumake
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
