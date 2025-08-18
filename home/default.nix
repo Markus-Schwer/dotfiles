@@ -95,6 +95,7 @@ in
     neovim
     rawtherapee
     gnumake
+    talosctl
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
