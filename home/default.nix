@@ -122,7 +122,6 @@ in
     ./go.nix
     ./kdeconnect.nix
     ./gpg.nix
-    ./protonmail.nix
     ./gtk.nix
     ./sourcegraph.nix
     ./mail.nix

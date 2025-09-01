@@ -31,6 +31,7 @@
     ./firmware.nix
     ./backup.nix
     ./keyring.nix
+    ./protonmail.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
