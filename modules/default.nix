@@ -30,6 +30,7 @@
     ./theme.nix
     ./firmware.nix
     ./backup.nix
+    ./keyring.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
