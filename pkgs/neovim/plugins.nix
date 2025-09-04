@@ -27,6 +27,24 @@ let
       sha256 = "sha256-kOLN74p5AvZlmZRd2hT5c1uV7qziVcyIB8fpC1RiDPk=";
     };
   };
+  guihua = pkgs.vimUtils.buildVimPlugin {
+    name = "guihua";
+    src = pkgs.fetchFromGitHub {
+      owner = "ray-x";
+      repo = "guihua.lua";
+      rev = "87bea7b98429405caf2a0ce4d029b027bb017c70";
+      hash = "sha256-R/ckeCwzWixvL7q2+brvqcvfSK9Mx8pu6zOFgh2lde4=";
+      fetchSubmodules = true;
+    };
+    buildPhase = ''
+      pushd lua/fzy
+      make
+      popd
+    '';
+    nvimSkipModules = [
+      "fzy.fzy-lua-native"
+    ];
+  };
 in
 [
   # Theme
@@ -50,7 +68,10 @@ in
   tabset
 
   # highlighting
+  nvim-treesitter
   nvim-treesitter.withAllGrammars
+  nvim-treesitter-textobjects
+  nvim-treesitter-context
 
   telescope-nvim
   telescope-fzf-native-nvim
@@ -80,4 +101,7 @@ in
   refactoring-nvim
 
   nvim-lint
+
+  go-nvim
+  guihua
 ]
