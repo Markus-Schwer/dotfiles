@@ -22,10 +22,14 @@ telescope.setup({
 	},
 })
 
+telescope.load_extension("live_grep_args")
+
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[f]ind [f]files" })
 vim.keymap.set("n", "<leader>fg", builtin.git_files, { desc = "[f]ind [g]it files" })
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[f]ind [h]elp tags" })
-vim.keymap.set("n", "<leader>fw", builtin.live_grep, { desc = "[f]ind [w]ord (global)" })
+vim.keymap.set("n", "<leader>fw", function()
+	telescope.extensions.live_grep_args.live_grep_args()
+end, { desc = "[f]ind [w]ord (global)" })
 vim.keymap.set("n", "<leader>f/", builtin.current_buffer_fuzzy_find, { desc = "[f]ind in curren buffer (like with /)" })
 vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[f]ind [k]eymaps" })
 vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { desc = "[f]ind LSP [r]eferences" })

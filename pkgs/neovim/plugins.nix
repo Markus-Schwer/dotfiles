@@ -55,6 +55,7 @@ in
   telescope-nvim
   telescope-fzf-native-nvim
   telescope-frecency-nvim
+  telescope-live-grep-args-nvim
 
   comment-nvim
   vim-surround
