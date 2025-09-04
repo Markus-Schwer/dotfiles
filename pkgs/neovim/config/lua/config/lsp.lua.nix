@@ -163,10 +163,10 @@
       cmd = use_exec_or_fallback("golangci-lint-langserver", "${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver"),
       filetypes = { 'go', 'gomod' },
       init_options = {
-        command = { "golangci-lint", "run", "--out-format", "json" },
+        command = { "golangci-lint", "run", "--output.json.path=stdout", "--show-stats=false" },
       },
       before_init = nil,
-      -- TODO: check if v1 or v2 is available and use corresponding command or fall back to nixpkg (v2)
+      -- TODO: check if v1 or v2 is available (including go tool) and use corresponding command or fall back to nixpkg (v2)
   })
 
   lspc.templ.setup({
