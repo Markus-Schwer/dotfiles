@@ -80,6 +80,7 @@ in
 
   comment-nvim
   vim-surround
+  vim-wordmotion
 
   trouble-nvim
   nvim-dev-webicons
