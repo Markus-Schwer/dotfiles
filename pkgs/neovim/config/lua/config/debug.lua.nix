@@ -3,23 +3,13 @@
 ''
   local dap = require('dap')
   require("dap-go").setup {
+    delve = {
+      build_flags = "-tags=unit,int,api",
+    },
+    tests = {
+      verbose = true,
+    },
     dap_configurations = {
-      {
-        type = "go",
-        name = "Debug test (Build Flags & Arguments)",
-        request = "launch",
-        program = "''${file}",
-        args = require("dap-go").get_arguments,
-        buildFlags = require("dap-go").get_build_flags,
-      },
-      {
-        type = "go",
-        name = "Debug test (go.mod + Build Flags & Arguments)",
-        request = "launch",
-        program = "./''${relativeFileDirname}",
-        args = require("dap-go").get_arguments,
-        buildFlags = require("dap-go").get_build_flags,
-      },
       {
         type = "go",
         name = "Attach remote",
