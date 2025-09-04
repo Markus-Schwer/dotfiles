@@ -180,4 +180,10 @@
       on_attach = on_attach,
       cmd = use_exec_or_fallback("terraform-ls", "${pkgs.terraform-ls}/bin/terraform-ls", "serve"),
   })
+
+  lspc.buf_ls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      cmd = use_exec_or_fallback("buf", "${pkgs.buf}/bin/buf", "beta lsp --timeout=0 --log-format=text"),
+  })
 ''
