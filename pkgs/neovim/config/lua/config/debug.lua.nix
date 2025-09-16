@@ -2,6 +2,21 @@
 
 ''
   local dap = require('dap')
+
+  local dapui = require("dapui")
+  dapui.setup(opts)
+  dap.listeners.after.event_initialized["dapui_config"] = function()
+    dapui.open({})
+  end
+  dap.listeners.before.event_terminated["dapui_config"] = function()
+    dapui.close({})
+  end
+  dap.listeners.before.event_exited["dapui_config"] = function()
+    dapui.close({})
+  end
+
+  require("nvim-dap-virtual-text").setup()
+
   require("dap-go").setup {
     delve = {
       build_flags = "-tags=unit,int,api",
@@ -69,4 +84,8 @@
     local widgets = require('dap.ui.widgets')
     widgets.centered_float(widgets.scopes)
   end, { desc = '[d]ebug [s]copes' })
+
+  vim.keymap.set('n', '<Leader>du', function() require("dapui").toggle({}) end, { desc = "[d]ap [u]i" })
+  vim.keymap.set('n', '<Leader>de', function() require("dapui").eval() end, { desc = "[d]ap [e]val" })
+  vim.keymap.set('n', '<Leader>dw', function() require("dap.ui.widgets").hover() end, { desc = "[d]ebug [w]idgets" })
 ''

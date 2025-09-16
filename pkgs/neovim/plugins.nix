@@ -89,6 +89,7 @@ in
   nvim-dap
   nvim-dap-ui
   nvim-dap-go
+  nvim-dap-virtual-text
 
   # versioning
   undotree
@@ -98,6 +99,10 @@ in
   # sops
   nvim-sops
   b64-nvim
+
+  # testing
+  neotest
+  neotest-golang
 
   refactoring-nvim
 
