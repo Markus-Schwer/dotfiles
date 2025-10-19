@@ -95,6 +95,7 @@
     wget
     iwd
     inputs.agenix.packages.x86_64-linux.default
+    inputs.agenix-rekey.packages.x86_64-linux.default
   ];
 
   programs.git.enable = true;

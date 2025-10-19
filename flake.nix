@@ -13,6 +13,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +28,7 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, disko, treefmt-nix, agenix, flake-utils, ... }:
+  outputs = inputs @ { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager, disko, treefmt-nix, agenix, agenix-rekey, flake-utils, ... }:
     {
       nixosConfigurations = builtins.listToAttrs (
         builtins.map
@@ -59,10 +63,12 @@
                     home-manager.flake = home-manager;
                     nixpkgs.flake = nixpkgs;
                     agenix.flake = agenix;
+                    agenix-rekey.flake = agenix-rekey;
                   };
                   nix.nixPath = lib.mkForce [
                     "nixpkgs=${nixpkgs}"
                     "agenix=${agenix}"
+                    "agenix-rekey=${agenix-rekey}"
                     "home-manager=${home-manager}"
                     "nixos-hardware=${nixos-hardware}"
                   ];
