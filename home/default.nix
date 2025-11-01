@@ -129,5 +129,6 @@ in
     ./theme.nix
     ./tmux.nix
     ./gc.nix
+    ./fzf.nix
   ];
 }
