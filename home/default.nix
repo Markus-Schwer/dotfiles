@@ -96,6 +96,7 @@ in
     rawtherapee
     gnumake
     talosctl
+    watchman
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
