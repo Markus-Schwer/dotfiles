@@ -15,7 +15,7 @@
       {
         plugin = resurrect;
         extraConfig = ''
-          set -g @resurrect-processes 'nvim btop'
+          set -g @resurrect-processes 'btop'
           set -g @resurrect-strategy-nvim 'session'
           resurrect_dir=~/.tmux/resurrect
           set -g @resurrect-dir $resurrect_dir
