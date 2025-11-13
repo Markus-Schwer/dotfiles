@@ -88,4 +88,6 @@
   vim.keymap.set('n', '<Leader>du', function() require("dapui").toggle({}) end, { desc = "[d]ap [u]i" })
   vim.keymap.set('n', '<Leader>de', function() require("dapui").eval() end, { desc = "[d]ap [e]val" })
   vim.keymap.set('n', '<Leader>dw', function() require("dap.ui.widgets").hover() end, { desc = "[d]ebug [w]idgets" })
+
+  vim.keymap.set('n', '<Leader>vt', function() require("nvim-dap-virtual-text").toggle() end, { desc = "toggle debug [v]irtual [t]ext" })
 ''
