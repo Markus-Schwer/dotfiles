@@ -78,6 +78,7 @@
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("clangd", "${pkgs.clang-tools}/bin/clangd"),
+      filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
   })
 
   lspc.jsonls.setup({
@@ -181,9 +182,9 @@
       cmd = use_exec_or_fallback("terraform-ls", "${pkgs.terraform-ls}/bin/terraform-ls", "serve"),
   })
 
-  lspc.buf_ls.setup({
+  lspc.protols.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      cmd = use_exec_or_fallback("buf", "${pkgs.buf}/bin/buf", "beta lsp --timeout=0 --log-format=text"),
+      cmd = use_exec_or_fallback("protols", "${pkgs.protols}/bin/protols"),
   })
 ''
