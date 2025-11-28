@@ -112,4 +112,5 @@ in
   guihua
 
   teamtype
+  vim-abolish
 ]
