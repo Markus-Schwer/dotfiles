@@ -40,9 +40,8 @@
   end
 
   local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-  local lspc = require('lspconfig')
 
-  lspc.lua_ls.setup({
+  vim.lsp.config('lua_ls', {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = {
@@ -53,53 +52,53 @@
               diagnostics = { globals = { 'vim' } },
           },
       },
-      cmd = use_exec_or_fallback("lua-language-server", "${pkgs.sumneko-lua-language-server}/bin/lua-language-server"),
+      cmd = use_exec_or_fallback("lua-language-server", "${pkgs.lua-language-server}/bin/lua-language-server"),
   })
 
-  lspc.nil_ls.setup({
+  vim.lsp.config('nil_ls', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("nil", "${pkgs.nil}/bin/nil"),
   })
 
-  lspc.bashls.setup({
+  vim.lsp.config('bashls', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("bash-language-server", "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server", "start"),
   })
 
-  lspc.rust_analyzer.setup({
+  vim.lsp.config('rust_analyzer', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("rust-analyzer", "${pkgs.rust-analyzer}/bin/rust-analyzer"),
   })
 
-  lspc.clangd.setup({
+  vim.lsp.config('clangd', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("clangd", "${pkgs.clang-tools}/bin/clangd"),
       filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
   })
 
-  lspc.jsonls.setup({
+  vim.lsp.config('jsonls', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("vscode-json-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server", "--stdio"),
   })
 
-  lspc.html.setup({
+  vim.lsp.config('html', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("vscode-html-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server", "--stdio"),
   })
 
-  lspc.cssls.setup({
+  vim.lsp.config('cssls', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("vscode-css-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server", "--stdio"),
   })
 
-  lspc.kotlin_language_server.setup({
+  vim.lsp.config('kotlin_language_server', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("kotlin-language-server", "${pkgs-unstable.kotlin-language-server}/bin/kotlin-language-server"),
@@ -108,36 +107,36 @@
       }
   })
 
-  lspc.angularls.setup({
+  vim.lsp.config('angularls', {
       capabilities = capabilities,
       on_attach = on_attach,
   })
 
-  lspc.eslint.setup({
+  vim.lsp.config('eslint', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("vscode-json-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-eslint-language-server", "--stdio"),
   })
 
-  lspc.ts_ls.setup({
+  vim.lsp.config('ts_ls', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("typescript-language-server", "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio"),
   })
 
-  lspc.tailwindcss.setup({
+  vim.lsp.config('tailwindcss', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("tailwindcss-language-server", "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server", "--stdio"),
   })
 
-  lspc.pyright.setup({
+  vim.lsp.config('pyright', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("pyright", "${pkgs.pyright}/bin/pyright-langserver", "--stdio"),
   })
 
-  lspc.gopls.setup({
+  vim.lsp.config('gopls', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("gopls", "${pkgs.gopls}/bin/gopls"),
@@ -158,7 +157,7 @@
       }
   })
 
-  lspc.golangci_lint_ls.setup({
+  vim.lsp.config('golangci_lint_ls', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("golangci-lint-langserver", "${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver"),
@@ -170,19 +169,19 @@
       -- TODO: check if v1 or v2 is available (including go tool) and use corresponding command or fall back to nixpkg (v2)
   })
 
-  lspc.templ.setup({
+  vim.lsp.config('templ', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("templ", "${pkgs-unstable.templ}/bin/templ", "lsp"),
   })
 
-  lspc.terraformls.setup({
+  vim.lsp.config('terraformls', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("terraform-ls", "${pkgs.terraform-ls}/bin/terraform-ls", "serve"),
   })
 
-  lspc.protols.setup({
+  vim.lsp.config('protols', {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = use_exec_or_fallback("protols", "${pkgs.protols}/bin/protols"),
