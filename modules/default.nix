@@ -40,6 +40,8 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;
 
+  programs.wireshark.enable = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -63,6 +65,7 @@
       "plugdev"
       "libvirtd"
       "vboxusers"
+      "wireshark"
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJxCiKBrwxQBpIaauYXFzmKea876PZ8Eb8gXn13HMx95 markus-thinkpad"
