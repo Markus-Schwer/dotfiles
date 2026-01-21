@@ -102,6 +102,10 @@ in
     gnumake
     talosctl
     watchman
+    ffmpeg
+    tidal-hifi
+    openbao
+    kubelogin-oidc
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
