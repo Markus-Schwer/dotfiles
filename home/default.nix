@@ -27,9 +27,10 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.firefox.enable = true;
+
   home.packages = with pkgs; [
     killall
-    firefox
     gimp
     spice-vdagent
     neofetch
