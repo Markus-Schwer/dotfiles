@@ -110,4 +110,6 @@ in
 
   go-nvim
   guihua
+
+  teamtype
 ]

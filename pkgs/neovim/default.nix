@@ -10,6 +10,7 @@ let
     gcc
     fd
     nodejs_22
+    teamtype
   ];
 
   neovimConfig = pkgs.neovimUtils.makeNeovimConfig {
