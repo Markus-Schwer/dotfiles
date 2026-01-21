@@ -38,7 +38,7 @@ in
     mako # notification system
     bemenu # launch menu
     openvpn
-    element-desktop #-wayland
+    element-desktop
     terraform
     nmap
     signal-desktop
