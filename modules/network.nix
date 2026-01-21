@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 with lib;
 {
   options.markus.network = {
@@ -17,6 +17,9 @@ with lib;
       networkmanager = {
         enable = true;
         # wifi.backend = "iwd"; # unstable
+        plugins = with pkgs; [
+          networkmanager-openvpn
+        ];
       };
     };
   };

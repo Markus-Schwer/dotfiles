@@ -1,4 +1,5 @@
-{ pkgs, pkgs-unstable, ... }: ''
+{ pkgs, pkgs-unstable, ... }:
+''
   require("mason").setup()
   require("mason-lspconfig").setup()
   vim.lsp.set_log_level("debug")
@@ -40,151 +41,147 @@
   end
 
   local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-  local lspc = require('lspconfig')
 
-  lspc.lua_ls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-          Lua = {
-              workspace = { checkThirdParty = false },
-              telemetry = { enable = false },
-              -- disable unknown global 'vim' warning
-              diagnostics = { globals = { 'vim' } },
-          },
-      },
-      cmd = use_exec_or_fallback("lua-language-server", "${pkgs.sumneko-lua-language-server}/bin/lua-language-server"),
-  })
-
-  lspc.nil_ls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("nil", "${pkgs.nil}/bin/nil"),
-  })
-
-  lspc.bashls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("bash-language-server", "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server", "start"),
-  })
-
-  lspc.rust_analyzer.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("rust-analyzer", "${pkgs.rust-analyzer}/bin/rust-analyzer"),
-  })
-
-  lspc.clangd.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("clangd", "${pkgs.clang-tools}/bin/clangd"),
-      filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
-  })
-
-  lspc.jsonls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("vscode-json-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server", "--stdio"),
-  })
-
-  lspc.html.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("vscode-html-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server", "--stdio"),
-  })
-
-  lspc.cssls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("vscode-css-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server", "--stdio"),
-  })
-
-  lspc.kotlin_language_server.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("kotlin-language-server", "${pkgs-unstable.kotlin-language-server}/bin/kotlin-language-server"),
-      init_options = {
-        storagePath = "/home/markus/.cache/kotlin-language-server"
+  local lsps = {
+    {
+      "lua_ls",
+      {
+        settings = {
+            Lua = {
+                workspace = { checkThirdParty = false },
+                telemetry = { enable = false },
+                -- disable unknown global 'vim' warning
+                diagnostics = { globals = { 'vim' } },
+            },
+        },
+        cmd = use_exec_or_fallback("lua-language-server", "${pkgs.lua-language-server}/bin/lua-language-server"),
       }
-  })
-
-  lspc.angularls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-  })
-
-  lspc.eslint.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("vscode-json-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-eslint-language-server", "--stdio"),
-  })
-
-  lspc.ts_ls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("typescript-language-server", "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio"),
-  })
-
-  lspc.tailwindcss.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("tailwindcss-language-server", "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server", "--stdio"),
-  })
-
-  lspc.pyright.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("pyright", "${pkgs.pyright}/bin/pyright-langserver", "--stdio"),
-  })
-
-  lspc.gopls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("gopls", "${pkgs.gopls}/bin/gopls"),
-      settings = {
-        gopls = {
-          buildFlags = {"-tags=api,unit,int"},
-          analyses = {
-            nilness = true,
-            unusedparams = true,
-            unusedwrite = true,
-            useany = true,
-          },
-          experimentalPostfixCompletions = true,
-          gofumpt = true,
-          staticcheck = true,
-          usePlaceholders = true,
+    },
+    {
+      "nil_ls",
+      { cmd = use_exec_or_fallback("nil", "${pkgs.nil}/bin/nil") }
+    },
+    {
+      "bashls",
+      { cmd = use_exec_or_fallback("bash-language-server", "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server", "start") }
+    },
+    {
+      "rust_analyzer",
+      { cmd = use_exec_or_fallback("rust-analyzer", "${pkgs.rust-analyzer}/bin/rust-analyzer") }
+    },
+    {
+      "clangd",
+      {
+        cmd = use_exec_or_fallback("clangd", "${pkgs.clang-tools}/bin/clangd"),
+        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "hpp" },
+      }
+    },
+    {
+      "jsonls",
+      { cmd = use_exec_or_fallback("vscode-json-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server", "--stdio") }
+    },
+    {
+      "html",
+      { cmd = use_exec_or_fallback("vscode-html-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-html-language-server", "--stdio") }
+    },
+    {
+      "cssls",
+      { cmd = use_exec_or_fallback("vscode-css-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-css-language-server", "--stdio") }
+    },
+    {
+      "kotlin_language_server",
+      {
+        cmd = use_exec_or_fallback("kotlin-language-server", "${pkgs-unstable.kotlin-language-server}/bin/kotlin-language-server"),
+        init_options = {
+          storagePath = "/home/markus/.cache/kotlin-language-server"
         }
       }
-  })
+    },
+    {
+      "angularls",
+    },
+    {
+      "eslint",
+      { cmd = use_exec_or_fallback("vscode-json-language-server", "${pkgs.vscode-langservers-extracted}/bin/vscode-eslint-language-server", "--stdio") }
+    },
+    {
+      "ts_ls",
+      { cmd = use_exec_or_fallback("typescript-language-server", "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio") }
+    },
+    {
+      "tailwindcss",
+      { cmd = use_exec_or_fallback("tailwindcss-language-server", "${pkgs.tailwindcss-language-server}/bin/tailwindcss-language-server", "--stdio") }
+    },
+    {
+      "pyright",
+      { cmd = use_exec_or_fallback("pyright", "${pkgs.pyright}/bin/pyright-langserver", "--stdio") }
+    },
+    {
+      "gopls",
+      {
+        cmd = use_exec_or_fallback("gopls", "${pkgs.gopls}/bin/gopls"),
+        settings = {
+          gopls = {
+            buildFlags = {"-tags=api,unit,int"},
+            analyses = {
+              nilness = true,
+              unusedparams = true,
+              unusedwrite = true,
+              useany = true,
+            },
+            experimentalPostfixCompletions = true,
+            gofumpt = true,
+            staticcheck = true,
+            usePlaceholders = true,
+          }
+        }
+      }
+    },
+    {
+      "golangci_lint_ls",
+      {
+        cmd = use_exec_or_fallback("golangci-lint-langserver", "${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver"),
+        filetypes = { 'go', 'gomod' },
+        init_options = {
+          command = { "golangci-lint", "run", "--output.json.path=stdout", "--show-stats=false" },
+        },
+        before_init = nil,
+        -- TODO: check if v1 or v2 is available (including go tool) and use corresponding command or fall back to nixpkg (v2)
+      }
+    },
+    {
+      "templ",
+      { cmd = use_exec_or_fallback("templ", "${pkgs-unstable.templ}/bin/templ", "lsp") }
+    },
+    {
+      "terraformls",
+      { cmd = use_exec_or_fallback("terraform-ls", "${pkgs.terraform-ls}/bin/terraform-ls", "serve") }
+    },
+    {
+      "protols",
+      { cmd = use_exec_or_fallback("protols", "${pkgs.protols}/bin/protols") }
+    }
+  }
 
-  lspc.golangci_lint_ls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("golangci-lint-langserver", "${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver"),
-      filetypes = { 'go', 'gomod' },
-      init_options = {
-        command = { "golangci-lint", "run", "--output.json.path=stdout", "--show-stats=false" },
-      },
-      before_init = nil,
-      -- TODO: check if v1 or v2 is available (including go tool) and use corresponding command or fall back to nixpkg (v2)
-  })
+  function mergeTables(t1, t2)
+      if t2 then
+         for k, v in pairs(t2) do
+             t1[k] = v
+         end
+      end
+      return t1
+  end
 
-  lspc.templ.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("templ", "${pkgs-unstable.templ}/bin/templ", "lsp"),
-  })
+  for _, lsp in pairs(lsps) do
+      local default_config = {
+        capabilities = capabilities,
+        on_attach = on_attach,
+      }
 
-  lspc.terraformls.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("terraform-ls", "${pkgs.terraform-ls}/bin/terraform-ls", "serve"),
-  })
+      local name, config = lsp[1], lsp[2]
+      local merged_config = mergeTables(default_config, config)
 
-  lspc.protols.setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      cmd = use_exec_or_fallback("protols", "${pkgs.protols}/bin/protols"),
-  })
+      vim.lsp.enable(name)
+      vim.lsp.config(name, merged_config)
+  end
 ''

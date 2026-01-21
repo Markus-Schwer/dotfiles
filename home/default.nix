@@ -1,4 +1,9 @@
-{ pkgs, pkgs-unstable, theme, ... }:
+{
+  pkgs,
+  pkgs-unstable,
+  theme,
+  ...
+}:
 
 let
   glyphs-picker = import ../pkgs/glyphs-picker.nix { inherit pkgs; };
