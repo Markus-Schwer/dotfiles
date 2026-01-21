@@ -71,6 +71,7 @@
     in
     {
       enable = true;
+      wrapperFeatures.gtk = true;
       package = pkgs.swayfx;
       checkConfig = false; # https://github.com/nix-community/home-manager/issues/5379
       extraConfig = ''

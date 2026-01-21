@@ -117,7 +117,10 @@ in
   xdg.enable = true;
 
   # set nvim as the default editor
-  home.sessionVariables = { EDITOR = "nvim"; };
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    XDG_CURRENT_DESKTOP = "sway";
+  };
 
   programs.bash.enable = true;
   programs.bash.shellAliases = {

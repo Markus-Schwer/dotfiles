@@ -2,11 +2,20 @@
 {
   # used to set up system wide configuration, actual configuration happens in
   # home-manager
-  programs.sway.enable = true;
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
+
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
+    config.common.default = "*";
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-wlr
+      xdg-desktop-portal-gtk
+    ];
     wlr.enable = true;
+    xdgOpenUsePortal = true;
   };
 
   security.polkit.enable = true;
