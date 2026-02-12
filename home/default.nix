@@ -107,6 +107,7 @@ in
     tidal-hifi
     openbao
     kubelogin-oidc
+    pkgs-unstable.colmena
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
