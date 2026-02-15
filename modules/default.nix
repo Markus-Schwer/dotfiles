@@ -42,6 +42,8 @@
 
   programs.wireshark.enable = true;
 
+  programs.pulseview.enable = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -79,6 +81,7 @@
     corefonts
     atkinson-hyperlegible
     ocr-a
+    sigrok-cli
   ];
 
   markus.theme = "dark";
