@@ -51,7 +51,6 @@ in
     fluxcd
     kubeseal
     chromium
-    platformio
     usbutils
     glyphs-picker
     hyprpicker
@@ -109,6 +108,8 @@ in
     kubelogin-oidc
     pkgs-unstable.colmena
     nh
+    esphome
+    esptool
     wl-mirror
   ];
   home.pointerCursor = {
