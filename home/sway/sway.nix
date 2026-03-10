@@ -7,6 +7,7 @@
       cfg = config.wayland.windowManager.sway.config;
       modeShutdown = "(h) hibernate (l) lock (e) logout (r) reboot (u) suspend (s) shutdown";
       modeScreenshot = "󰄄  (r) region (s) screen";
+      modePresent = "(m) mirror (o) set-output (r) set-region (R) unset-region (s) set-scaling (f) toggle-freeze (c) custom";
       darkColors = {
         focused = {
           border = "#8C3D2B";
@@ -234,6 +235,9 @@
 
           "${cfg.modifier}+space" = "exec ${pkgs.swayfx}/bin/swaymsg input $(${pkgs.swayfx}/bin/swaymsg -t get_inputs --raw | ${pkgs.jq}/bin/jq '[.[] | select(.type == \"keyboard\")][0] | .identifier') xkb_switch_layout next";
 
+          # Present mode
+          "${cfg.modifier}+Shift+p" = "mode \"${modePresent}\"";
+
           # Icon picker
           "${cfg.modifier}+Period" = "exec ${glyphs-picker}/bin/glyphs-picker";
 
@@ -249,6 +253,20 @@
           "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
         };
         modes = {
+          "${modePresent}" = {
+            # command starts mirroring
+            "m" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && exec ${pkgs.wl-mirror}/bin/wl-present mirror --fullscreen";
+            # these commands modify an already running mirroring window"
+            "o" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && exec ${pkgs.wl-mirror}/bin/wl-present set-output";
+            "r" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && exec ${pkgs.wl-mirror}/bin/wl-present set-region";
+            "Shift+r" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && exec ${pkgs.wl-mirror}/bin/wl-present unset-region";
+            "s" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && exec ${pkgs.wl-mirror}/bin/wl-present set-scaling";
+            "f" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && exec ${pkgs.wl-mirror}/bin/wl-present toggle-freeze";
+            "c" = "exec ${pkgs.swayfx}/bin/swaymsg mode default && exec ${pkgs.wl-mirror}/bin/wl-present custom";
+
+            Return = "mode default";
+            Escape = "mode default";
+          };
           "${modeShutdown}" = {
             "h" = "exec ${pkgs.systemd}/bin/systemctl hibernate && ${pkgs.swayfx}/bin/swaymsg mode default";
             "l" = "exec ${pkgs.swaylock}/bin/swaylock && ${pkgs.swayfx}/bin/swaymsg mode default";
