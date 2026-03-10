@@ -110,6 +110,7 @@ in
     nh
     esphome
     esptool
+    bottles
     wl-mirror
   ];
   home.pointerCursor = {
