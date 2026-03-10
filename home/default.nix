@@ -108,6 +108,7 @@ in
     openbao
     kubelogin-oidc
     pkgs-unstable.colmena
+    nh
     wl-mirror
   ];
   home.pointerCursor = {
