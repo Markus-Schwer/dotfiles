@@ -2,6 +2,7 @@
 let
   pkgs = import nixpkgs {
     inherit system;
+    config = { allowUnfree = true; };
     overlays = [
       (final: prev: {
         vimPlugins = prev.vimPlugins.extend (
