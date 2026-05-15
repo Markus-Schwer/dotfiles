@@ -112,6 +112,7 @@ in
     esptool
     bottles
     wl-mirror
+    platformio
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
