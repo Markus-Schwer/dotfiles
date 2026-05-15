@@ -27,7 +27,7 @@
           "pulseaudio"
           "backlight"
           # informational
-          "cpu"
+          "custom/powerprofile"
           "temperature"
           "memory"
           "battery"
@@ -69,14 +69,38 @@
             };
           };
         };
-        cpu = {
+        "custom/powerprofile" = {
           interval = 10;
-          format = "󰘚";
-          states = {
-            warning = 70;
-            critical = 90;
-          };
+          format = "{icon}";
           tooltip = true;
+          tooltip-format = "{icon} {alt}";
+          return-type = "json";
+          exec = ''echo `${pkgs.power-profiles-daemon}/bin/powerprofilesctl get` | echo $(read s;printf "{\"alt\":\"%s\"}" "$s")'';
+          format-icons = {
+            performance = "";
+            balanced = "";
+            power-saver = "";
+          };
+          on-click = pkgs.writeShellScript "cycle-powerp-rofile-waybar" ''
+            get_profile() {
+                echo `${pkgs.power-profiles-daemon}/bin/powerprofilesctl get`
+            }
+
+            case `get_profile` in
+              power-saver)
+                ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set balanced
+                ;;
+              balanced)
+                ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set performance
+                ;;
+              performance)
+                ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set power-saver
+                ;;
+              *)
+                ${pkgs.power-profiles-daemon}/bin/powerprofilesctl set balanced
+                ;;
+            esac
+          '';
         };
         memory = {
           interval = 10;
