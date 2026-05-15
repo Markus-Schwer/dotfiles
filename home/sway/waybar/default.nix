@@ -81,7 +81,7 @@
             balanced = "";
             power-saver = "";
           };
-          on-click = pkgs.writeShellScript "cycle-powerp-rofile-waybar" ''
+          on-click = pkgs.writeShellScript "cycle-powerprofile-waybar" ''
             get_profile() {
                 echo `${pkgs.power-profiles-daemon}/bin/powerprofilesctl get`
             }
