@@ -4,15 +4,12 @@
   require("mason-lspconfig").setup()
   vim.lsp.set_log_level("debug")
 
-  local function use_exec_or_fallback(exec, fallback, arg)
-      local cmd = {}
+  local function use_exec_or_fallback(exec, fallback, ...)
+      local cmd = {...}
       if vim.fn.executable(exec) == 1 then
-          table.insert(cmd, exec)
+          table.insert(cmd, 1, exec)
       else
-          table.insert(cmd, fallback)
-      end
-      if arg ~= nil then
-          table.insert(cmd, arg)
+          table.insert(cmd, 1, fallback)
       end
       return cmd
   end
@@ -122,7 +119,7 @@
         cmd = use_exec_or_fallback("gopls", "${pkgs.gopls}/bin/gopls"),
         settings = {
           gopls = {
-            buildFlags = {"-tags=api,unit,int"},
+            buildFlags = {"-tags=api,unit,int,e2e,standby,creation,validation"},
             analyses = {
               nilness = true,
               unusedparams = true,
@@ -140,7 +137,7 @@
     {
       "golangci_lint_ls",
       {
-        cmd = use_exec_or_fallback("golangci-lint-langserver", "${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver"),
+        cmd = use_exec_or_fallback("golangci-lint-langserver", "${pkgs-unstable.golangci-lint-langserver}/bin/golangci-lint-langserver"),
         filetypes = { 'go', 'gomod' },
         init_options = {
           command = { "golangci-lint", "run", "--output.json.path=stdout", "--show-stats=false" },
@@ -158,8 +155,8 @@
       { cmd = use_exec_or_fallback("terraform-ls", "${pkgs.terraform-ls}/bin/terraform-ls", "serve") }
     },
     {
-      "protols",
-      { cmd = use_exec_or_fallback("protols", "${pkgs.protols}/bin/protols") }
+      "buf_ls",
+      { cmd = use_exec_or_fallback("buf", "${pkgs-unstable.buf}/bin/buf", "lsp", "serve", "--log-format=text") }
     }
   }
 

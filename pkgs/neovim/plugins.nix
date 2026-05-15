@@ -45,6 +45,16 @@ let
       "fzy.fzy-lua-native"
     ];
   };
+
+  dotenv-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "dotenv";
+    src = pkgs.fetchFromGitHub {
+      owner = "ellisonleao";
+      repo = "dotenv.nvim";
+      rev = "7d516e9293c6e3ac21830fb10a4e8674c02747c6";
+      hash = "sha256-MjfbQIB5jK/CLfDcmmuaObOgnVciDZQlZq6mODtWkPU=";
+    };
+  };
 in
 [
   # Theme
@@ -86,10 +96,10 @@ in
   nvim-dev-webicons
 
   # debug
-  nvim-dap
-  nvim-dap-ui
-  nvim-dap-go
-  nvim-dap-virtual-text
+  pkgs-unstable.vimPlugins.nvim-dap
+  pkgs-unstable.vimPlugins.nvim-dap-ui
+  pkgs-unstable.vimPlugins.nvim-dap-go
+  pkgs-unstable.vimPlugins.nvim-dap-virtual-text
 
   # versioning
   undotree
@@ -113,4 +123,6 @@ in
 
   teamtype
   vim-abolish
+
+  dotenv-nvim
 ]

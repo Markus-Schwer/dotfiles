@@ -175,7 +175,7 @@
 
         treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
 
-        neovim = (import ./pkgs/neovim { inherit pkgs pkgs-unstable lib; });
+        neovim = (import ./pkgs/neovim { inherit nixpkgs system pkgs-unstable lib; });
       in
       {
         formatter = treefmtEval.config.build.wrapper;

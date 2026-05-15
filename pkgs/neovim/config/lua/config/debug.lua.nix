@@ -19,7 +19,7 @@
 
   require("dap-go").setup {
     delve = {
-      build_flags = "-tags=unit,int,api",
+      build_flags = "-tags=unit,int,api,e2e,standby,creation,validation",
     },
     tests = {
       verbose = true,

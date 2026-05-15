@@ -3,11 +3,12 @@ local neotest = require("neotest")
 neotest.setup({
   adapters = {
     require("neotest-golang")({
-      go_test_args = { "-count=1", "-tags=unit,api,int" },
-      go_list_args = { "-tags=unit,api,int" },
+      warn_test_name_dupes = false,
+      go_test_args = { "-count=1", "-tags=unit,api,int,e2e,standby,creation,validation" },
+      go_list_args = { "-tags=unit,api,int,e2e,standby,creation,validation" },
       dap_go_opts = {
         delve = {
-          build_flags = { "-tags=unit,api,int" },
+          build_flags = { "-tags=unit,api,int,e2e,standby,creation,validation" },
         },
       },
     })
