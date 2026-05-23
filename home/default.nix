@@ -47,7 +47,14 @@ in
     cargo
     rustc
     spotifywm
-    inkscape
+
+    (pkgs.inkscape-with-extensions.override {
+      inkscapeExtensions = with pkgs-unstable.inkscape-extensions; [
+        silhouette
+        inkstitch
+      ];
+    })
+
     fluxcd
     kubeseal
     chromium
