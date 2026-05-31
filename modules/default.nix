@@ -36,6 +36,8 @@
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  boot.initrd.systemd.enable = false;
+
   # support to build Raspberry PI SD card images
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nix.settings.extra-platforms = config.boot.binfmt.emulatedSystems;

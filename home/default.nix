@@ -33,7 +33,7 @@ in
     killall
     gimp
     spice-vdagent
-    neofetch
+    fastfetch
     alacritty # gpu accelerated terminal
     mako # notification system
     bemenu # launch menu
@@ -100,7 +100,6 @@ in
     pkgs-unstable.usbkvm
     python3
     pavucontrol
-    neofetch
     packer
     gnome-network-displays
     telegram-desktop

@@ -2,7 +2,7 @@
   description = "lemme smash";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-25.11";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     disko = {
@@ -18,7 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     treefmt-nix = {
@@ -44,6 +44,7 @@
                 config = {
                   allowUnfree = true;
                   permittedInsecurePackages = [
+                    "electron-39.8.10"
                     "beekeeper-studio-5.3.4"
                     "yubikey-manager-qt-1.2.5"
                   ];

@@ -77,12 +77,6 @@ in
   ccls-nvim
   tabset
 
-  # highlighting
-  nvim-treesitter
-  nvim-treesitter.withAllGrammars
-  nvim-treesitter-textobjects
-  nvim-treesitter-context
-
   telescope-nvim
   telescope-fzf-native-nvim
   telescope-frecency-nvim

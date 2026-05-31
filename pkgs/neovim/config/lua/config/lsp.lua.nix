@@ -2,7 +2,7 @@
 ''
   require("mason").setup()
   require("mason-lspconfig").setup()
-  vim.lsp.set_log_level("debug")
+  vim.lsp.log.set_level("debug")
 
   local function use_exec_or_fallback(exec, fallback, ...)
       local cmd = {...}
@@ -60,7 +60,7 @@
     },
     {
       "bashls",
-      { cmd = use_exec_or_fallback("bash-language-server", "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server", "start") }
+      { cmd = use_exec_or_fallback("bash-language-server", "${pkgs.bash-language-server}/bin/bash-language-server", "start") }
     },
     {
       "rust_analyzer",
@@ -103,7 +103,7 @@
     },
     {
       "ts_ls",
-      { cmd = use_exec_or_fallback("typescript-language-server", "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio") }
+      { cmd = use_exec_or_fallback("typescript-language-server", "${pkgs.typescript-language-server}/bin/typescript-language-server", "--stdio") }
     },
     {
       "tailwindcss",
