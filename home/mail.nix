@@ -5,6 +5,26 @@
   };
 
   accounts.email.accounts = {
+    beschaffung = {
+      realName = "Beschaffung";
+      address = "beschaffung@hackwerk.fun";
+      userName = "beschaffung@hackwerk.fun";
+      primary = false;
+      thunderbird = {
+        enable = true;
+      };
+
+      imap = {
+        host = "mail.aalen.space";
+        port = 993;
+        tls.enable = true;
+      };
+      smtp = {
+        host = "mail.aalen.space";
+        port = 465;
+        tls.enable = true;
+      };
+    };
     hackwerk = {
       realName = "Markus Schwer";
       address = "markus.schwer@aalen.space";
