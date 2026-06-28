@@ -33,6 +33,7 @@
     ./keyring.nix
     ./protonmail.nix
     ./wine.nix
+    ./tftp.nix
   ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
