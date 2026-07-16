@@ -1,6 +1,9 @@
+{ pkgs, lib, ... }:
+
 {
   programs.swaylock = {
     enable = true;
+    package = lib.mkDefault pkgs.swaylock;
     settings = {
       color = "000000";
       font-size = 24;

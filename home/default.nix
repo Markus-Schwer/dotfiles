@@ -2,6 +2,8 @@
   pkgs,
   pkgs-unstable,
   theme,
+  lib,
+  nixgl,
   ...
 }:
 
@@ -11,8 +13,8 @@ in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "markus";
-  home.homeDirectory = "/home/markus";
+  home.username = lib.mkDefault "markus";
+  home.homeDirectory = lib.mkDefault "/home/markus";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -27,9 +29,22 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  targets.genericLinux.nixGL.packages = nixgl.packages;
+
+  fonts.fontconfig.enable = true;
+
   programs.firefox.enable = true;
 
   home.packages = with pkgs; [
+    # fonts
+    nerd-fonts.jetbrains-mono
+    google-fonts
+    corefonts
+    atkinson-hyperlegible
+    ocr-a
+    sigrok-cli
+
+    # packages
     killall
     gimp
     spice-vdagent
@@ -149,7 +164,6 @@ in
     ./kdeconnect.nix
     ./gpg.nix
     ./gtk.nix
-    ./sourcegraph.nix
     ./mail.nix
     ./theme.nix
     ./tmux.nix

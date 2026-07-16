@@ -73,7 +73,7 @@
     {
       enable = true;
       wrapperFeatures.gtk = true;
-      package = pkgs.swayfx;
+      package = config.lib.nixGL.wrap pkgs.swayfx;
       checkConfig = false; # https://github.com/nix-community/home-manager/issues/5379
       extraConfig = ''
         for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
@@ -84,17 +84,17 @@
       '';
       config = {
         modifier = "Mod4";
-        terminal = "alacritty";
+        terminal = "${pkgs.alacritty}/bin/alacritty";
         menu = "${pkgs.wofi}/bin/wofi --show=drun";
-        startup = [
-          { command = "firefox"; }
+        startup = lib.mkDefault [
+          { command = "${pkgs.firefox}/bin/firefox"; }
           { command = "${pkgs.bitwarden-desktop}/bin/bitwarden"; }
           { command = "${pkgs.element-desktop}/bin/element-desktop"; }
-          { command = "spotify"; }
+          { command = "${pkgs.tidal-hifi}/bin/tidal-hifi"; }
           { command = "${pkgs.signal-desktop}/bin/signal-desktop"; }
           { command = "${pkgs.thunderbird}/bin/thunderbird"; }
         ];
-        assigns = {
+        assigns = lib.mkDefault {
           "1" = [
             { app_id = "firefox"; }
             { class = "^Bitwarden$"; }
@@ -269,7 +269,7 @@
           };
           "${modeShutdown}" = {
             "h" = "exec ${pkgs.systemd}/bin/systemctl hibernate && ${pkgs.swayfx}/bin/swaymsg mode default";
-            "l" = "exec ${pkgs.swaylock}/bin/swaylock && ${pkgs.swayfx}/bin/swaymsg mode default";
+            "l" = "exec swaylock && ${pkgs.swayfx}/bin/swaymsg mode default";
             "e" = "exec ${pkgs.systemd}/bin/loginctl terminate-user $USER && ${pkgs.swayfx}/bin/swaymsg mode default";
             "r" = "exec ${pkgs.systemd}/bin/systemctl reboot && ${pkgs.swayfx}/bin/swaymsg mode default";
             "u" = "exec ${pkgs.systemd}/bin/systemctl suspend && ${pkgs.swayfx}/bin/swaymsg mode default";

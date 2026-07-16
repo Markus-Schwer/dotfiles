@@ -6,7 +6,6 @@ let
   all = [ thinknix thinknix-markus nixpad nixpad-markus ];
 in
 {
-  "sourcegraph.age".publicKeys = all;
   "davfs2-secrets.age".publicKeys = all;
   "restic-password.age".publicKeys = all;
   "backblaze-b2-restic-s3-secrets.age".publicKeys = all;

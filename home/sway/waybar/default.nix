@@ -121,7 +121,7 @@
           tooltip-format-wifi = "{icon} {ifname} ({essid}) = {ipaddr}";
           tooltip-format-disconnected = "{icon} disconnected";
           tooltip-format-disabled = "{icon} disabled";
-          on-click = "${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e ${pkgs.networkmanager}/bin/nmtui connect";
+          on-click = "${pkgs.swayfx}/bin/swaymsg exec \"${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e ${pkgs.networkmanager}/bin/nmtui connect\"";
         };
         "sway/mode" = {
           format = "<span style=\"italic\">{}</span>";
@@ -172,7 +172,7 @@
         bluetooth = {
           format = "󰂯";
           format-disabled = "󰂲";
-          on-click = "${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e ${pkgs.bluetuith}/bin/bluetuith";
+          on-click = "${pkgs.swayfx}/bin/swaymsg exec \"${pkgs.alacritty}/bin/alacritty --class floating_shell -o window.dimensions.columns=82 -o window.dimensions.lines=25 -e ${pkgs.bluetuith}/bin/bluetuith\"";
           on-click-right = "rfkill toggle bluetooth";
           tooltip-format = "{}";
         };

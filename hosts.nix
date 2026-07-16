@@ -45,4 +45,97 @@
       }
     ];
   }
+  {
+    name = "workmac";
+    system = "aarch64-darwin";
+    homeManagerModules = [
+      {
+        home-manager.home = {
+          username = "schwerm";
+          homeDirectory = "/Users/schwerm";
+          stateVersion = "24.11";
+
+          # set nvim as the default editor
+          sessionVariables = { EDITOR = "nvim"; };
+        };
+
+        programs.home-manager.enable = true;
+        programs.zsh.enable = true;
+        programs.tmux.shell = "/bin/zsh";
+
+        fonts.fontconfig.enable = true;
+
+        #home.packages = with pkgs; [
+        #  vim
+        #  neovim
+        #  postgresql_17
+        #  llama-cpp
+        #];
+
+        imports = [
+          ./home/tmux.nix
+        ];
+      }
+    ];
+  }
+  {
+    name = "workubuntu";
+    system = "x86_64-linux";
+    homeManagerModules = [
+      {
+        home = {
+          username = "schwerm";
+          homeDirectory = "/home/schwerm";
+        };
+
+        targets = {
+          # Make home-manager work better on non-NixOS
+          genericLinux.enable = true;
+          genericLinux.gpu.enable = true;
+        };
+
+        wayland.windowManager.sway = {
+          config = {
+            startup = [
+              { command = "/home/schwerm/.nix-profile/bin/firefox"; }
+              { command = "dex /home/schwerm/.local/share/applications/chrome-ilbcbhpbmggihnbldpmmbppiclfnifck-Profile_1.desktop"; } # TIDAL
+              { command = "dex /home/schwerm/.local/share/applications/chrome-fmgjjmmmlfnkbppncabfkddbjimcfncm-Profile_1.desktop"; } # Gmail
+              { command = "dex /home/schwerm/.local/share/applications/chrome-kjbdgfilnfhdoflbpgamdcdgpehopbep-Profile_1.desktop"; } # Google Kalender
+              { command = "dex /home/schwerm/.local/share/applications/chrome-pommaclcbfghclhalboakcipcmmndhcj-Profile_1.desktop"; } # Google Chat
+              { command = "dex /home/schwerm/.local/share/applications/chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1.desktop"; } # Google Meet
+            ];
+            assigns = {
+              "1" = [
+                { app_id = "firefox"; }
+                { app_id = "google-chrome"; }
+              ];
+              "2" = [
+                { app_id = "chrome-ilbcbhpbmggihnbldpmmbppiclfnifck-Profile_1"; } # TIDAL
+                { app_id = "chrome-fmgjjmmmlfnkbppncabfkddbjimcfncm-Profile_1"; } # Gmail
+                { app_id = "chrome-kjbdgfilnfhdoflbpgamdcdgpehopbep-Profile_1"; } # Google Kalender
+                { app_id = "chrome-pommaclcbfghclhalboakcipcmmndhcj-Profile_1"; } # Google Chat
+                { app_id = "chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1"; } # Google Meet
+              ];
+            };
+          };
+        };
+
+        # use ubuntu swaylock for compatibility with ubuntu pam
+        programs.swaylock.package = null;
+        services.swayidle = {
+          events = [
+            { event = "lock"; command = "/usr/bin/swaylock"; }
+            { event = "before-sleep"; command = "/usr/bin/swaylock"; }
+          ];
+          timeouts = [
+            { timeout = 600; command = "/usr/bin/swaylock"; }
+          ];
+        };
+
+        imports = [
+          ./home
+        ];
+      }
+    ];
+  }
 ]

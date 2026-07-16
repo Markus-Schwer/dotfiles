@@ -1,17 +1,17 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   services.swayidle = {
     enable = true;
     systemdTarget = "sway-session.target";
     events = [
-      { event = "lock"; command = "${pkgs.swaylock}/bin/swaylock"; }
-      { event = "before-sleep"; command = "${pkgs.swaylock}/bin/swaylock"; }
-      { event = "after-resume"; command = "${pkgs.swayfx}/bin/swaymsg \"output * toggle\""; }
+      { event = "lock"; command = lib.mkDefault "${pkgs.swaylock}/bin/swaylock"; }
+      { event = "before-sleep"; command = lib.mkDefault "${pkgs.swaylock}/bin/swaylock"; }
+      { event = "after-resume"; command = lib.mkDefault "${pkgs.swayfx}/bin/swaymsg \"output * toggle\""; }
     ];
     timeouts = [
-      { timeout = 600; command = "${pkgs.swaylock}/bin/swaylock"; }
-      { timeout = 1200; command = "${pkgs.swayfx}/bin/swaymsg \"output * toggle\""; }
+      { timeout = 600; command = lib.mkDefault "${pkgs.swaylock}/bin/swaylock"; }
+      { timeout = 1200; command = lib.mkDefault "${pkgs.swayfx}/bin/swaymsg \"output * toggle\""; }
     ];
   };
 }
