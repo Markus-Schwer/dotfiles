@@ -93,6 +93,7 @@
           { command = "${pkgs.tidal-hifi}/bin/tidal-hifi"; }
           { command = "${pkgs.signal-desktop}/bin/signal-desktop"; }
           { command = "${pkgs.thunderbird}/bin/thunderbird"; }
+          { command = "${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store"; always = true; }
         ];
         assigns = lib.mkDefault {
           "1" = [
@@ -240,6 +241,9 @@
 
           # Icon picker
           "${cfg.modifier}+Period" = "exec ${glyphs-picker}/bin/glyphs-picker";
+
+          # Clipboard History
+          "${cfg.modifier}+p" = "exec ${pkgs.cliphist}/bin/cliphist list | ${pkgs.wofi}/bin/wofi --dmenu | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy";
 
           # Multimedia Keys
           "XF86AudioMute" = "exec ${pkgs.pulseaudio}/bin/pactl set-sink-mute @DEFAULT_SINK@ toggle";
