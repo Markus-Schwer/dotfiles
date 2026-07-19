@@ -157,6 +157,28 @@
     {
       "buf_ls",
       { cmd = use_exec_or_fallback("buf", "${pkgs-unstable.buf}/bin/buf", "lsp", "serve", "--log-format=text") }
+    },
+    {
+      "nixd",
+      {
+        cmd = use_exec_or_fallback("nixd", "${pkgs.nixd}/bin/nixd"),
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = 'import (builtins.getFlake (toString ./.)).inputs.nixpkgs { }'
+            },
+            formatting = { command = { "${pkgs.nixfmt}/bin/nixfmt" } },
+            options = {
+              nixos = {
+                expr = '(builtins.getFlake (toString ./.)).nixosConfigurations.'.. vim.loop.os_gethostname() .. '.options'
+              },
+              home_manager = {
+                expr = '(builtins.getFlake (toString ./.)).nixosConfigurations.'.. vim.loop.os_gethostname() .. '.options.home-manager.users.type.getSubOptions []'
+              }
+            }
+          }
+        }
+      }
     }
   }
 
