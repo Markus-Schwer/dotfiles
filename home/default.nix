@@ -4,6 +4,7 @@
   theme,
   lib,
   nixgl,
+  config,
   ...
 }:
 
@@ -33,7 +34,10 @@ in
 
   fonts.fontconfig.enable = true;
 
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
+  };
 
   home.packages = with pkgs; [
     # fonts
@@ -57,7 +61,7 @@ in
     terraform
     nmap
     signal-desktop
-    pkgs-unstable.freecad
+    freecad
     drawio
     cargo
     rustc
