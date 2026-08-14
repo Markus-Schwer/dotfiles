@@ -50,7 +50,7 @@
     system = "aarch64-darwin";
     homeManagerModules = [
       {
-        home-manager.home = {
+        home = {
           username = "schwerm";
           homeDirectory = "/Users/schwerm";
           stateVersion = "24.11";
@@ -65,15 +65,9 @@
 
         fonts.fontconfig.enable = true;
 
-        #home.packages = with pkgs; [
-        #  vim
-        #  neovim
-        #  postgresql_17
-        #  llama-cpp
-        #];
-
         imports = [
           ./home/tmux.nix
+          ./home/mac.nix
         ];
       }
     ];
