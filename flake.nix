@@ -27,6 +27,11 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:nix-community/nixGL";
+    nix-versions = {
+      url = "github:vic/nix-versions";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.treefmt-nix.follows = "treefmt-nix";
+    };
   };
 
   outputs =
@@ -42,6 +47,7 @@
       agenix-rekey,
       flake-utils,
       nixgl,
+      nix-versions,
       ...
     }:
     let
@@ -121,7 +127,7 @@
                 home-manager.useUserPackages = true;
                 home-manager.users.markus = import ./home;
                 home-manager.extraSpecialArgs = {
-                  inherit inputs pkgs-unstable nixgl;
+                  inherit inputs pkgs-unstable nixgl nix-versions;
                   theme = config.markus.theme;
                 };
               }
@@ -133,22 +139,9 @@
 
         homeConfiguration = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-          modules = [
-            defaultModule
-            #home-manager.nixosModules.home-manager
-            #({ config, ... }: {
-            #  home-manager.useGlobalPkgs = true;
-            #  home-manager.useUserPackages = true;
-            #  home-manager.users.markus = import ./home;
-            #  home-manager.extraSpecialArgs = {
-            #    inherit inputs pkgs-unstable;
-            #    theme = config.markus.theme;
-            #  };
-            #})
-          ]
-          ++ host.homeManagerModules;
+          modules = [defaultModule] ++ host.homeManagerModules;
           extraSpecialArgs = {
-            inherit inputs self pkgs-unstable nixgl;
+            inherit inputs self pkgs-unstable nixgl nix-versions;
             theme = "dark";
           };
         };
