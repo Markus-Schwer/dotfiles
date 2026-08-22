@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   programs.waybar = {
@@ -14,6 +14,7 @@
         modules-left = [ "custom/nixstore" "sway/workspaces" ];
         modules-center = [ "sway/mode" ];
         modules-right = [
+          "custom/backupstatus"
           "custom/spacestatus"
           "custom/displays"
           "sway/language"
@@ -68,6 +69,36 @@
               today = "<span color='#ff6699'><b><u>{}</u></b></span>";
             };
           };
+        };
+        "custom/backupstatus" = {
+          exec = pkgs.writeShellScript "backupstatusstatus-waybar" ''
+            timestamp_file="${config.home.homeDirectory}/.local/backup-timestamp.txt"
+
+            if [[ ! -f "$timestamp_file" ]]; then
+                # timestamp file not found
+                printf '{"text":" ","tooltip":"backup fucked","class":"critical"}'
+            fi
+
+            stored_time=$(${pkgs.coreutils}/bin/cat "$timestamp_file")
+            current_time=$(${pkgs.coreutils}/bin/date +%s)
+
+            seven_days=$((7 * 24 * 60 * 60))
+            fourteen_days=$((14 * 24 * 60 * 60))
+
+            backup_age=$((current_time - stored_time))
+
+            if (( backup_age > fourteen_days )); then
+                printf '{"text":" ","tooltip":"backup fucked","class":"critical"}'
+            elif (( backup_age > seven_days )); then
+                printf '{"text":" ","tooltip":"backup bad","class":"warning"}'
+            else
+                printf '{"text":" ","tooltip":"backup good","class":""}'
+            fi
+          '';
+          return-type = "json";
+          interval = 300;
+          format = "{}";
+          tooltip = true;
         };
         "custom/powerprofile" = {
           interval = 10;

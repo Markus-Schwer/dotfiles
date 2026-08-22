@@ -46,6 +46,7 @@ window#waybar {
 }
 
 /* Each module */
+#custom-backupstatus,
 #custom-spacestatus,
 #custom-displays,
 #custom-nixstore,
@@ -70,6 +71,7 @@ window#waybar {
 }
 
 /* Joined modules */
+#custom-backupstatus,
 #custom-spacestatus,
 #custom-displays,
 #custom-nixstore,
@@ -95,6 +97,7 @@ window#waybar {
 }
 
 /* left side of segment */
+#custom-backupstatus,
 #custom-spacestatus,
 #custom-displays,
 #custom-nixstore,
@@ -110,6 +113,7 @@ window#waybar {
 }
 
 /* right side of segment */
+#custom-backupstatus,
 #custom-spacestatus,
 #custom-displays,
 #custom-nixstore,
@@ -165,4 +169,20 @@ window#waybar {
 
 #workspaces button.focused {
     border-color: #444;
+}
+
+#custom-backupstatus {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#custom-backupstatus.warning {
+    animation-name: blink-warning;
+    animation-duration: 3s;
+}
+
+#custom-backupstatus.critical {
+    animation-name: blink-critical;
+    animation-duration: 2s;
 }
