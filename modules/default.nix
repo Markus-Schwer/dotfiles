@@ -57,6 +57,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  security.pki.certificateFiles = [ ../hackwerk.cert ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraGroups.plugdev = { };
   users.users.markus = {
