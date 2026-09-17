@@ -140,6 +140,7 @@ in
     wl-mirror
     platformio
     nix-versions.packages.${system}.default
+    keepassxc
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
