@@ -108,10 +108,13 @@
               ];
               "2" = [
                 { app_id = "chrome-ilbcbhpbmggihnbldpmmbppiclfnifck-Profile_1"; } # TIDAL
-                { app_id = "chrome-fmgjjmmmlfnkbppncabfkddbjimcfncm-Profile_1"; } # Gmail
-                { app_id = "chrome-kjbdgfilnfhdoflbpgamdcdgpehopbep-Profile_1"; } # Google Kalender
                 { app_id = "chrome-pommaclcbfghclhalboakcipcmmndhcj-Profile_1"; } # Google Chat
                 { app_id = "chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1"; } # Google Meet
+              ];
+              "4" = [
+                { app_id = "chrome-ilbcbhpbmggihnbldpmmbppiclfnifck-Profile_1"; } # TIDAL
+                { app_id = "chrome-fmgjjmmmlfnkbppncabfkddbjimcfncm-Profile_1"; } # Gmail
+                { app_id = "chrome-kjbdgfilnfhdoflbpgamdcdgpehopbep-Profile_1"; } # Google Kalender
               ];
             };
           };
