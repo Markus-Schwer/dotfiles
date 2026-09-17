@@ -129,6 +129,7 @@
                 home-manager.extraSpecialArgs = {
                   inherit inputs pkgs-unstable nixgl nix-versions;
                   theme = config.markus.theme;
+                  markus = config.markus;
                 };
               }
             )

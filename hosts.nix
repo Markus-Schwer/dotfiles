@@ -9,9 +9,12 @@
       ./hardware/framework-13-inch-7040-amd.nix
       (import ./disko-config.nix { disk = "/dev/nvme0n1"; })
       {
-        markus.network = {
-          hostname = "nixwork";
-          hostid = "19dba1ec";
+        markus = {
+          network = {
+            hostname = "nixwork";
+            hostid = "19dba1ec";
+          };
+          backup.enable = true;
         };
       }
     ];
