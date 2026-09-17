@@ -199,6 +199,10 @@
           "${cfg.modifier}+Shift+9" = "move container to workspace number 9";
           "${cfg.modifier}+Shift+0" = "move container to workspace number 10";
 
+          # Scratchpad
+          "${cfg.modifier}+Shift+minus" = "move scratchpad";
+          "${cfg.modifier}+minus" = "scratchpad show";
+
           # Moving workspaces between outputs
           "${cfg.modifier}+Control+${cfg.left}" = "move workspace to output left";
           "${cfg.modifier}+Control+${cfg.down}" = "move workspace to output down";
