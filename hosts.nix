@@ -71,6 +71,7 @@
         ];
       }
     ];
+    nixosModules = [];
   }
   {
     name = "workubuntu";
@@ -85,7 +86,6 @@
         targets = {
           # Make home-manager work better on non-NixOS
           genericLinux.enable = true;
-          genericLinux.gpu.enable = true;
         };
 
         wayland.windowManager.sway = {
@@ -131,5 +131,6 @@
         ];
       }
     ];
+    nixosModules = [];
   }
 ]

@@ -1,7 +1,7 @@
 {
   nix.gc = {
     automatic = true;
-    frequency = "daily";
+    dates = "daily";
     options = "--delete-older-than 14d";
   };
 }

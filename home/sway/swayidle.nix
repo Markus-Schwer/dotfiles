@@ -3,7 +3,7 @@
 {
   services.swayidle = {
     enable = true;
-    systemdTarget = "sway-session.target";
+    systemdTargets = [ "sway-session.target" ];
     events = [
       { event = "lock"; command = lib.mkDefault "${pkgs.swaylock}/bin/swaylock"; }
       { event = "before-sleep"; command = lib.mkDefault "${pkgs.swaylock}/bin/swaylock"; }
