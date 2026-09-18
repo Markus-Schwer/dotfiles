@@ -100,6 +100,7 @@
               { command = "dex /home/schwerm/.local/share/applications/chrome-kjbdgfilnfhdoflbpgamdcdgpehopbep-Profile_1.desktop"; } # Google Kalender
               { command = "dex /home/schwerm/.local/share/applications/chrome-pommaclcbfghclhalboakcipcmmndhcj-Profile_1.desktop"; } # Google Chat
               { command = "dex /home/schwerm/.local/share/applications/chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1.desktop"; } # Google Meet
+              { command = "/home/schwerm/.nix-profile/bin/wl-paste --watch /home/schwerm/.nix-profile/bin/cliphist store"; always = true; } # clipboard history
             ];
             assigns = {
               "1" = [

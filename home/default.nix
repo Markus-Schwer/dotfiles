@@ -141,6 +141,7 @@ in
     platformio
     nix-versions.packages.${system}.default
     keepassxc
+    cliphist # explicitly install cliphist for autostart on workubuntu
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
