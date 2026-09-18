@@ -124,14 +124,19 @@
         # use ubuntu swaylock for compatibility with ubuntu pam
         programs.swaylock.package = null;
         services.swayidle = {
+          enable = true;
+          systemdTargets = [ "sway-session.target" ];
           events = [
             { event = "lock"; command = "/usr/bin/swaylock"; }
             { event = "before-sleep"; command = "/usr/bin/swaylock"; }
+            { event = "after-resume"; command = "/home/schwerm/.nix-profile/bin/swaymsg \"output * toggle\""; }
           ];
           timeouts = [
             { timeout = 600; command = "/usr/bin/swaylock"; }
+            { timeout = 1200; command = "/home/schwerm/.nix-profile/bin/swaymsg \"output * toggle\""; }
           ];
         };
+
 
         imports = [
           ./home
