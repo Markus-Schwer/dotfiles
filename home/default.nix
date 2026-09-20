@@ -142,6 +142,7 @@ in
     nix-versions.packages.${system}.default
     keepassxc
     cliphist # explicitly install cliphist for autostart on workubuntu
+    p11-kit
   ];
   home.pointerCursor = {
     # https://github.com/NixOS/nixpkgs/issues/207496
@@ -177,5 +178,6 @@ in
     ./tmux.nix
     ./gc.nix
     ./fzf.nix
+    ./obsidian.nix
   ];
 }
