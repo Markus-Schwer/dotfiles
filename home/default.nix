@@ -1,11 +1,11 @@
 {
   pkgs,
   pkgs-unstable,
-  theme,
   lib,
   nixgl,
   nix-versions,
   config,
+  markus,
   ...
 }:
 
@@ -164,7 +164,8 @@ in
     pretty_json = "${pkgs.jq}/bin/jq -Rr '. as $line | (fromjson? | select(type == \"object\") | .stackTrace //= \"\" | .message, .stackTrace) // $line'";
   };
 
-  markus.theme = theme;
+  markus.theme = markus.theme;
+  markus.backup = markus.backup;
 
   imports = [
     ./sway
