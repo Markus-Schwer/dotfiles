@@ -142,7 +142,10 @@
           modules = [defaultModule] ++ host.homeManagerModules;
           extraSpecialArgs = {
             inherit inputs self pkgs-unstable nixgl nix-versions;
-            theme = "dark";
+            markus = {
+              theme = "dark";
+              backup.enable = false;
+            };
           };
         };
       };
